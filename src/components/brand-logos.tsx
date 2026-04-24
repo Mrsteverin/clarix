@@ -17,12 +17,19 @@ export function GoogleAnalyticsLogo({ className }: LogoProps) {
 }
 
 export function GoogleSearchConsoleLogo({ className }: LogoProps) {
+  // Bar chart with magnifier — Google Search Console mark
   return (
-    <svg viewBox="0 0 48 48" className={className} xmlns="http://www.w3.org/2000/svg">
-      <path fill="#4285F4" d="M22 6a16 16 0 1 0 0 32 16 16 0 0 0 0-32zm0 28a12 12 0 1 1 0-24 12 12 0 0 1 0 24z"/>
-      <path fill="#34A853" d="m31.5 31.5 9 9a2.5 2.5 0 0 0 3.5-3.5l-9-9-3.5 3.5z"/>
-      <path fill="#FBBC04" d="m17.5 14 4 4 4.5-4.5L19 6.5z"/>
-      <path fill="#EA4335" d="M14 17.5 6.5 25l5 5 7.5-7.5z"/>
+    <svg viewBox="0 0 64 64" className={className} xmlns="http://www.w3.org/2000/svg">
+      {/* Tall blue bar */}
+      <rect x="44" y="14" width="10" height="32" rx="5" fill="#4285F4"/>
+      {/* Medium green bar */}
+      <rect x="32" y="22" width="10" height="24" rx="5" fill="#34A853"/>
+      {/* Short red bar */}
+      <rect x="20" y="30" width="10" height="16" rx="5" fill="#EA4335"/>
+      {/* Magnifier ring */}
+      <circle cx="22" cy="38" r="9" fill="none" stroke="#FBBC04" strokeWidth="4"/>
+      {/* Magnifier handle */}
+      <rect x="9" y="46" width="11" height="4" rx="2" transform="rotate(-45 9 46)" fill="#FBBC04"/>
     </svg>
   );
 }
@@ -38,23 +45,41 @@ export function GoogleAdsLogo({ className }: LogoProps) {
 }
 
 export function MetaLogo({ className }: LogoProps) {
+  // Meta infinity mark with brand gradient
   return (
-    <svg viewBox="0 0 36 36" className={className} xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 64 64" className={className} xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="meta-grad" x1="6" y1="28" x2="30" y2="10" gradientUnits="userSpaceOnUse">
+        <linearGradient id="meta-stroke" x1="6" y1="48" x2="58" y2="16" gradientUnits="userSpaceOnUse">
           <stop offset="0" stopColor="#0064E1"/>
-          <stop offset=".4" stopColor="#0064E1"/>
-          <stop offset=".83" stopColor="#0073EE"/>
-          <stop offset="1" stopColor="#0082FB"/>
-        </linearGradient>
-        <linearGradient id="meta-grad2" x1="9" y1="22" x2="9" y2="13" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#0082FB"/>
-          <stop offset="1" stopColor="#0064E0"/>
+          <stop offset=".5" stopColor="#0082FB"/>
+          <stop offset="1" stopColor="#1E9CF6"/>
         </linearGradient>
       </defs>
-      <path fill="#0081FB" d="M6.9 22.4c0 1.4.3 2.5.7 3.2.6.9 1.5 1.3 2.4 1.3 1.2 0 2.3-.3 4.4-3.2 1.7-2.3 3.7-5.6 5-7.7l2.3-3.5c1.6-2.4 3.4-5.1 5.6-5.1 1.7 0 3.4.99 4.7 3.8C33.4 14.5 34 18.6 34 22.7c0 2.5-.5 4.3-1.3 5.7-.8 1.4-2.4 2.8-5 2.8v-3.9c2.2 0 2.8-2.1 2.8-4.4 0-3.4-.8-7.1-2.5-9.7-1.2-1.9-2.8-3-4.6-3-1.9 0-3.5 1.5-5.2 4-1 1.4-1.9 3-3 4.9l-1.4 2.4c-2.7 4.6-3.4 5.6-4.8 7.5-2.5 3.3-4.6 4.6-7.4 4.6-2.7 0-4.5-1.2-5.6-3-.9-1.5-1.4-3.4-1.4-5.7l4.3.5z"/>
-      <path fill="url(#meta-grad2)" d="M6 11.4C7.2 9.5 9 8.2 11 8.2c1.2 0 2.4.4 3.6 1.3 1.3 1.1 2.7 2.8 4.5 5.6l.6 1c1.5 2.4 2.4 3.6 2.9 4.2-.6.7-1.4.5-1.8-.2l-.1-.1-.6-.9c-1.7-2.7-3-4.6-4.2-5.7-1.1-1-1.9-1.4-2.8-1.4-1.1 0-2 .8-2.7 1.7l-3.7-1.7L6 11.4z"/>
-      <path fill="url(#meta-grad)" d="M11 8.2c-1.5 0-2.8.5-3.9 1.5C5.6 11.2 4 13.7 2.7 17 1 21 .8 24.6 1.6 27.6l3.9-1.5c-.4-1.4-.5-3.1.1-4.9 1.1-3.3 2.6-5.3 3.5-6.1.8-.7 1.7-1.1 2.5-1.1.9 0 1.7.4 2.6 1.3 1 1 2 2.5 3.4 4.7l1.4 2.3 2.4-3.7-.6-1c-1.8-2.8-3.2-4.5-4.5-5.6-1.2-.9-2.4-1.3-3.6-1.3z"/>
+      <path
+        fill="none"
+        stroke="url(#meta-stroke)"
+        strokeWidth="7"
+        strokeLinecap="round"
+        d="M10 32c0-9 6-16 14-16 7 0 11 6 16 14 5 8 9 14 16 14 8 0 14-7 14-16s-6-16-14-16c-7 0-11 6-16 14-5 8-9 14-16 14-8 0-14-7-14-16z"
+      />
+    </svg>
+  );
+}
+
+export function GoogleBusinessLogo({ className }: LogoProps) {
+  // Google Business Profile — storefront with G mark
+  return (
+    <svg viewBox="0 0 64 64" className={className} xmlns="http://www.w3.org/2000/svg">
+      {/* Awning */}
+      <path fill="#669DF6" d="M8 16h48l-4 12H12z"/>
+      <path fill="#AECBFA" d="M8 16h12l-2 12H12z"/>
+      <path fill="#AECBFA" d="M32 16h12l-2 12H30z"/>
+      {/* Storefront body */}
+      <rect x="12" y="28" width="40" height="24" rx="2" fill="#4285F4"/>
+      {/* G mark */}
+      <circle cx="32" cy="40" r="7" fill="none" stroke="#fff" strokeWidth="2.5"/>
+      <path d="M32 40h5" stroke="#fff" strokeWidth="2.5" strokeLinecap="square"/>
+      <path d="M37 40v3" stroke="#fff" strokeWidth="2.5" strokeLinecap="square"/>
     </svg>
   );
 }
@@ -89,11 +114,13 @@ export function ShopifyLogo({ className }: LogoProps) {
   );
 }
 
-export function WooLogo({ className }: LogoProps) {
+export function MatomoLogo({ className }: LogoProps) {
+  // Matomo — three overlapping circles in brand orange/yellow
   return (
-    <svg viewBox="0 0 48 48" className={className} xmlns="http://www.w3.org/2000/svg">
-      <rect width="48" height="48" rx="8" fill="#7F54B3"/>
-      <path fill="#fff" d="M8 16c0-1.1.9-2 2-2h28c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H22l-5 4 1-4h-8c-1.1 0-2-.9-2-2V16zm5 1.5l1.7 8 2.4-5.5 2.3 5.5 1.8-8h-1.6l-1 5-2.4-5.5-2.4 5.5-1-5h-1.5l.7 0zm12 4c0-1.5 1-3 3-3s3 1.5 3 3-1 3-3 3-3-1.5-3-3zm1.5 0c0 .8.5 1.5 1.5 1.5s1.5-.7 1.5-1.5-.5-1.5-1.5-1.5-1.5.7-1.5 1.5zm6.5 0c0-1.5 1-3 3-3s3 1.5 3 3-1 3-3 3-3-1.5-3-3zm1.5 0c0 .8.5 1.5 1.5 1.5s1.5-.7 1.5-1.5-.5-1.5-1.5-1.5-1.5.7-1.5 1.5z"/>
+    <svg viewBox="0 0 64 64" className={className} xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="40" r="14" fill="#3152A0"/>
+      <circle cx="44" cy="40" r="14" fill="#F38334"/>
+      <circle cx="32" cy="22" r="14" fill="#F9C32B"/>
     </svg>
   );
 }
