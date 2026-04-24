@@ -7,16 +7,16 @@ function NotFoundComponent() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">404</p>
-        <h1 className="mt-4 font-display text-6xl">Page not found</h1>
+        <h1 className="mt-4 font-display text-6xl">Sidan finns inte</h1>
         <p className="mt-3 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          Sidan du letar efter finns inte eller har flyttats.
         </p>
         <div className="mt-8">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:opacity-90"
           >
-            Back to FlowReport
+            Tillbaka till FlowReport
           </Link>
         </div>
       </div>
@@ -61,7 +61,7 @@ export const Route = createRootRoute({
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="sv" suppressHydrationWarning>
       <head>
         <HeadContent />
         <script
