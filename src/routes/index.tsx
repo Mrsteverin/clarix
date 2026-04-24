@@ -9,6 +9,17 @@ import {
   Globe,
   TrendingUp,
   ShieldCheck,
+  BarChart3,
+  Search,
+  Megaphone,
+  Facebook,
+  Linkedin,
+  Music2,
+  ShoppingBag,
+  Store,
+  Youtube,
+  FileSpreadsheet,
+  Palette,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
