@@ -7,18 +7,18 @@ import { AppShell } from "@/components/app-shell";
 export const Route = createFileRoute("/settings")({
   head: () => ({
     meta: [
-      { title: "Settings — FlowReport" },
-      { name: "description", content: "Workspace, branding and white-label settings." },
+      { title: "Inställningar — FlowReport" },
+      { name: "description", content: "Arbetsyta, varumärke och white-label-inställningar." },
     ],
   }),
   component: SettingsPage,
 });
 
 const sections = [
-  { id: "profile", label: "Profile", icon: User },
+  { id: "profile", label: "Profil", icon: User },
   { id: "brand", label: "White-label", icon: Palette },
-  { id: "domain", label: "Custom domain", icon: Globe },
-  { id: "ai", label: "AI insights", icon: Sparkles },
+  { id: "domain", label: "Eget domännamn", icon: Globe },
+  { id: "ai", label: "AI-insikter", icon: Sparkles },
 ] as const;
 
 const accentColors = [
@@ -42,8 +42,8 @@ function SettingsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
-          <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">Account</p>
-          <h1 className="mt-2 font-display text-5xl tracking-tight">Settings</h1>
+          <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">Konto</p>
+          <h1 className="mt-2 font-display text-5xl tracking-tight">Inställningar</h1>
         </motion.div>
 
         <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[220px_1fr]">
@@ -76,8 +76,8 @@ function SettingsPage() {
             {active === "profile" && (
               <div className="space-y-6">
                 <div>
-                  <h2 className="font-display text-2xl">Profile</h2>
-                  <p className="text-sm text-muted-foreground">How your account appears across FlowReport.</p>
+                  <h2 className="font-display text-2xl">Profil</h2>
+                  <p className="text-sm text-muted-foreground">Så här visas ditt konto i FlowReport.</p>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-violet-400 to-fuchsia-500 text-2xl font-medium text-white">
@@ -85,12 +85,12 @@ function SettingsPage() {
                   </div>
                   <button className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium hover:bg-muted">
                     <Upload className="h-3.5 w-3.5" />
-                    Upload photo
+                    Ladda upp foto
                   </button>
                 </div>
-                <Field label="Full name" defaultValue="Alex Chen" />
-                <Field label="Email" defaultValue="alex@aurora.studio" type="email" />
-                <Field label="Workspace" defaultValue="Aurora Agency" />
+                <Field label="Fullständigt namn" defaultValue="Alex Lindqvist" />
+                <Field label="E-post" defaultValue="alex@aurora.studio" type="email" />
+                <Field label="Arbetsyta" defaultValue="Aurora Byrå" />
               </div>
             )}
 
@@ -98,7 +98,7 @@ function SettingsPage() {
               <div className="space-y-6">
                 <div>
                   <h2 className="font-display text-2xl">White-label</h2>
-                  <p className="text-sm text-muted-foreground">Add your logo and colors. Reports will inherit them automatically.</p>
+                  <p className="text-sm text-muted-foreground">Lägg till logo och färger. Rapporter ärver dem automatiskt.</p>
                 </div>
                 <div>
                   <p className="mb-2 text-sm font-medium">Logo</p>
@@ -107,13 +107,13 @@ function SettingsPage() {
                       <Sparkles className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium">Drag & drop or click to upload</p>
-                      <p className="text-xs text-muted-foreground">SVG, PNG · max 2MB</p>
+                      <p className="text-sm font-medium">Dra och släpp eller klicka för att ladda upp</p>
+                      <p className="text-xs text-muted-foreground">SVG, PNG · max 2 MB</p>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <p className="mb-3 text-sm font-medium">Accent color</p>
+                  <p className="mb-3 text-sm font-medium">Accentfärg</p>
                   <div className="flex flex-wrap gap-2">
                     {accentColors.map((color) => (
                       <button
@@ -127,28 +127,28 @@ function SettingsPage() {
                     ))}
                   </div>
                 </div>
-                <Field label="Brand name on reports" defaultValue="Aurora Studios Reports" />
+                <Field label="Varumärkesnamn på rapporter" defaultValue="Aurora Studios Rapporter" />
               </div>
             )}
 
             {active === "domain" && (
               <div className="space-y-6">
                 <div>
-                  <h2 className="font-display text-2xl">Custom domain</h2>
-                  <p className="text-sm text-muted-foreground">Serve client dashboards on your own domain.</p>
+                  <h2 className="font-display text-2xl">Eget domännamn</h2>
+                  <p className="text-sm text-muted-foreground">Visa kundernas dashboards på din egen domän.</p>
                 </div>
-                <Field label="Domain" defaultValue="reports.aurora.studio" placeholder="reports.youragency.com" />
+                <Field label="Domän" defaultValue="rapporter.aurora.studio" placeholder="rapporter.dinbyra.se" />
                 <div className="rounded-xl border border-border/60 bg-background/50 p-4">
-                  <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">DNS Configuration</p>
+                  <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">DNS-konfiguration</p>
                   <div className="mt-3 space-y-2 font-mono text-xs">
                     <div className="flex items-center justify-between rounded-lg bg-muted/60 px-3 py-2">
-                      <span>CNAME · reports</span>
-                      <span className="text-muted-foreground">cname.flowreport.app</span>
+                      <span>CNAME · rapporter</span>
+                      <span className="text-muted-foreground">cname.flowreport.se</span>
                     </div>
                   </div>
                   <p className="mt-3 inline-flex items-center gap-1.5 text-xs text-success">
                     <Check className="h-3 w-3" />
-                    Verified · SSL active
+                    Verifierad · SSL aktivt
                   </p>
                 </div>
               </div>
@@ -157,16 +157,16 @@ function SettingsPage() {
             {active === "ai" && (
               <div className="space-y-6">
                 <div>
-                  <h2 className="font-display text-2xl">AI insights</h2>
-                  <p className="text-sm text-muted-foreground">Tune the tone and depth of generated summaries.</p>
+                  <h2 className="font-display text-2xl">AI-insikter</h2>
+                  <p className="text-sm text-muted-foreground">Justera ton och djup på de genererade sammanfattningarna.</p>
                 </div>
-                <Toggle label="Auto-generate slide summaries" defaultChecked />
-                <Toggle label="Surface recommendations on the dashboard" defaultChecked />
-                <Toggle label="Email weekly digest of opportunities" />
+                <Toggle label="Generera slide-sammanfattningar automatiskt" defaultChecked />
+                <Toggle label="Visa rekommendationer på dashboarden" defaultChecked />
+                <Toggle label="Mejla veckosammanfattning av möjligheter" />
                 <div>
-                  <p className="mb-2 text-sm font-medium">Tone</p>
+                  <p className="mb-2 text-sm font-medium">Tonläge</p>
                   <div className="flex flex-wrap gap-2">
-                    {["Concise", "Conversational", "Executive", "Technical"].map((t, i) => (
+                    {["Kortfattat", "Personligt", "Ledningsgrupp", "Tekniskt"].map((t, i) => (
                       <button
                         key={t}
                         className={`rounded-full border px-3 py-1.5 text-sm ${
@@ -185,10 +185,10 @@ function SettingsPage() {
 
             <div className="mt-8 flex justify-end gap-2 border-t border-border/60 pt-6">
               <button className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium hover:bg-muted">
-                Cancel
+                Avbryt
               </button>
               <button className="rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background hover:opacity-90">
-                Save changes
+                Spara ändringar
               </button>
             </div>
           </motion.div>

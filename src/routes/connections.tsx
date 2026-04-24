@@ -1,31 +1,38 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { Check, Plus, Search } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { Check, Plus, Search, ShieldCheck, X, Loader2, ChevronDown, Lock } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
-import { integrations } from "@/lib/demo-data";
+import { integrations as initialIntegrations } from "@/lib/demo-data";
 
 export const Route = createFileRoute("/connections")({
   head: () => ({
     meta: [
-      { title: "Connections — FlowReport" },
-      { name: "description", content: "Connect your marketing channels in two clicks." },
+      { title: "Anslutningar — FlowReport" },
+      { name: "description", content: "Anslut dina marknadskanaler med två klick." },
     ],
   }),
   component: ConnectionsPage,
 });
 
-const categories = ["All", "Analytics", "SEO", "Paid", "Ecommerce", "Social", "Other"];
+const categories = ["Alla", "Analys", "SEO", "Annonser", "E-handel", "Sociala medier", "Övrigt"];
+
+type Integration = (typeof initialIntegrations)[number];
+type FlowStep = "consent" | "choosing" | "connecting" | "done";
 
 function ConnectionsPage() {
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState("Alla");
   const [query, setQuery] = useState("");
+  const [items, setItems] = useState<Integration[]>(initialIntegrations);
+  const [active, setActive] = useState<Integration | null>(null);
 
-  const filtered = integrations.filter(
+  const filtered = items.filter(
     (i) =>
-      (filter === "All" || i.category === filter) &&
+      (filter === "Alla" || i.category === filter) &&
       i.name.toLowerCase().includes(query.toLowerCase())
   );
+
+  const connectedCount = items.filter((i) => i.connected).length;
 
   return (
     <AppShell>
@@ -35,10 +42,11 @@ function ConnectionsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
-          <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">Sources</p>
-          <h1 className="mt-2 font-display text-5xl tracking-tight">Connect your channels</h1>
+          <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">Datakällor</p>
+          <h1 className="mt-2 font-display text-5xl tracking-tight">Anslut dina kanaler</h1>
           <p className="mt-2 max-w-xl text-sm text-muted-foreground">
-            Two clicks. We'll handle the rest — schemas, refresh tokens, normalization, all of it.
+            Logga in hos kanalen, godkänn behörigheterna — vi sköter resten.{" "}
+            <span className="text-foreground/80">{connectedCount} av {items.length} anslutna.</span>
           </p>
         </motion.div>
 
@@ -48,7 +56,7 @@ function ConnectionsPage() {
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search integrations…"
+              placeholder="Sök integrationer…"
               className="w-full rounded-full border border-border bg-background py-2 pl-10 pr-4 text-sm focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/20"
             />
           </div>
@@ -85,16 +93,30 @@ function ConnectionsPage() {
                 >
                   {integ.name.charAt(0)}
                 </div>
-                {integ.connected && (
+                {integ.connected ? (
                   <span className="inline-flex items-center gap-1 rounded-full bg-success/10 px-2 py-0.5 text-xs font-medium text-success">
                     <Check className="h-3 w-3" />
-                    Connected
+                    Ansluten
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center gap-1 rounded-full bg-muted/60 px-2 py-0.5 text-xs font-medium text-muted-foreground">
+                    Ej ansluten
                   </span>
                 )}
               </div>
               <h3 className="mt-4 text-base font-semibold">{integ.name}</h3>
               <p className="text-xs text-muted-foreground">{integ.category}</p>
+              <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-muted-foreground/90">
+                {integ.purpose}
+              </p>
+              {integ.connected && integ.account && (
+                <p className="mt-2 truncate text-xs text-foreground/70">
+                  <span className="text-muted-foreground">Konto: </span>
+                  {integ.account}
+                </p>
+              )}
               <button
+                onClick={() => setActive(integ)}
                 className={`mt-5 inline-flex w-full items-center justify-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all ${
                   integ.connected
                     ? "border border-border bg-background hover:bg-muted"
@@ -102,11 +124,11 @@ function ConnectionsPage() {
                 }`}
               >
                 {integ.connected ? (
-                  "Manage"
+                  "Hantera"
                 ) : (
                   <>
                     <Plus className="h-3.5 w-3.5" />
-                    Connect
+                    Anslut
                   </>
                 )}
               </button>
@@ -114,6 +136,391 @@ function ConnectionsPage() {
           ))}
         </div>
       </div>
+
+      <AnimatePresence>
+        {active && (
+          <ConnectModal
+            integration={active}
+            onClose={() => setActive(null)}
+            onConnect={(updated) => {
+              setItems((prev) => prev.map((p) => (p.id === updated.id ? updated : p)));
+            }}
+            onDisconnect={(id) => {
+              setItems((prev) =>
+                prev.map((p) => (p.id === id ? { ...p, connected: false, account: "" } : p))
+              );
+            }}
+          />
+        )}
+      </AnimatePresence>
     </AppShell>
   );
+}
+
+/* -------------------- OAuth-style Connect Modal -------------------- */
+
+function ConnectModal({
+  integration,
+  onClose,
+  onConnect,
+  onDisconnect,
+}: {
+  integration: Integration;
+  onClose: () => void;
+  onConnect: (i: Integration) => void;
+  onDisconnect: (id: string) => void;
+}) {
+  // If already connected, show "manage" view, otherwise start OAuth-style flow.
+  const [step, setStep] = useState<FlowStep>(integration.connected ? "done" : "consent");
+  const [accepted, setAccepted] = useState<Record<string, boolean>>(() =>
+    Object.fromEntries(integration.scopes.map((s) => [s, true]))
+  );
+  const [chosenAccount, setChosenAccount] = useState<string>(
+    integration.account || sampleAccountFor(integration)
+  );
+
+  // Auto-advance the "connecting" step
+  useEffect(() => {
+    if (step !== "connecting") return;
+    const t = setTimeout(() => {
+      const finished: Integration = {
+        ...integration,
+        connected: true,
+        account: chosenAccount,
+      };
+      onConnect(finished);
+      setStep("done");
+    }, 1400);
+    return () => clearTimeout(t);
+  }, [step, integration, chosenAccount, onConnect]);
+
+  const allAccepted = integration.scopes.every((s) => accepted[s]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96, y: 8 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.96, y: 8 }}
+        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-md overflow-hidden rounded-2xl border border-border bg-background shadow-elevated"
+      >
+        {/* Provider chrome — feels like the real OAuth window */}
+        <div className="flex items-center justify-between border-b border-border bg-muted/40 px-4 py-2.5">
+          <div className="flex items-center gap-2">
+            <Lock className="h-3 w-3 text-muted-foreground" />
+            <span className="text-xs font-medium text-muted-foreground">
+              {providerHost(integration.provider)}
+            </span>
+          </div>
+          <button
+            onClick={onClose}
+            className="rounded-full p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
+            aria-label="Stäng"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div className="p-6">
+          {/* Provider logo */}
+          <div className="flex items-center gap-3">
+            <div
+              className="flex h-10 w-10 items-center justify-center rounded-xl text-base font-bold text-white shadow-soft"
+              style={{ background: integration.color }}
+            >
+              {integration.name.charAt(0)}
+            </div>
+            <div className="flex-1">
+              <p className="text-xs uppercase tracking-wider text-muted-foreground">
+                {integration.provider}
+              </p>
+              <p className="text-sm font-semibold">{integration.name}</p>
+            </div>
+          </div>
+
+          <AnimatePresence mode="wait">
+            {/* STEP 1 — Account chooser */}
+            {step === "consent" && (
+              <motion.div
+                key="consent"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.2 }}
+                className="mt-6"
+              >
+                <h2 className="font-display text-2xl leading-tight">
+                  Välj ett {integration.provider}-konto
+                </h2>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  för att fortsätta till <span className="font-medium text-foreground">FlowReport</span>
+                </p>
+
+                <div className="mt-5 space-y-1.5">
+                  {sampleAccountsFor(integration).map((acc) => (
+                    <button
+                      key={acc.email}
+                      onClick={() => {
+                        setChosenAccount(acc.email);
+                        setStep("choosing");
+                      }}
+                      className="flex w-full items-center gap-3 rounded-xl border border-border bg-background px-3 py-2.5 text-left transition-all hover:bg-muted"
+                    >
+                      <div
+                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-medium text-white"
+                        style={{ background: acc.color }}
+                      >
+                        {acc.name.charAt(0)}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate text-sm font-medium">{acc.name}</p>
+                        <p className="truncate text-xs text-muted-foreground">{acc.email}</p>
+                      </div>
+                    </button>
+                  ))}
+                  <button
+                    onClick={() => {
+                      setChosenAccount("Annat konto");
+                      setStep("choosing");
+                    }}
+                    className="flex w-full items-center gap-3 rounded-xl border border-dashed border-border bg-background px-3 py-2.5 text-left text-sm text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
+                  >
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-muted">
+                      <Plus className="h-4 w-4" />
+                    </div>
+                    Använd ett annat konto
+                  </button>
+                </div>
+
+                <p className="mt-6 text-[11px] leading-relaxed text-muted-foreground">
+                  För att fortsätta delar {integration.provider} ditt namn, din e-postadress
+                  och språkinställning med FlowReport.
+                </p>
+              </motion.div>
+            )}
+
+            {/* STEP 2 — Scope / permission consent */}
+            {step === "choosing" && (
+              <motion.div
+                key="choosing"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.2 }}
+                className="mt-6"
+              >
+                <h2 className="font-display text-2xl leading-tight">
+                  FlowReport vill ha åtkomst till ditt {integration.provider}-konto
+                </h2>
+                <p className="mt-1 truncate text-sm text-muted-foreground">{chosenAccount}</p>
+
+                <div className="mt-5 rounded-xl border border-border bg-muted/30 p-3">
+                  <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    Det här tillåter FlowReport att:
+                  </p>
+                  <ul className="mt-3 space-y-2.5">
+                    {integration.scopes.map((scope) => (
+                      <li key={scope} className="flex items-start gap-3">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setAccepted((prev) => ({ ...prev, [scope]: !prev[scope] }))
+                          }
+                          className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border transition-all ${
+                            accepted[scope]
+                              ? "border-foreground bg-foreground text-background"
+                              : "border-border bg-background"
+                          }`}
+                        >
+                          {accepted[scope] && <Check className="h-3 w-3" />}
+                        </button>
+                        <span className="text-sm leading-snug">{scope}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mt-4 flex items-start gap-2 rounded-xl border border-border/60 bg-background p-3 text-xs text-muted-foreground">
+                  <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-success" />
+                  <p>
+                    FlowReport läser endast data — vi kan aldrig publicera, redigera
+                    eller radera. Du kan dra tillbaka åtkomsten när som helst.
+                  </p>
+                </div>
+
+                <div className="mt-6 flex justify-end gap-2">
+                  <button
+                    onClick={() => setStep("consent")}
+                    className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium hover:bg-muted"
+                  >
+                    Avbryt
+                  </button>
+                  <button
+                    disabled={!allAccepted}
+                    onClick={() => setStep("connecting")}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-all hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    Tillåt
+                  </button>
+                </div>
+              </motion.div>
+            )}
+
+            {/* STEP 3 — Loading */}
+            {step === "connecting" && (
+              <motion.div
+                key="connecting"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="mt-10 flex flex-col items-center gap-4 py-6 text-center"
+              >
+                <Loader2 className="h-8 w-8 animate-spin text-accent" />
+                <p className="font-medium">Säkrar anslutningen…</p>
+                <p className="text-sm text-muted-foreground">
+                  Hämtar konton, dataströmmar och uppdateringstoken.
+                </p>
+              </motion.div>
+            )}
+
+            {/* STEP 4 — Done / Manage */}
+            {step === "done" && (
+              <motion.div
+                key="done"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                className="mt-6"
+              >
+                <div className="flex items-center gap-2">
+                  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-success/15 text-success">
+                    <Check className="h-4 w-4" />
+                  </div>
+                  <h2 className="font-display text-2xl leading-tight">Ansluten</h2>
+                </div>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Vi synkar nu data från {integration.name} i bakgrunden.
+                </p>
+
+                <div className="mt-5 space-y-3 rounded-xl border border-border bg-muted/30 p-4 text-sm">
+                  <Row label="Konto" value={chosenAccount} />
+                  <Row label="Status" value={<span className="text-success">Aktiv</span>} />
+                  <Row label="Senast synkad" value="Just nu" />
+                  <Row
+                    label="Behörigheter"
+                    value={
+                      <span className="text-muted-foreground">
+                        {integration.scopes.length} godkända
+                      </span>
+                    }
+                  />
+                </div>
+
+                <details className="mt-3 group">
+                  <summary className="flex cursor-pointer items-center justify-between rounded-xl border border-border/60 px-3 py-2 text-sm hover:bg-muted">
+                    <span>Visa beviljade behörigheter</span>
+                    <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+                  </summary>
+                  <ul className="mt-2 space-y-1.5 px-3 text-xs text-muted-foreground">
+                    {integration.scopes.map((s) => (
+                      <li key={s} className="flex items-start gap-2">
+                        <Check className="mt-0.5 h-3 w-3 shrink-0 text-success" />
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+
+                <div className="mt-6 flex justify-between gap-2">
+                  <button
+                    onClick={() => {
+                      onDisconnect(integration.id);
+                      onClose();
+                    }}
+                    className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-destructive hover:bg-destructive/10"
+                  >
+                    Koppla ifrån
+                  </button>
+                  <button
+                    onClick={onClose}
+                    className="rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background hover:opacity-90"
+                  >
+                    Klar
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function Row({ label, value }: { label: string; value: React.ReactNode }) {
+  return (
+    <div className="flex items-center justify-between">
+      <span className="text-muted-foreground">{label}</span>
+      <span className="max-w-[60%] truncate text-right font-medium">{value}</span>
+    </div>
+  );
+}
+
+function providerHost(provider: string) {
+  const map: Record<string, string> = {
+    Google: "accounts.google.com",
+    Meta: "facebook.com/dialog/oauth",
+    LinkedIn: "linkedin.com/oauth",
+    TikTok: "business-api.tiktok.com",
+    Shopify: "shopify.com/admin/oauth",
+    WooCommerce: "wordpress.org/wp-admin",
+    FlowReport: "flowreport.se",
+  };
+  return map[provider] ?? provider.toLowerCase() + ".com";
+}
+
+function sampleAccountFor(i: Integration) {
+  return sampleAccountsFor(i)[0].email;
+}
+
+function sampleAccountsFor(i: Integration) {
+  switch (i.provider) {
+    case "Google":
+      return [
+        { name: "Alex Lindqvist", email: "alex@aurora.studio", color: "#7C3AED" },
+        { name: "Aurora Studios", email: "data@aurora.studio", color: "#0EA5E9" },
+      ];
+    case "Meta":
+      return [
+        { name: "Aurora Studios · BM", email: "Business Manager · 184 932 451", color: "#0866FF" },
+        { name: "Halo Commerce · BM", email: "Business Manager · 947 110 822", color: "#1877F2" },
+      ];
+    case "LinkedIn":
+      return [
+        { name: "Alex Lindqvist", email: "alex@aurora.studio", color: "#0A66C2" },
+      ];
+    case "TikTok":
+      return [
+        { name: "Aurora Studios", email: "TikTok Business · 7234 8821", color: "#FF0050" },
+      ];
+    case "Shopify":
+      return [
+        { name: "Aurora Studios", email: "aurora-studios.myshopify.com", color: "#95BF47" },
+      ];
+    case "WooCommerce":
+      return [
+        { name: "Aurora WP", email: "aurora.studio/wp-admin", color: "#7F54B3" },
+      ];
+    default:
+      return [{ name: "Standardkonto", email: "alex@aurora.studio", color: "#6B7280" }];
+  }
 }

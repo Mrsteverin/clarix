@@ -7,16 +7,16 @@ function NotFoundComponent() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">404</p>
-        <h1 className="mt-4 font-display text-6xl">Page not found</h1>
+        <h1 className="mt-4 font-display text-6xl">Sidan finns inte</h1>
         <p className="mt-3 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          Sidan du letar efter finns inte eller har flyttats.
         </p>
         <div className="mt-8">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:opacity-90"
           >
-            Back to FlowReport
+            Tillbaka till FlowReport
           </Link>
         </div>
       </div>
@@ -29,17 +29,17 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "FlowReport — Beautiful marketing reports, on autopilot" },
+      { title: "FlowReport — Vackra marknadsrapporter, på autopilot" },
       {
         name: "description",
         content:
-          "FlowReport turns your marketing channels into stunning, presentation-ready reports. Less clutter. More clarity.",
+          "FlowReport förvandlar dina marknadskanaler till snygga, presentationsfärdiga rapporter. Mindre brus. Mer klarhet.",
       },
       { name: "author", content: "FlowReport" },
-      { property: "og:title", content: "FlowReport — Beautiful marketing reports, on autopilot" },
+      { property: "og:title", content: "FlowReport — Vackra marknadsrapporter, på autopilot" },
       {
         property: "og:description",
-        content: "Connect your channels and get elegant dashboards and client reports in seconds.",
+        content: "Anslut dina kanaler och få eleganta dashboards och kundrapporter på sekunder.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -61,7 +61,7 @@ export const Route = createRootRoute({
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="sv" suppressHydrationWarning>
       <head>
         <HeadContent />
         <script

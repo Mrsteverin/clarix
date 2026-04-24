@@ -14,11 +14,11 @@ import {
 import { ThemeToggle } from "./theme-toggle";
 
 const navItems = [
-  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/connections", label: "Connections", icon: Plug },
-  { to: "/reports", label: "Reports", icon: FileText },
-  { to: "/clients", label: "Clients", icon: Users },
-  { to: "/settings", label: "Settings", icon: Settings },
+  { to: "/dashboard", label: "Översikt", icon: LayoutDashboard },
+  { to: "/connections", label: "Anslutningar", icon: Plug },
+  { to: "/reports", label: "Rapporter", icon: FileText },
+  { to: "/clients", label: "Kunder", icon: Users },
+  { to: "/settings", label: "Inställningar", icon: Settings },
 ] as const;
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -26,11 +26,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="relative flex min-h-screen w-full bg-background text-foreground">
-      {/* Aurora background */}
       <div className="pointer-events-none fixed inset-0 -z-10 bg-gradient-aurora opacity-60" />
       <div className="pointer-events-none fixed inset-0 -z-10 grid-pattern opacity-40" />
 
-      {/* Sidebar */}
       <aside className="hidden w-64 shrink-0 border-r border-border/60 bg-sidebar/60 backdrop-blur-xl lg:flex lg:flex-col">
         <div className="flex h-16 items-center gap-2 px-6">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-brand shadow-glow">
@@ -68,9 +66,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </nav>
 
         <div className="m-3 rounded-2xl border border-border/60 bg-gradient-card p-4">
-          <p className="text-xs font-medium text-muted-foreground">Pro tip</p>
+          <p className="text-xs font-medium text-muted-foreground">Tips</p>
           <p className="mt-1 text-sm">
-            Use <kbd className="rounded bg-muted px-1.5 py-0.5 text-[10px]">⌘K</kbd> to jump anywhere instantly.
+            Tryck <kbd className="rounded bg-muted px-1.5 py-0.5 text-[10px]">⌘K</kbd> för att hoppa vart du vill.
           </p>
         </div>
 
@@ -79,16 +77,14 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             A
           </div>
           <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-medium">Alex Chen</p>
-            <p className="truncate text-xs text-muted-foreground">Aurora Agency</p>
+            <p className="truncate text-sm font-medium">Alex Lindqvist</p>
+            <p className="truncate text-xs text-muted-foreground">Aurora Byrå</p>
           </div>
           <ChevronDown className="h-4 w-4 text-muted-foreground" />
         </div>
       </aside>
 
-      {/* Main area */}
       <div className="flex min-w-0 flex-1 flex-col">
-        {/* Topbar */}
         <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-border/60 bg-background/70 px-4 backdrop-blur-xl lg:px-8">
           <div className="flex items-center gap-2 lg:hidden">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-brand">
@@ -101,7 +97,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <input
               type="search"
-              placeholder="Search reports, clients, channels…"
+              placeholder="Sök rapporter, kunder, kanaler…"
               className="w-full rounded-full border border-border bg-muted/40 py-2 pl-10 pr-12 text-sm placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/20"
             />
             <kbd className="absolute right-3 top-1/2 hidden -translate-y-1/2 rounded border border-border bg-background px-1.5 py-0.5 text-[10px] text-muted-foreground md:block">
@@ -112,7 +108,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <div className="ml-auto flex items-center gap-2">
             <ThemeToggle />
             <button
-              aria-label="Notifications"
+              aria-label="Notiser"
               className="relative inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background/60 text-foreground/80 transition-all hover:bg-muted"
             >
               <Bell className="h-4 w-4" />
@@ -121,7 +117,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </div>
         </header>
 
-        {/* Mobile nav */}
         <nav className="sticky top-16 z-20 flex gap-1 overflow-x-auto border-b border-border/60 bg-background/70 px-4 py-2 backdrop-blur-xl lg:hidden">
           {navItems.map((item) => {
             const active = location.pathname.startsWith(item.to);
