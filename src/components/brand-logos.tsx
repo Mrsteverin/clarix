@@ -1,8 +1,10 @@
 // Authentic brand SVG logos for channel cards.
 // Each logo uses the official brand colors and renders inside a white rounded tile
 // so trademark colors stay accurate regardless of theme.
+import type { ReactElement } from "react";
 
 type LogoProps = { className?: string };
+type Logo = (p: LogoProps) => ReactElement;
 
 export function GoogleAnalyticsLogo({ className }: LogoProps) {
   return (
