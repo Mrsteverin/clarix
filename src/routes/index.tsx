@@ -42,17 +42,17 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-const channels = [
-  "Google Analytics 4",
-  "Search Console",
-  "Google Ads",
-  "Meta Ads",
-  "LinkedIn Ads",
-  "TikTok Ads",
-  "Shopify",
-  "WooCommerce",
-  "YouTube",
-  "Egen CSV",
+const channels: { name: string; icon: typeof BarChart3; color: string }[] = [
+  { name: "Google Analytics 4", icon: BarChart3, color: "#E8710A" },
+  { name: "Search Console", icon: Search, color: "#4285F4" },
+  { name: "Google Ads", icon: Megaphone, color: "#34A853" },
+  { name: "Meta Ads", icon: Facebook, color: "#1877F2" },
+  { name: "LinkedIn Ads", icon: Linkedin, color: "#0A66C2" },
+  { name: "TikTok Ads", icon: Music2, color: "#111111" },
+  { name: "Shopify", icon: ShoppingBag, color: "#5A8E3A" },
+  { name: "WooCommerce", icon: Store, color: "#7F54B3" },
+  { name: "YouTube", icon: Youtube, color: "#FF0000" },
+  { name: "Egen CSV", icon: FileSpreadsheet, color: "#10B981" },
 ];
 
 function Landing() {
