@@ -248,8 +248,8 @@ function Landing() {
             },
             {
               icon: Globe,
-              title: "Helt white-label",
-              body: "Logo, färger, eget domännamn, kundinloggningar. Ditt varumärke från ände till ände.",
+              title: "Skapad för icke-tekniker",
+              body: "Inga GA4-kurser. Inga UTM-mardrömmar. Bara siffrorna som faktiskt påverkar verksamheten.",
             },
             {
               icon: TrendingUp,
@@ -258,8 +258,8 @@ function Landing() {
             },
             {
               icon: ShieldCheck,
-              title: "Företagsklass",
-              body: "SOC 2, SSO och rolldelning. Byggt för byråer i reglerade branscher.",
+              title: "Beslutsklart för ledningen",
+              body: "Exportera en CFO-vänlig PDF eller dela en live-länk till styrelsen — på en knapptryckning.",
             },
           ].map((f, i) => (
             <motion.div
