@@ -348,61 +348,120 @@ function Landing() {
       <section id="pricing" className="mx-auto max-w-7xl px-6 py-24">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Priser</p>
-          <h2 className="mt-3 font-display text-5xl tracking-tight">Enkelt nog för dig. Kraftfullt nog för din byrå.</h2>
+          <h2 className="mt-3 font-display text-5xl tracking-tight">
+            Tre paket. <span className="italic text-muted-foreground">Noll förvirring.</span>
+          </h2>
+          <p className="mt-4 text-base text-muted-foreground">
+            Välj nivån som matchar din ambition. Uppgradera när du växer.
+          </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3 md:items-stretch">
           {[
-            { name: "Personlig", price: 190, clients: "För ägare, VD och CFO", featured: false },
-            { name: "Team", price: 490, clients: "För kommunikatörer och team", featured: true },
-            { name: "Byrå", price: 1490, clients: "White-label, obegränsat antal kunder", featured: false },
+            {
+              name: "Personlig",
+              price: 399,
+              tagline: "För ägare, VD och mindre företag som vill få koll snabbt.",
+              features: [
+                "1 dashboard",
+                "3 kopplade kanaler",
+                "2 användare",
+                "Veckosummering via e-post",
+                "AI-insikter varje månad",
+                "PDF-export",
+                "Kom igång på 5 minuter",
+              ],
+              cta: "Starta gratis provperiod",
+              featured: false,
+            },
+            {
+              name: "Team",
+              price: 799,
+              tagline: "För marknadsteam och företag som växer.",
+              features: [
+                "5 dashboards",
+                "6 kopplade kanaler",
+                "3 användare",
+                "Live-data",
+                "AI-chat med din data",
+                "Veckovisa rekommendationer",
+                "Delbara rapporter",
+                "Prioriterad support",
+              ],
+              cta: "Väx med ClarityCloud",
+              featured: true,
+            },
+            {
+              name: "Byrå",
+              price: 1490,
+              tagline: "För byråer, konsulter och företag med flera varumärken.",
+              features: [
+                "Obegränsat antal dashboards",
+                "Obegränsat antal kunder",
+                "White label",
+                "Egen logga och färger",
+                "Kundportaler",
+                "Team-access",
+                "AI-insikter per kund",
+                "PDF + live-länkar",
+                "Prioriterad onboarding",
+              ],
+              cta: "Boka demo",
+              featured: false,
+            },
           ].map((p) => (
             <div
               key={p.name}
-              className={`relative rounded-2xl border p-8 ${
+              className={`relative flex flex-col rounded-2xl border p-8 transition-all ${
                 p.featured
-                  ? "border-foreground/20 bg-gradient-card shadow-elevated"
-                  : "border-border/60 bg-card/40"
+                  ? "border-foreground/30 bg-gradient-card shadow-elevated md:-translate-y-4 md:scale-[1.02]"
+                  : "border-border/60 bg-card/40 hover:border-border"
               }`}
             >
               {p.featured && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-brand px-3 py-1 text-xs font-medium text-white">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-brand px-3 py-1 text-xs font-medium tracking-wide text-white shadow-elevated">
                   Mest populär
                 </span>
               )}
-              <h3 className="font-display text-2xl">{p.name}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{p.clients}</p>
-              <p className="mt-6 font-display text-5xl">
-                {p.price} kr
-                <span className="text-base text-muted-foreground">/mån</span>
-              </p>
-              <ul className="mt-6 space-y-3 text-sm">
-                {[
-                  "Obegränsat antal dashboards",
-                  "Alla kanalintegrationer",
-                  "AI-insikter och rekommendationer",
-                  "White-label och eget domännamn",
-                  "PDF + livelänkar",
-                ].map((feat) => (
-                  <li key={feat} className="flex items-start gap-2">
-                    <Check className="mt-0.5 h-4 w-4 text-success" />
-                    <span>{feat}</span>
+
+              <div>
+                <h3 className="font-display text-2xl tracking-tight">{p.name}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.tagline}</p>
+              </div>
+
+              <div className="mt-8 flex items-baseline gap-1">
+                <span className="font-display text-5xl tracking-tight">{p.price}</span>
+                <span className="text-base text-muted-foreground">kr / mån</span>
+              </div>
+
+              <div className="my-8 h-px w-full bg-border/60" />
+
+              <ul className="space-y-3 text-sm">
+                {p.features.map((feat) => (
+                  <li key={feat} className="flex items-start gap-3">
+                    <Check className={`mt-0.5 h-4 w-4 shrink-0 ${p.featured ? "text-accent" : "text-success"}`} />
+                    <span className="text-foreground/90">{feat}</span>
                   </li>
                 ))}
               </ul>
+
               <Link
                 to="/dashboard"
-                className={`mt-8 inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-sm font-medium transition-all ${
+                className={`mt-10 inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-sm font-medium transition-all ${
                   p.featured
-                    ? "bg-foreground text-background hover:opacity-90"
+                    ? "bg-foreground text-background hover:opacity-90 shadow-elevated"
                     : "border border-border bg-background hover:bg-muted"
                 }`}
               >
-                Starta gratis prövoperiod
+                {p.cta}
               </Link>
             </div>
           ))}
         </div>
+
+        <p className="mt-10 text-center text-xs text-muted-foreground">
+          Alla priser exkl. moms. Avsluta när du vill. Ingen bindningstid.
+        </p>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pb-24">
