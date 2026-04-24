@@ -9,6 +9,17 @@ import {
   Globe,
   TrendingUp,
   ShieldCheck,
+  BarChart3,
+  Search,
+  Megaphone,
+  Facebook,
+  Linkedin,
+  Music2,
+  ShoppingBag,
+  Store,
+  Youtube,
+  FileSpreadsheet,
+  Palette,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
@@ -31,17 +42,17 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-const channels = [
-  "Google Analytics 4",
-  "Search Console",
-  "Google Ads",
-  "Meta Ads",
-  "LinkedIn Ads",
-  "TikTok Ads",
-  "Shopify",
-  "WooCommerce",
-  "YouTube",
-  "Egen CSV",
+const channels: { name: string; icon: typeof BarChart3; color: string }[] = [
+  { name: "Google Analytics 4", icon: BarChart3, color: "#E8710A" },
+  { name: "Search Console", icon: Search, color: "#4285F4" },
+  { name: "Google Ads", icon: Megaphone, color: "#34A853" },
+  { name: "Meta Ads", icon: Facebook, color: "#1877F2" },
+  { name: "LinkedIn Ads", icon: Linkedin, color: "#0A66C2" },
+  { name: "TikTok Ads", icon: Music2, color: "#111111" },
+  { name: "Shopify", icon: ShoppingBag, color: "#5A8E3A" },
+  { name: "WooCommerce", icon: Store, color: "#7F54B3" },
+  { name: "YouTube", icon: Youtube, color: "#FF0000" },
+  { name: "Egen CSV", icon: FileSpreadsheet, color: "#10B981" },
 ];
 
 function Landing() {
@@ -61,6 +72,7 @@ function Landing() {
           <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
             <a href="#features" className="hover:text-foreground">Funktioner</a>
             <a href="#channels" className="hover:text-foreground">Kanaler</a>
+            <a href="#agencies" className="hover:text-foreground">För byråer</a>
             <a href="#pricing" className="hover:text-foreground">Priser</a>
           </nav>
           <div className="flex items-center gap-2">
@@ -90,17 +102,17 @@ function Landing() {
         >
           <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-success" />
-            Nytt — AI-insikter på varje slide
+            För kommunikatörer, ägare, VD:ar och CFO:er
           </div>
 
           <h1 className="mx-auto mt-8 max-w-4xl font-display text-6xl leading-[1.02] tracking-tight sm:text-7xl md:text-8xl">
-            Vackra marknadsrapporter,{" "}
-            <span className="italic text-gradient-brand">på autopilot.</span>
+            Förstå din marknadsföring{" "}
+            <span className="italic text-gradient-brand">på 30 sekunder.</span>
           </h1>
 
           <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-            Anslut dina kanaler. FlowReport förvandlar rådata till presentationsfärdiga
-            dashboards och kundrapporter — på sekunder.
+            FlowReport förvandlar rådata från alla dina kanaler till klara, vackra rapporter
+            — så enkelt att du inte behöver en byrå för att förstå dem.
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -177,16 +189,30 @@ function Landing() {
         </motion.div>
       </section>
 
-      <section id="channels" className="border-y border-border/40 bg-muted/20 py-12">
+      <section id="channels" className="border-y border-border/40 bg-muted/30 py-16">
         <div className="mx-auto max-w-7xl px-6">
-          <p className="text-center text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70">
             Anslut dina favoritkanaler
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-sm text-muted-foreground/80">
+          <p className="mx-auto mt-3 max-w-lg text-center text-sm text-muted-foreground">
+            Säkra OAuth-anslutningar till plattformarna du redan använder.
+          </p>
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
             {channels.map((c) => (
-              <span key={c} className="font-medium">
-                {c}
-              </span>
+              <div
+                key={c.name}
+                className="group flex items-center gap-3 rounded-xl border border-border/60 bg-background/80 px-4 py-3 transition-all hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-elevated"
+              >
+                <span
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg shadow-sm ring-1 ring-black/5"
+                  style={{ backgroundColor: `${c.color}1A`, color: c.color }}
+                >
+                  <c.icon className="h-4.5 w-4.5" strokeWidth={2.25} />
+                </span>
+                <span className="truncate text-sm font-semibold text-foreground">
+                  {c.name}
+                </span>
+              </div>
             ))}
           </div>
         </div>
@@ -194,10 +220,13 @@ function Landing() {
 
       <section id="features" className="mx-auto max-w-7xl px-6 py-24">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Byggt för att glädja</p>
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Byggt för klarhet</p>
           <h2 className="mt-3 font-display text-5xl tracking-tight">
-            Allt en byrå behöver. Inget den inte gör.
+            Marknadsdata som vem som helst kan läsa.
           </h2>
+          <p className="mt-4 text-base text-muted-foreground">
+            Oavsett om du är VD, CFO, kommunikatör eller ägare — få svaren utan att tolka grafer.
+          </p>
         </div>
 
         <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -219,8 +248,8 @@ function Landing() {
             },
             {
               icon: Globe,
-              title: "Helt white-label",
-              body: "Logo, färger, eget domännamn, kundinloggningar. Ditt varumärke från ände till ände.",
+              title: "Skapad för icke-tekniker",
+              body: "Inga GA4-kurser. Inga UTM-mardrömmar. Bara siffrorna som faktiskt påverkar verksamheten.",
             },
             {
               icon: TrendingUp,
@@ -229,8 +258,8 @@ function Landing() {
             },
             {
               icon: ShieldCheck,
-              title: "Företagsklass",
-              body: "SOC 2, SSO och rolldelning. Byggt för byråer i reglerade branscher.",
+              title: "Beslutsklart för ledningen",
+              body: "Exportera en CFO-vänlig PDF eller dela en live-länk till styrelsen — på en knapptryckning.",
             },
           ].map((f, i) => (
             <motion.div
@@ -251,17 +280,80 @@ function Landing() {
         </div>
       </section>
 
+      <section id="agencies" className="border-y border-border/40 bg-muted/20 py-24">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2">
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">För byråer</p>
+            <h2 className="mt-3 font-display text-5xl tracking-tight">
+              Driver du en byrå? <span className="italic text-gradient-brand">White-label allt.</span>
+            </h2>
+            <p className="mt-5 text-base text-muted-foreground">
+              Vår filosofi: kunder ska inte behöva en byrå för att förstå sin marknadsföring.
+              Men om du driver en — gör vi dig till hjälten i rummet. Egen logotyp, färger,
+              domän och kundinloggningar.
+            </p>
+            <ul className="mt-8 space-y-3 text-sm">
+              {[
+                "Eget varumärke på dashboards och rapporter",
+                "Eget domännamn (rapport.dinbyra.se)",
+                "Obegränsat antal kundkonton",
+                "Volymrabatt från 10 kunder",
+              ].map((f) => (
+                <li key={f} className="flex items-start gap-2">
+                  <Check className="mt-0.5 h-4 w-4 text-success" />
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <a
+              href="#pricing"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background hover:opacity-90"
+            >
+              Se byråpriser
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
+          <div className="relative">
+            <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-brand opacity-15 blur-3xl" />
+            <div className="rounded-2xl border border-border/60 bg-background/80 p-6 shadow-elevated backdrop-blur">
+              <div className="flex items-center gap-3 border-b border-border/60 pb-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-brand text-white">
+                  <Palette className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold">rapport.dinbyra.se</p>
+                  <p className="text-xs text-muted-foreground">Eget varumärke aktiverat</p>
+                </div>
+              </div>
+              <div className="mt-4 grid grid-cols-2 gap-3">
+                {[
+                  { l: "Klientkonton", v: "24" },
+                  { l: "Aktiva rapporter", v: "112" },
+                  { l: "Schemalagda PDF", v: "48/mån" },
+                  { l: "Domänstatus", v: "Verifierad" },
+                ].map((s) => (
+                  <div key={s.l} className="rounded-xl border border-border/60 bg-muted/30 p-3">
+                    <p className="text-xs text-muted-foreground">{s.l}</p>
+                    <p className="mt-1 font-display text-xl">{s.v}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="pricing" className="mx-auto max-w-7xl px-6 py-24">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Priser</p>
-          <h2 className="mt-3 font-display text-5xl tracking-tight">Betala för kunder, inte platser.</h2>
+          <h2 className="mt-3 font-display text-5xl tracking-tight">Enkelt nog för dig. Kraftfullt nog för din byrå.</h2>
         </div>
 
         <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-3">
           {[
-            { name: "Solo", price: 290, clients: "Upp till 3 kunder", featured: false },
-            { name: "Studio", price: 790, clients: "Upp till 15 kunder", featured: true },
-            { name: "Byrå", price: 1990, clients: "Obegränsat antal kunder", featured: false },
+            { name: "Personlig", price: 190, clients: "För ägare, VD och CFO", featured: false },
+            { name: "Team", price: 490, clients: "För kommunikatörer och team", featured: true },
+            { name: "Byrå", price: 1490, clients: "White-label, obegränsat antal kunder", featured: false },
           ].map((p) => (
             <div
               key={p.name}
