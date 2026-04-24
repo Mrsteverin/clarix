@@ -8,7 +8,7 @@ import { integrations as initialIntegrations } from "@/lib/demo-data";
 export const Route = createFileRoute("/connections")({
   head: () => ({
     meta: [
-      { title: "Anslutningar — FlowReport" },
+      { title: "Anslutningar — ClarityCloud" },
       { name: "description", content: "Anslut dina marknadskanaler med två klick." },
     ],
   }),
@@ -262,7 +262,7 @@ function ConnectModal({
                   Välj ett {integration.provider}-konto
                 </h2>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  för att fortsätta till <span className="font-medium text-foreground">FlowReport</span>
+                  för att fortsätta till <span className="font-medium text-foreground">ClarityCloud</span>
                 </p>
 
                 <div className="mt-5 space-y-1.5">
@@ -303,7 +303,7 @@ function ConnectModal({
 
                 <p className="mt-6 text-[11px] leading-relaxed text-muted-foreground">
                   För att fortsätta delar {integration.provider} ditt namn, din e-postadress
-                  och språkinställning med FlowReport.
+                  och språkinställning med ClarityCloud.
                 </p>
               </motion.div>
             )}
@@ -319,13 +319,13 @@ function ConnectModal({
                 className="mt-6"
               >
                 <h2 className="font-display text-2xl leading-tight">
-                  FlowReport vill ha åtkomst till ditt {integration.provider}-konto
+                  ClarityCloud vill ha åtkomst till ditt {integration.provider}-konto
                 </h2>
                 <p className="mt-1 truncate text-sm text-muted-foreground">{chosenAccount}</p>
 
                 <div className="mt-5 rounded-xl border border-border bg-muted/30 p-3">
                   <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                    Det här tillåter FlowReport att:
+                    Det här tillåter ClarityCloud att:
                   </p>
                   <ul className="mt-3 space-y-2.5">
                     {integration.scopes.map((scope) => (
@@ -352,7 +352,7 @@ function ConnectModal({
                 <div className="mt-4 flex items-start gap-2 rounded-xl border border-border/60 bg-background p-3 text-xs text-muted-foreground">
                   <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-success" />
                   <p>
-                    FlowReport läser endast data — vi kan aldrig publicera, redigera
+                    ClarityCloud läser endast data — vi kan aldrig publicera, redigera
                     eller radera. Du kan dra tillbaka åtkomsten när som helst.
                   </p>
                 </div>
@@ -483,7 +483,7 @@ function providerHost(provider: string) {
     TikTok: "business-api.tiktok.com",
     Shopify: "shopify.com/admin/oauth",
     WooCommerce: "wordpress.org/wp-admin",
-    FlowReport: "flowreport.se",
+    ClarityCloud: "claritycloud.se",
   };
   return map[provider] ?? provider.toLowerCase() + ".com";
 }

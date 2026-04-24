@@ -7,7 +7,7 @@ import { clients } from "@/lib/demo-data";
 export const Route = createFileRoute("/clients")({
   head: () => ({
     meta: [
-      { title: "Kunder — FlowReport" },
+      { title: "Kunder — ClarityCloud" },
       { name: "description", content: "Hantera alla dina kundarbetsytor på ett ställe." },
     ],
   }),

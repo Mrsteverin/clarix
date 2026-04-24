@@ -7,7 +7,7 @@ import { AppShell } from "@/components/app-shell";
 export const Route = createFileRoute("/settings")({
   head: () => ({
     meta: [
-      { title: "Inställningar — FlowReport" },
+      { title: "Inställningar — ClarityCloud" },
       { name: "description", content: "Arbetsyta, varumärke och white-label-inställningar." },
     ],
   }),
@@ -77,7 +77,7 @@ function SettingsPage() {
               <div className="space-y-6">
                 <div>
                   <h2 className="font-display text-2xl">Profil</h2>
-                  <p className="text-sm text-muted-foreground">Så här visas ditt konto i FlowReport.</p>
+                  <p className="text-sm text-muted-foreground">Så här visas ditt konto i ClarityCloud.</p>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-violet-400 to-fuchsia-500 text-2xl font-medium text-white">
@@ -143,7 +143,7 @@ function SettingsPage() {
                   <div className="mt-3 space-y-2 font-mono text-xs">
                     <div className="flex items-center justify-between rounded-lg bg-muted/60 px-3 py-2">
                       <span>CNAME · rapporter</span>
-                      <span className="text-muted-foreground">cname.flowreport.se</span>
+                      <span className="text-muted-foreground">cname.claritycloud.se</span>
                     </div>
                   </div>
                   <p className="mt-3 inline-flex items-center gap-1.5 text-xs text-success">

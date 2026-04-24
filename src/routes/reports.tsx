@@ -39,7 +39,7 @@ import {
 export const Route = createFileRoute("/reports")({
   head: () => ({
     meta: [
-      { title: "Rapporter — FlowReport" },
+      { title: "Rapporter — ClarityCloud" },
       {
         name: "description",
         content: "Dra, släpp och leverera presentationsfärdiga kundrapporter.",
