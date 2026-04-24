@@ -52,7 +52,6 @@ const channels: { name: string; Logo: (p: { className?: string }) => React.React
   { name: "Google Business", Logo: GoogleBusinessLogo },
   { name: "Meta Ads", Logo: MetaLogo },
   { name: "LinkedIn Ads", Logo: LinkedInLogo },
-  { name: "TikTok Ads", Logo: TikTokLogo },
   { name: "YouTube", Logo: YouTubeLogo },
   { name: "Shopify", Logo: ShopifyLogo },
   { name: "Matomo", Logo: MatomoLogo },
