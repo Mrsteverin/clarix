@@ -105,8 +105,9 @@ function Landing() {
             För kommunikatörer, ägare, VD:ar och CFO:er
           </div>
 
-          <h1 className="mx-auto mt-8 max-w-4xl font-display text-6xl font-bold leading-[1.02] sm:text-7xl md:text-8xl" style={{ fontWeight: 800, fontVariationSettings: '"opsz" 144, "SOFT" 0, "WONK" 1' }}>
-            Förstå din marknadsföring{" "}
+          <h1 className="mx-auto mt-8 max-w-5xl font-display text-6xl font-bold leading-[1.02] sm:text-7xl md:text-8xl" style={{ fontWeight: 800, fontVariationSettings: '"opsz" 144, "SOFT" 0, "WONK" 1' }}>
+            Förstå din marknadsföring
+            <br />
             <span className="italic text-gradient-brand" style={{ fontWeight: 700, fontStyle: "italic" }}>på 30 sekunder.</span>
           </h1>
 
@@ -285,7 +286,9 @@ function Landing() {
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">För byråer</p>
             <h2 className="mt-3 font-display text-5xl tracking-tight">
-              Driver du en byrå? <span className="italic text-gradient-brand">White-label allt.</span>
+              Driver du en byrå?
+              <br />
+              <span className="italic text-gradient-brand">White-label allt.</span>
             </h2>
             <p className="mt-5 text-base text-muted-foreground">
               Vår filosofi: kunder ska inte behöva en byrå för att förstå sin marknadsföring.
