@@ -105,9 +105,9 @@ function Landing() {
             För kommunikatörer, ägare, VD:ar och CFO:er
           </div>
 
-          <h1 className="mx-auto mt-8 max-w-4xl font-display text-6xl leading-[1.02] tracking-tight sm:text-7xl md:text-8xl">
+          <h1 className="mx-auto mt-8 max-w-4xl font-display text-6xl font-bold leading-[1.02] sm:text-7xl md:text-8xl" style={{ fontWeight: 800, fontVariationSettings: '"opsz" 144, "SOFT" 0, "WONK" 1' }}>
             Förstå din marknadsföring{" "}
-            <span className="italic text-gradient-brand">på 30 sekunder.</span>
+            <span className="italic text-gradient-brand" style={{ fontWeight: 700, fontStyle: "italic" }}>på 30 sekunder.</span>
           </h1>
 
           <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
