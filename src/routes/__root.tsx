@@ -29,17 +29,17 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "FlowReport — Beautiful marketing reports, on autopilot" },
+      { title: "FlowReport — Vackra marknadsrapporter, på autopilot" },
       {
         name: "description",
         content:
-          "FlowReport turns your marketing channels into stunning, presentation-ready reports. Less clutter. More clarity.",
+          "FlowReport förvandlar dina marknadskanaler till snygga, presentationsfärdiga rapporter. Mindre brus. Mer klarhet.",
       },
       { name: "author", content: "FlowReport" },
-      { property: "og:title", content: "FlowReport — Beautiful marketing reports, on autopilot" },
+      { property: "og:title", content: "FlowReport — Vackra marknadsrapporter, på autopilot" },
       {
         property: "og:description",
-        content: "Connect your channels and get elegant dashboards and client reports in seconds.",
+        content: "Anslut dina kanaler och få eleganta dashboards och kundrapporter på sekunder.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
