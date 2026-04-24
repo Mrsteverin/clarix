@@ -280,17 +280,80 @@ function Landing() {
         </div>
       </section>
 
+      <section id="agencies" className="border-y border-border/40 bg-muted/20 py-24">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2">
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">För byråer</p>
+            <h2 className="mt-3 font-display text-5xl tracking-tight">
+              Driver du en byrå? <span className="italic text-gradient-brand">White-label allt.</span>
+            </h2>
+            <p className="mt-5 text-base text-muted-foreground">
+              Vår filosofi: kunder ska inte behöva en byrå för att förstå sin marknadsföring.
+              Men om du driver en — gör vi dig till hjälten i rummet. Egen logotyp, färger,
+              domän och kundinloggningar.
+            </p>
+            <ul className="mt-8 space-y-3 text-sm">
+              {[
+                "Eget varumärke på dashboards och rapporter",
+                "Eget domännamn (rapport.dinbyra.se)",
+                "Obegränsat antal kundkonton",
+                "Volymrabatt från 10 kunder",
+              ].map((f) => (
+                <li key={f} className="flex items-start gap-2">
+                  <Check className="mt-0.5 h-4 w-4 text-success" />
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <a
+              href="#pricing"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background hover:opacity-90"
+            >
+              Se byråpriser
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
+          <div className="relative">
+            <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-brand opacity-15 blur-3xl" />
+            <div className="rounded-2xl border border-border/60 bg-background/80 p-6 shadow-elevated backdrop-blur">
+              <div className="flex items-center gap-3 border-b border-border/60 pb-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-brand text-white">
+                  <Palette className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold">rapport.dinbyra.se</p>
+                  <p className="text-xs text-muted-foreground">Eget varumärke aktiverat</p>
+                </div>
+              </div>
+              <div className="mt-4 grid grid-cols-2 gap-3">
+                {[
+                  { l: "Klientkonton", v: "24" },
+                  { l: "Aktiva rapporter", v: "112" },
+                  { l: "Schemalagda PDF", v: "48/mån" },
+                  { l: "Domänstatus", v: "Verifierad" },
+                ].map((s) => (
+                  <div key={s.l} className="rounded-xl border border-border/60 bg-muted/30 p-3">
+                    <p className="text-xs text-muted-foreground">{s.l}</p>
+                    <p className="mt-1 font-display text-xl">{s.v}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="pricing" className="mx-auto max-w-7xl px-6 py-24">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Priser</p>
-          <h2 className="mt-3 font-display text-5xl tracking-tight">Betala för kunder, inte platser.</h2>
+          <h2 className="mt-3 font-display text-5xl tracking-tight">Enkelt nog för dig. Kraftfullt nog för din byrå.</h2>
         </div>
 
         <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-3">
           {[
-            { name: "Solo", price: 290, clients: "Upp till 3 kunder", featured: false },
-            { name: "Studio", price: 790, clients: "Upp till 15 kunder", featured: true },
-            { name: "Byrå", price: 1990, clients: "Obegränsat antal kunder", featured: false },
+            { name: "Personlig", price: 190, clients: "För ägare, VD och CFO", featured: false },
+            { name: "Team", price: 490, clients: "För kommunikatörer och team", featured: true },
+            { name: "Byrå", price: 1490, clients: "White-label, obegränsat antal kunder", featured: false },
           ].map((p) => (
             <div
               key={p.name}
