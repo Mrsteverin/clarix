@@ -9,19 +9,21 @@ import {
   Globe,
   TrendingUp,
   ShieldCheck,
-  BarChart3,
-  Search,
-  Megaphone,
-  Facebook,
-  Linkedin,
-  Music2,
-  ShoppingBag,
-  Store,
-  Youtube,
-  FileSpreadsheet,
   Palette,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import {
+  GoogleAnalyticsLogo,
+  GoogleSearchConsoleLogo,
+  GoogleAdsLogo,
+  MetaLogo,
+  LinkedInLogo,
+  TikTokLogo,
+  ShopifyLogo,
+  WooLogo,
+  YouTubeLogo,
+  ExcelLogo,
+} from "@/components/brand-logos";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -42,17 +44,17 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-const channels: { name: string; icon: typeof BarChart3; color: string }[] = [
-  { name: "Google Analytics 4", icon: BarChart3, color: "#E8710A" },
-  { name: "Search Console", icon: Search, color: "#4285F4" },
-  { name: "Google Ads", icon: Megaphone, color: "#34A853" },
-  { name: "Meta Ads", icon: Facebook, color: "#1877F2" },
-  { name: "LinkedIn Ads", icon: Linkedin, color: "#0A66C2" },
-  { name: "TikTok Ads", icon: Music2, color: "#111111" },
-  { name: "Shopify", icon: ShoppingBag, color: "#5A8E3A" },
-  { name: "WooCommerce", icon: Store, color: "#7F54B3" },
-  { name: "YouTube", icon: Youtube, color: "#FF0000" },
-  { name: "Egen CSV", icon: FileSpreadsheet, color: "#10B981" },
+const channels: { name: string; Logo: (p: { className?: string }) => React.ReactElement }[] = [
+  { name: "Google Analytics 4", Logo: GoogleAnalyticsLogo },
+  { name: "Search Console", Logo: GoogleSearchConsoleLogo },
+  { name: "Google Ads", Logo: GoogleAdsLogo },
+  { name: "Meta Ads", Logo: MetaLogo },
+  { name: "LinkedIn Ads", Logo: LinkedInLogo },
+  { name: "TikTok Ads", Logo: TikTokLogo },
+  { name: "Shopify", Logo: ShopifyLogo },
+  { name: "WooCommerce", Logo: WooLogo },
+  { name: "YouTube", Logo: YouTubeLogo },
+  { name: "Excel / CSV", Logo: ExcelLogo },
 ];
 
 function Landing() {
@@ -202,13 +204,10 @@ function Landing() {
             {channels.map((c) => (
               <div
                 key={c.name}
-                className="group flex items-center gap-3 rounded-xl border border-border/60 bg-background/80 px-4 py-3 transition-all hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-elevated"
+                className="group flex items-center gap-3 rounded-xl border border-border/60 bg-background px-4 py-3 transition-all hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-elevated"
               >
-                <span
-                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg shadow-sm ring-1 ring-black/5"
-                  style={{ backgroundColor: `${c.color}1A`, color: c.color }}
-                >
-                  <c.icon className="h-4.5 w-4.5" strokeWidth={2.25} />
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white ring-1 ring-black/5">
+                  <c.Logo className="h-6 w-6" />
                 </span>
                 <span className="truncate text-sm font-semibold text-foreground">
                   {c.name}
