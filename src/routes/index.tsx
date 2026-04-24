@@ -189,16 +189,30 @@ function Landing() {
         </motion.div>
       </section>
 
-      <section id="channels" className="border-y border-border/40 bg-muted/20 py-12">
+      <section id="channels" className="border-y border-border/40 bg-muted/30 py-16">
         <div className="mx-auto max-w-7xl px-6">
-          <p className="text-center text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70">
             Anslut dina favoritkanaler
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-sm text-muted-foreground/80">
+          <p className="mx-auto mt-3 max-w-lg text-center text-sm text-muted-foreground">
+            Säkra OAuth-anslutningar till plattformarna du redan använder.
+          </p>
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
             {channels.map((c) => (
-              <span key={c} className="font-medium">
-                {c}
-              </span>
+              <div
+                key={c.name}
+                className="group flex items-center gap-3 rounded-xl border border-border/60 bg-background/80 px-4 py-3 transition-all hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-elevated"
+              >
+                <span
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg shadow-sm ring-1 ring-black/5"
+                  style={{ backgroundColor: `${c.color}1A`, color: c.color }}
+                >
+                  <c.icon className="h-4.5 w-4.5" strokeWidth={2.25} />
+                </span>
+                <span className="truncate text-sm font-semibold text-foreground">
+                  {c.name}
+                </span>
+              </div>
             ))}
           </div>
         </div>
