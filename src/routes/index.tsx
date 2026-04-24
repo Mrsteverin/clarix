@@ -19,7 +19,6 @@ import {
   GoogleBusinessLogo,
   MetaLogo,
   LinkedInLogo,
-  TikTokLogo,
   ShopifyLogo,
   MatomoLogo,
   YouTubeLogo,
