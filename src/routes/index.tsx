@@ -220,10 +220,13 @@ function Landing() {
 
       <section id="features" className="mx-auto max-w-7xl px-6 py-24">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Byggt för att glädja</p>
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Byggt för klarhet</p>
           <h2 className="mt-3 font-display text-5xl tracking-tight">
-            Allt en byrå behöver. Inget den inte gör.
+            Marknadsdata som vem som helst kan läsa.
           </h2>
+          <p className="mt-4 text-base text-muted-foreground">
+            Oavsett om du är VD, CFO, kommunikatör eller ägare — få svaren utan att tolka grafer.
+          </p>
         </div>
 
         <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-3">
