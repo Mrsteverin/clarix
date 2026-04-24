@@ -408,7 +408,7 @@ function Landing() {
           <div className="pointer-events-none absolute inset-0 bg-gradient-aurora opacity-60" />
           <div className="relative">
             <h2 className="mx-auto max-w-2xl font-display text-5xl tracking-tight">
-              Leverera en rapport dina kunder vill <span className="italic text-gradient-brand">skärmdumpa.</span>
+              Äntligen rapporter som är både <span className="italic text-gradient-brand">snygga och tydliga.</span>
             </h2>
             <Link
               to="/dashboard"
