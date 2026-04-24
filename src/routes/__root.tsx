@@ -16,7 +16,7 @@ function NotFoundComponent() {
             to="/"
             className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:opacity-90"
           >
-            Tillbaka till ClarityCloud
+            Tillbaka till FlowReport
           </Link>
         </div>
       </div>
@@ -29,27 +29,33 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ClarityCloud — Vackra marknadsrapporter, på autopilot" },
+      { title: "ClarityCloud - När du vill ha rapporter med klarhet" },
       {
         name: "description",
         content:
-          "ClarityCloud förvandlar dina marknadskanaler till snygga, presentationsfärdiga rapporter. Mindre brus. Mer klarhet.",
+          "FlowReport förvandlar dina marknadskanaler till snygga, presentationsfärdiga rapporter. Mindre brus. Mer klarhet.",
       },
-      { name: "author", content: "ClarityCloud" },
-      { property: "og:title", content: "ClarityCloud — Vackra marknadsrapporter, på autopilot" },
+      { name: "author", content: "FlowReport" },
+      { property: "og:title", content: "ClarityCloud - När du vill ha rapporter med klarhet" },
       {
         property: "og:description",
         content: "Anslut dina kanaler och få eleganta dashboards och kundrapporter på sekunder.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "ClarityCloud - När du vill ha rapporter med klarhet" },
+      { name: "description", content: "the place to be när du vill få tydliga, snygga och enklar rapporter." },
+      { property: "og:description", content: "the place to be när du vill få tydliga, snygga och enklar rapporter." },
+      { name: "twitter:description", content: "the place to be när du vill få tydliga, snygga och enklar rapporter." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/bwRQ2zgeBoOA8vmWpGmsKAhGXBn2/social-images/social-1777022603490-claritycloud.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/bwRQ2zgeBoOA8vmWpGmsKAhGXBn2/social-images/social-1777022603490-claritycloud.webp" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap",
       },
       { rel: "stylesheet", href: appCss },
     ],
@@ -69,7 +75,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
             __html: `
               (function() {
                 try {
-                  var t = localStorage.getItem('claritycloud-theme');
+                  var t = localStorage.getItem('flowreport-theme');
                   if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                     document.documentElement.classList.add('dark');
                   }
