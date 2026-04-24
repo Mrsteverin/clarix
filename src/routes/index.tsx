@@ -102,17 +102,17 @@ function Landing() {
         >
           <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-success" />
-            Nytt — AI-insikter på varje slide
+            För kommunikatörer, ägare, VD:ar och CFO:er
           </div>
 
           <h1 className="mx-auto mt-8 max-w-4xl font-display text-6xl leading-[1.02] tracking-tight sm:text-7xl md:text-8xl">
-            Vackra marknadsrapporter,{" "}
-            <span className="italic text-gradient-brand">på autopilot.</span>
+            Förstå din marknadsföring{" "}
+            <span className="italic text-gradient-brand">på 30 sekunder.</span>
           </h1>
 
           <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-            Anslut dina kanaler. FlowReport förvandlar rådata till presentationsfärdiga
-            dashboards och kundrapporter — på sekunder.
+            FlowReport förvandlar rådata från alla dina kanaler till klara, vackra rapporter
+            — så enkelt att du inte behöver en byrå för att förstå dem.
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
