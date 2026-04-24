@@ -359,8 +359,8 @@ function Landing() {
         <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3 md:items-stretch">
           {[
             {
-              name: "Personlig",
-              price: 399,
+              name: "Bas",
+              price: 499,
               tagline: "För ägare, VD och mindre företag som vill få koll snabbt.",
               features: [
                 "1 dashboard",
@@ -375,8 +375,8 @@ function Landing() {
               featured: false,
             },
             {
-              name: "Team",
-              price: 799,
+              name: "Pro",
+              price: 899,
               tagline: "För marknadsteam och företag som växer.",
               features: [
                 "5 dashboards",
@@ -392,8 +392,8 @@ function Landing() {
               featured: true,
             },
             {
-              name: "Byrå",
-              price: 1490,
+              name: "Max",
+              price: 1990,
               tagline: "För byråer, konsulter och företag med flera varumärken.",
               features: [
                 "Obegränsat antal dashboards",
