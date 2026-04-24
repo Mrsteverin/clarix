@@ -45,23 +45,24 @@ export function GoogleAdsLogo({ className }: LogoProps) {
 }
 
 export function MetaLogo({ className }: LogoProps) {
-  // Meta infinity mark with brand gradient
+  // Meta infinity mark — accurate brand glyph with blue gradient
   return (
-    <svg viewBox="0 0 64 64" className={className} xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 287 191" className={className} xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="meta-stroke" x1="6" y1="48" x2="58" y2="16" gradientUnits="userSpaceOnUse">
+        <linearGradient id="meta-grad-a" x1="62.13" y1="120.24" x2="259.39" y2="130.32" gradientUnits="userSpaceOnUse">
           <stop offset="0" stopColor="#0064E1"/>
-          <stop offset=".5" stopColor="#0082FB"/>
-          <stop offset="1" stopColor="#1E9CF6"/>
+          <stop offset=".4" stopColor="#0064E1"/>
+          <stop offset=".83" stopColor="#0073EE"/>
+          <stop offset="1" stopColor="#0082FB"/>
+        </linearGradient>
+        <linearGradient id="meta-grad-b" x1="41.42" y1="132.95" x2="41.42" y2="60.34" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#0082FB"/>
+          <stop offset="1" stopColor="#0064E0"/>
         </linearGradient>
       </defs>
-      <path
-        fill="none"
-        stroke="url(#meta-stroke)"
-        strokeWidth="7"
-        strokeLinecap="round"
-        d="M10 32c0-9 6-16 14-16 7 0 11 6 16 14 5 8 9 14 16 14 8 0 14-7 14-16s-6-16-14-16c-7 0-11 6-16 14-5 8-9 14-16 14-8 0-14-7-14-16z"
-      />
+      <path fill="#0081FB" d="M31.06 126c0 11 2.41 19.41 5.56 24.51A19 19 0 0 0 53.19 160c8.1 0 15.51-2 29.79-21.76 11.44-15.83 24.92-38 34-51.94l15.36-23.6c10.67-16.39 23-34.61 37.18-34.61 11.5 0 22.33 6.66 30.61 21.26 9.06 16 13.46 36.16 13.46 57 0 12.34-2.43 21.42-6.59 28.59-4 6.93-11.86 13.85-25.05 13.85v-19.83c11.3 0 14.12-10.39 14.12-22.27 0-16.93-3.95-35.72-12.65-49.13-6.18-9.51-14.18-15.31-23-15.31-9.51 0-17.16 7.16-25.77 19.94-4.58 6.78-9.27 15.05-14.54 24.39l-9.05 16c-18.21 32.27-22.83 39.62-31.95 51.74C84.43 154 71.69 162 53.19 162 41.59 162 31.51 159.46 23.18 154 13.43 147.66 5.86 137.79 1.59 124.92Z"/>
+      <path fill="url(#meta-grad-b)" d="M24.49 67.81C32.16 56 43.24 47.73 55.95 47.73c7.36 0 14.68 2.18 22.32 8.42 8.36 6.83 17.27 18.07 28.39 36.59l4 6.65C120.13 115 125.13 122.92 128 126.7c3.7 4.86 6.29 6.31 9.66 6.31 8.69 0 11.25-8 11.25-22.59l17.49-.55c0 13.07-2.61 22.86-7.05 30-3.66 5.91-9.36 9.84-15.73 9.84-9.78 0-15.69-8.36-25.62-25.07L98.74 90.2c-13.69-22.92-26.27-35.78-37.41-35.78-12 0-21.55 11.81-29.83 26.71Z"/>
+      <path fill="url(#meta-grad-a)" d="M55.95 65.78c-12 0-22.13 7.7-30.32 19.31-11.59 16.41-18.69 40.85-18.69 64.27 0 9.65 2.12 17.06 5.4 22.62l-17.41 9.85C-9.18 173-15.91 159.16-15.91 149.4c0-27.05 7.43-55.25 21.59-77 12.4-19 30.55-30.95 51.86-30.95Z"/>
     </svg>
   );
 }
