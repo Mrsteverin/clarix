@@ -39,8 +39,8 @@ import {
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "Dashboard — FlowReport" },
-      { name: "description", content: "Your unified marketing performance dashboard." },
+      { title: "Översikt — FlowReport" },
+      { name: "description", content: "Din samlade dashboard för marknadsresultat." },
     ],
   }),
   component: DashboardPage,
@@ -64,7 +64,6 @@ function DashboardPage() {
   return (
     <AppShell>
       <div className="mx-auto max-w-7xl space-y-6 px-4 py-6 lg:px-8 lg:py-8">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -75,34 +74,32 @@ function DashboardPage() {
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
               Aurora Studios
             </p>
-            <h1 className="mt-2 font-display text-5xl tracking-tight">Good morning, Alex</h1>
+            <h1 className="mt-2 font-display text-5xl tracking-tight">God morgon, Alex</h1>
             <p className="mt-2 text-sm text-muted-foreground">
-              Here's how things have moved in the last 30 days.
+              Så här har det rört sig de senaste 30 dagarna.
             </p>
           </div>
           <div className="flex items-center gap-2">
             <button className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-muted">
               <Calendar className="h-4 w-4" />
-              Last 30 days
+              Senaste 30 dagarna
             </button>
             <button className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background hover:opacity-90">
               <Download className="h-4 w-4" />
-              Export
+              Exportera
             </button>
           </div>
         </motion.div>
 
-        {/* KPIs */}
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-6">
-          <KpiCard label="Sessions" value={kpis.sessions.value} delta={kpis.sessions.delta} spark={kpis.sessions.spark} format={formatNumber} accent="var(--chart-1)" delay={0.05} />
-          <KpiCard label="Users" value={kpis.users.value} delta={kpis.users.delta} spark={kpis.users.spark} format={formatNumber} accent="var(--chart-2)" delay={0.1} />
-          <KpiCard label="Conversions" value={kpis.conversions.value} delta={kpis.conversions.delta} spark={kpis.conversions.spark} format={formatNumber} accent="var(--chart-3)" delay={0.15} />
-          <KpiCard label="Revenue" value={kpis.revenue.value} delta={kpis.revenue.delta} spark={kpis.revenue.spark} format={formatCurrency} accent="var(--chart-4)" delay={0.2} />
-          <KpiCard label="Ad Spend" value={kpis.adSpend.value} delta={kpis.adSpend.delta} spark={kpis.adSpend.spark} format={formatCurrency} accent="var(--chart-5)" delay={0.25} />
-          <KpiCard label="ROAS" value={kpis.roas.value} delta={kpis.roas.delta} spark={kpis.roas.spark} format={(n) => n.toFixed(2) + "×"} accent="var(--chart-1)" delay={0.3} />
+          <KpiCard label="Sessioner" value={kpis.sessions.value} delta={kpis.sessions.delta} spark={kpis.sessions.spark} format={formatNumber} accent="var(--chart-1)" delay={0.05} />
+          <KpiCard label="Användare" value={kpis.users.value} delta={kpis.users.delta} spark={kpis.users.spark} format={formatNumber} accent="var(--chart-2)" delay={0.1} />
+          <KpiCard label="Konverteringar" value={kpis.conversions.value} delta={kpis.conversions.delta} spark={kpis.conversions.spark} format={formatNumber} accent="var(--chart-3)" delay={0.15} />
+          <KpiCard label="Intäkter" value={kpis.revenue.value} delta={kpis.revenue.delta} spark={kpis.revenue.spark} format={formatCurrency} accent="var(--chart-4)" delay={0.2} />
+          <KpiCard label="Annonskostnad" value={kpis.adSpend.value} delta={kpis.adSpend.delta} spark={kpis.adSpend.spark} format={formatCurrency} accent="var(--chart-5)" delay={0.25} />
+          <KpiCard label="ROAS" value={kpis.roas.value} delta={kpis.roas.delta} spark={kpis.roas.spark} format={(n) => n.toFixed(2).replace(".", ",") + "×"} accent="var(--chart-1)" delay={0.3} />
         </div>
 
-        {/* AI Insight banner */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -115,19 +112,18 @@ function DashboardPage() {
               <Sparkles className="h-6 w-6" />
             </div>
             <div className="flex-1">
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">AI Insight</p>
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">AI-insikt</p>
               <p className="mt-1 text-lg font-medium leading-snug">
-                Traffic increased <span className="text-success">+14%</span> this month — driven
-                primarily by organic growth on three new blog posts ranking top-5.
+                Trafiken ökade <span className="text-success">+14 %</span> denna månad — främst
+                drivet av organisk tillväxt på tre nya blogginlägg som rankar topp 5.
               </p>
             </div>
             <button className="self-start whitespace-nowrap rounded-full border border-border bg-background/60 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-muted sm:self-center">
-              See breakdown
+              Se uppdelning
             </button>
           </div>
         </motion.div>
 
-        {/* Trend + Channel */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -137,17 +133,17 @@ function DashboardPage() {
           >
             <div className="flex items-start justify-between">
               <div>
-                <h2 className="font-display text-2xl">Traffic trend</h2>
-                <p className="text-sm text-muted-foreground">Sessions vs users — last 12 weeks</p>
+                <h2 className="font-display text-2xl">Trafiktrend</h2>
+                <p className="text-sm text-muted-foreground">Sessioner mot användare — senaste 12 veckorna</p>
               </div>
               <div className="flex gap-2 text-xs">
                 <span className="inline-flex items-center gap-1.5">
                   <span className="h-2 w-2 rounded-full" style={{ background: "var(--chart-1)" }} />
-                  Sessions
+                  Sessioner
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <span className="h-2 w-2 rounded-full" style={{ background: "var(--chart-2)" }} />
-                  Users
+                  Användare
                 </span>
               </div>
             </div>
@@ -188,8 +184,8 @@ function DashboardPage() {
             transition={{ duration: 0.5, delay: 0.45 }}
             className="rounded-2xl border border-border/60 bg-gradient-card p-6 shadow-soft"
           >
-            <h2 className="font-display text-2xl">Channels</h2>
-            <p className="text-sm text-muted-foreground">Traffic split this month</p>
+            <h2 className="font-display text-2xl">Kanaler</h2>
+            <p className="text-sm text-muted-foreground">Trafikfördelning denna månad</p>
             <div className="mt-4 h-48">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
@@ -223,14 +219,13 @@ function DashboardPage() {
                     <span className="h-2 w-2 rounded-full" style={{ background: c.color }} />
                     {c.name}
                   </div>
-                  <span className="font-medium tabular-nums">{c.value}%</span>
+                  <span className="font-medium tabular-nums">{c.value} %</span>
                 </li>
               ))}
             </ul>
           </motion.div>
         </div>
 
-        {/* Top pages + Insights */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -239,7 +234,7 @@ function DashboardPage() {
             className="rounded-2xl border border-border/60 bg-gradient-card p-6 shadow-soft lg:col-span-2"
           >
             <div className="flex items-center justify-between">
-              <h2 className="font-display text-2xl">Top pages</h2>
+              <h2 className="font-display text-2xl">Mest besökta sidor</h2>
               <TrendingUp className="h-5 w-5 text-muted-foreground" />
             </div>
             <div className="mt-6 h-56">
@@ -270,7 +265,7 @@ function DashboardPage() {
           >
             <div className="flex items-center gap-2">
               <Sparkles className="h-4 w-4 text-accent" />
-              <h2 className="font-display text-2xl">Recommendations</h2>
+              <h2 className="font-display text-2xl">Rekommendationer</h2>
             </div>
             <ul className="mt-4 space-y-3">
               {insights.map((ins) => {

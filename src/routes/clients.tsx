@@ -7,8 +7,8 @@ import { clients } from "@/lib/demo-data";
 export const Route = createFileRoute("/clients")({
   head: () => ({
     meta: [
-      { title: "Clients — FlowReport" },
-      { name: "description", content: "Manage all your client workspaces in one place." },
+      { title: "Kunder — FlowReport" },
+      { name: "description", content: "Hantera alla dina kundarbetsytor på ett ställe." },
     ],
   }),
   component: ClientsPage,
@@ -25,15 +25,15 @@ function ClientsPage() {
           className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
         >
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">Workspaces</p>
-            <h1 className="mt-2 font-display text-5xl tracking-tight">Clients</h1>
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">Arbetsytor</p>
+            <h1 className="mt-2 font-display text-5xl tracking-tight">Kunder</h1>
             <p className="mt-2 text-sm text-muted-foreground">
-              {clients.length} clients · {clients.reduce((s, c) => s + c.reports, 0)} reports shipped
+              {clients.length} kunder · {clients.reduce((s, c) => s + c.reports, 0)} levererade rapporter
             </p>
           </div>
           <button className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background hover:opacity-90">
             <Plus className="h-4 w-4" />
-            New client
+            Ny kund
           </button>
         </motion.div>
 
@@ -62,11 +62,11 @@ function ClientsPage() {
                 <div className="mt-4 flex items-center justify-between border-t border-border/60 pt-4 text-sm">
                   <div className="flex items-center gap-1.5 text-muted-foreground">
                     <FileText className="h-3.5 w-3.5" />
-                    {c.reports} reports
+                    {c.reports} rapporter
                   </div>
                   <span
                     className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${
-                      c.status === "Active"
+                      c.status === "Aktiv"
                         ? "bg-success/10 text-success"
                         : "bg-warning/10 text-warning"
                     }`}
@@ -77,7 +77,7 @@ function ClientsPage() {
                 </div>
 
                 <button className="mt-4 inline-flex w-full items-center justify-center gap-1.5 rounded-full border border-border bg-background/60 px-4 py-2 text-sm font-medium hover:bg-muted">
-                  Open workspace
+                  Öppna arbetsyta
                   <ArrowUpRight className="h-3.5 w-3.5" />
                 </button>
               </div>
@@ -87,7 +87,7 @@ function ClientsPage() {
           <button className="flex min-h-[18rem] items-center justify-center rounded-2xl border border-dashed border-border bg-background/40 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground">
             <div className="flex flex-col items-center gap-2">
               <Plus className="h-6 w-6" />
-              Add new client
+              Lägg till ny kund
             </div>
           </button>
         </div>

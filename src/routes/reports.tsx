@@ -39,10 +39,10 @@ import {
 export const Route = createFileRoute("/reports")({
   head: () => ({
     meta: [
-      { title: "Reports — FlowReport" },
+      { title: "Rapporter — FlowReport" },
       {
         name: "description",
-        content: "Drag, drop and ship presentation-ready client reports.",
+        content: "Dra, släpp och leverera presentationsfärdiga kundrapporter.",
       },
     ],
   }),
@@ -77,20 +77,20 @@ function ReportsPage() {
           className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
         >
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">Report builder</p>
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">Rapportbyggare</p>
             <h1 className="mt-2 font-display text-5xl tracking-tight">April 2025 — Aurora Studios</h1>
             <p className="mt-2 text-sm text-muted-foreground">
-              Drag to reorder. Click any slide to preview the presentation view.
+              Dra för att sortera. Klicka på en slide för att förhandsgranska presentationen.
             </p>
           </div>
           <div className="flex items-center gap-2">
             <button className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-4 py-2 text-sm font-medium hover:bg-muted">
               <Share2 className="h-4 w-4" />
-              Share link
+              Dela länk
             </button>
             <button className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background hover:opacity-90">
               <Download className="h-4 w-4" />
-              Export PDF
+              Exportera PDF
             </button>
           </div>
         </motion.div>
@@ -125,7 +125,7 @@ function ReportsPage() {
                   className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium hover:bg-muted"
                 >
                   <Eye className="h-3.5 w-3.5" />
-                  Preview
+                  Förhandsgranska
                 </button>
               </Reorder.Item>
             );
@@ -134,7 +134,7 @@ function ReportsPage() {
 
         <button className="flex w-full items-center justify-center gap-2 rounded-2xl border border-dashed border-border bg-background/40 py-4 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground">
           <Plus className="h-4 w-4" />
-          Add slide
+          Lägg till slide
         </button>
       </div>
     </AppShell>
@@ -151,7 +151,7 @@ function SlidePreview({ slideId, onBack }: { slideId: string; onBack: () => void
       <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border/60 bg-background/70 px-4 backdrop-blur-xl lg:px-8">
         <button onClick={onBack} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
           <ArrowLeft className="h-4 w-4" />
-          Back to builder
+          Tillbaka till byggaren
         </button>
         <div className="flex items-center gap-2">
           <Link
@@ -159,11 +159,11 @@ function SlidePreview({ slideId, onBack }: { slideId: string; onBack: () => void
             className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-4 py-2 text-sm font-medium hover:bg-muted"
           >
             <Share2 className="h-4 w-4" />
-            Share
+            Dela
           </Link>
           <button className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background hover:opacity-90">
             <Download className="h-4 w-4" />
-            Export PDF
+            Exportera PDF
           </button>
         </div>
       </header>
@@ -188,7 +188,7 @@ function SlidePreview({ slideId, onBack }: { slideId: string; onBack: () => void
                 <Sparkles className="h-4 w-4" />
               </div>
               <div>
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">AI Summary</p>
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">AI-sammanfattning</p>
                 <p className="mt-1 text-base leading-relaxed">{getSlideSummary(slideId)}</p>
               </div>
             </div>
@@ -202,44 +202,44 @@ function SlidePreview({ slideId, onBack }: { slideId: string; onBack: () => void
 function getSlideHeadline(id: string) {
   switch (id) {
     case "exec":
-      return "A standout month, end to end.";
+      return "En toppmånad, från ände till ände.";
     case "traffic":
-      return "Traffic up 14%";
+      return "Trafiken upp 14 %";
     case "seo":
-      return "SEO momentum is building";
+      return "SEO-momentumet bygger upp";
     case "paid":
-      return "Paid efficiency at all-time high";
+      return "Annonseffektivitet på all-time high";
     case "ecom":
-      return "Revenue grew 18.6%";
+      return "Intäkterna växte 18,6 %";
     case "social":
-      return "Engagement keeps climbing";
+      return "Engagemanget fortsätter klättra";
     case "conv":
-      return "3,241 conversions this month";
+      return "3 241 konverteringar denna månad";
     case "opp":
-      return "Where to invest next";
+      return "Var du ska investera härnäst";
     default:
-      return "Performance overview";
+      return "Resultatöversikt";
   }
 }
 
 function getSlideSummary(id: string) {
   switch (id) {
     case "exec":
-      return "Revenue grew 18.6% on a 3.4% reduction in ad spend, lifting ROAS to 4.37×. Organic search drove most of the gains.";
+      return "Intäkterna växte 18,6 % på en 3,4 % minskning av annonskostnaden, vilket lyfte ROAS till 4,37×. Organiskt sök drev merparten av tillväxten.";
     case "traffic":
-      return "Sessions +18%, users +11%, average engagement +7%. Organic search drove most gains, with three new posts ranking top-5.";
+      return "Sessioner +18 %, användare +11 %, snittengagemang +7 %. Organiskt sök drev merparten — tre nya inlägg rankar topp 5.";
     case "seo":
-      return "Average position improved from 4.8 to 3.7 across tracked queries. \"agency client reporting\" jumped to position 2.8.";
+      return "Snittpositionen förbättrades från 4,8 till 3,7 över bevakade sökord. \"kundrapportering byrå\" hoppade till position 2,8.";
     case "paid":
-      return "ROAS hit 4.37× on lower spend. Brand Defense delivered an 8.4× return — a 25% budget increase is recommended.";
+      return "ROAS nådde 4,37× på lägre kostnad. Varumärkesskydd levererade 8,4× — vi rekommenderar 25 % budgetökning.";
     case "ecom":
-      return "Revenue grew 18.6% to $184.5k with AOV up 4.2%. Aurora Pro continues to be the top driver.";
+      return "Intäkterna växte 18,6 % till 1,85 mn kr med snittordervärde upp 4,2 %. Aurora Pro fortsätter vara främsta drivkraften.";
     case "social":
-      return "Engagement up 12% with strongest performance from the creator partnership program on TikTok.";
+      return "Engagemanget upp 12 % med starkast resultat från kreatörsprogrammet på TikTok.";
     case "conv":
-      return "3,241 conversions, +22.8%. Conversion rate climbed from 1.8% to 2.2% with the new checkout flow.";
+      return "3 241 konverteringar, +22,8 %. Konverteringsgraden steg från 1,8 % till 2,2 % med det nya kassaflödet.";
     case "opp":
-      return "Three high-leverage moves: scale Brand Defense, fix Halo Mini page speed, refresh five SEO pages slipping in rankings.";
+      return "Tre högavkastande drag: skala Varumärkesskydd, fixa sidhastigheten på Halo Mini, uppdatera fem SEO-sidor som tappar i ranking.";
     default:
       return "";
   }
@@ -251,9 +251,9 @@ function renderSlideBody(id: string) {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="space-y-3 lg:col-span-1">
           {[
-            { l: "Sessions", v: "184k", d: "+18%" },
-            { l: "Users", v: "96.8k", d: "+11%" },
-            { l: "Avg engagement", v: "2m 14s", d: "+7%" },
+            { l: "Sessioner", v: "184k", d: "+18 %" },
+            { l: "Användare", v: "96,8k", d: "+11 %" },
+            { l: "Snittengagemang", v: "2 min 14 s", d: "+7 %" },
           ].map((m) => (
             <div key={m.l} className="rounded-xl border border-border/60 bg-background/50 p-4">
               <p className="text-sm text-muted-foreground">{m.l}</p>
@@ -293,10 +293,10 @@ function renderSlideBody(id: string) {
         <table className="w-full text-left text-sm">
           <thead className="bg-muted/40 text-xs uppercase tracking-wider text-muted-foreground">
             <tr>
-              <th className="px-4 py-3">Query</th>
-              <th className="px-4 py-3 text-right">Clicks</th>
-              <th className="px-4 py-3 text-right">Impressions</th>
-              <th className="px-4 py-3 text-right">Avg pos</th>
+              <th className="px-4 py-3">Sökord</th>
+              <th className="px-4 py-3 text-right">Klick</th>
+              <th className="px-4 py-3 text-right">Visningar</th>
+              <th className="px-4 py-3 text-right">Snittpos.</th>
               <th className="px-4 py-3 text-right">CTR</th>
             </tr>
           </thead>
@@ -304,10 +304,10 @@ function renderSlideBody(id: string) {
             {seoQueries.map((q) => (
               <tr key={q.query} className="border-t border-border/60">
                 <td className="px-4 py-3 font-medium">{q.query}</td>
-                <td className="px-4 py-3 text-right tabular-nums">{q.clicks.toLocaleString()}</td>
-                <td className="px-4 py-3 text-right tabular-nums">{q.impressions.toLocaleString()}</td>
-                <td className="px-4 py-3 text-right tabular-nums">{q.position.toFixed(1)}</td>
-                <td className="px-4 py-3 text-right tabular-nums">{q.ctr.toFixed(1)}%</td>
+                <td className="px-4 py-3 text-right tabular-nums">{q.clicks.toLocaleString("sv-SE")}</td>
+                <td className="px-4 py-3 text-right tabular-nums">{q.impressions.toLocaleString("sv-SE")}</td>
+                <td className="px-4 py-3 text-right tabular-nums">{q.position.toFixed(1).replace(".", ",")}</td>
+                <td className="px-4 py-3 text-right tabular-nums">{q.ctr.toFixed(1).replace(".", ",")} %</td>
               </tr>
             ))}
           </tbody>
@@ -336,10 +336,10 @@ function renderSlideBody(id: string) {
           <table className="w-full text-left text-sm">
             <thead className="bg-muted/40 text-xs uppercase tracking-wider text-muted-foreground">
               <tr>
-                <th className="px-4 py-3">Campaign</th>
-                <th className="px-4 py-3">Channel</th>
-                <th className="px-4 py-3 text-right">Spend</th>
-                <th className="px-4 py-3 text-right">Conversions</th>
+                <th className="px-4 py-3">Kampanj</th>
+                <th className="px-4 py-3">Kanal</th>
+                <th className="px-4 py-3 text-right">Kostnad</th>
+                <th className="px-4 py-3 text-right">Konverteringar</th>
                 <th className="px-4 py-3 text-right">ROAS</th>
               </tr>
             </thead>
@@ -350,7 +350,7 @@ function renderSlideBody(id: string) {
                   <td className="px-4 py-3 text-muted-foreground">{c.channel}</td>
                   <td className="px-4 py-3 text-right tabular-nums">{formatCurrency(c.spend)}</td>
                   <td className="px-4 py-3 text-right tabular-nums">{c.conv}</td>
-                  <td className="px-4 py-3 text-right tabular-nums font-medium">{c.roas.toFixed(2)}×</td>
+                  <td className="px-4 py-3 text-right tabular-nums font-medium">{c.roas.toFixed(2).replace(".", ",")}×</td>
                 </tr>
               ))}
             </tbody>
@@ -364,10 +364,10 @@ function renderSlideBody(id: string) {
     return (
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
         {[
-          { t: "Scale Brand Defense", b: "8.4× ROAS — increase budget by 25% to capture ~$8.2k more revenue.", impact: "+$8.2k" },
-          { t: "Fix Halo Mini page", b: "Page speed dropped from 92→78. Compress hero image to recover 2.3% conv.", impact: "+2.3%" },
-          { t: "Refresh 5 SEO pages", b: "Slipping in rankings. Refresh content + internal linking.", impact: "+3.4k clicks" },
-          { t: "Pause underperforming creative", b: "Two LinkedIn ad sets below 2× ROAS — reallocate to top performers.", impact: "Save $1.4k" },
+          { t: "Skala Varumärkesskydd", b: "8,4× ROAS — öka budgeten med 25 % för att fånga ca 82 000 kr extra intäkter.", impact: "+82 000 kr" },
+          { t: "Fixa Halo Mini-sidan", b: "Sidhastigheten föll från 92 till 78. Komprimera hjältebild för att återta 2,3 % konv.", impact: "+2,3 %" },
+          { t: "Uppdatera 5 SEO-sidor", b: "Tappar i ranking. Uppdatera innehåll och bygg om interna länkar.", impact: "+3,4k klick" },
+          { t: "Pausa svaga annonser", b: "Två LinkedIn-annonsset under 2× ROAS — flytta budget till topparna.", impact: "Spara 14 000 kr" },
         ].map((o) => (
           <div key={o.t} className="rounded-xl border border-border/60 bg-background/50 p-5">
             <div className="flex items-start justify-between">
@@ -382,13 +382,12 @@ function renderSlideBody(id: string) {
     );
   }
 
-  // Default: ecom / social / conv
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
       {[
-        { l: "Primary metric", v: "184.5k", d: "+18.6%" },
-        { l: "Secondary", v: "96.8k", d: "+11.4%" },
-        { l: "Tertiary", v: "4.37×", d: "+23%" },
+        { l: "Primärt nyckeltal", v: "1,85 mn kr", d: "+18,6 %" },
+        { l: "Sekundärt", v: "96,8k", d: "+11,4 %" },
+        { l: "Tertiärt", v: "4,37×", d: "+23 %" },
       ].map((m) => (
         <div key={m.l} className="rounded-xl border border-border/60 bg-background/50 p-5">
           <p className="text-sm text-muted-foreground">{m.l}</p>
