@@ -18,7 +18,6 @@ import {
   Sparkles,
   TrendingUp,
   Calendar,
-  Download,
   Lightbulb,
   AlertTriangle,
   Trophy,
@@ -26,6 +25,7 @@ import {
 } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { KpiCard } from "@/components/kpi-card";
+import { ExportMenu } from "@/components/export-menu";
 import {
   channelBreakdown,
   formatCurrency,
@@ -84,10 +84,7 @@ function DashboardPage() {
               <Calendar className="h-4 w-4" />
               Senaste 30 dagarna
             </button>
-            <button className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background hover:opacity-90">
-              <Download className="h-4 w-4" />
-              Exportera
-            </button>
+            <ExportMenu dateRange="Senaste 30 dagarna" company="Aurora Studios" />
           </div>
         </motion.div>
 
