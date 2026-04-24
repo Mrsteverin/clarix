@@ -26,13 +26,13 @@ import { ThemeToggle } from "@/components/theme-toggle";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "FlowReport — Vackra marknadsrapporter, på autopilot" },
+      { title: "ClarityCloud — Vackra marknadsrapporter, på autopilot" },
       {
         name: "description",
         content:
           "Anslut dina kanaler och leverera presentationsfärdiga kundrapporter på minuter. Mindre brus. Mer klarhet.",
       },
-      { property: "og:title", content: "FlowReport — Vackra marknadsrapporter, på autopilot" },
+      { property: "og:title", content: "ClarityCloud — Vackra marknadsrapporter, på autopilot" },
       {
         property: "og:description",
         content: "Anslut dina kanaler och leverera presentationsfärdiga kundrapporter på minuter.",
@@ -67,7 +67,7 @@ function Landing() {
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-brand shadow-glow">
               <Sparkles className="h-4 w-4 text-white" />
             </div>
-            <span className="font-display text-xl">FlowReport</span>
+            <span className="font-display text-xl">ClarityCloud</span>
           </Link>
           <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
             <a href="#features" className="hover:text-foreground">Funktioner</a>
@@ -111,7 +111,7 @@ function Landing() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-            FlowReport förvandlar rådata från alla dina kanaler till klara, vackra rapporter
+            ClarityCloud förvandlar rådata från alla dina kanaler till klara, vackra rapporter
             — så enkelt att du inte behöver en byrå för att förstå dem.
           </p>
 
@@ -144,7 +144,7 @@ function Landing() {
               <span className="h-2.5 w-2.5 rounded-full bg-destructive/70" />
               <span className="h-2.5 w-2.5 rounded-full bg-warning/70" />
               <span className="h-2.5 w-2.5 rounded-full bg-success/70" />
-              <span className="ml-3 text-xs text-muted-foreground">flowreport.se/oversikt</span>
+              <span className="ml-3 text-xs text-muted-foreground">claritycloud.se/oversikt</span>
             </div>
             <div className="grid grid-cols-12 gap-4 p-6">
               <div className="col-span-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
@@ -416,7 +416,7 @@ function Landing() {
               to="/dashboard"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background shadow-elevated hover:opacity-90"
             >
-              Prova FlowReport gratis
+              Prova ClarityCloud gratis
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -427,7 +427,7 @@ function Landing() {
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 text-sm text-muted-foreground sm:flex-row">
           <div className="flex items-center gap-2">
             <Sparkles className="h-4 w-4" />
-            <span>© 2025 FlowReport</span>
+            <span>© 2025 ClarityCloud</span>
           </div>
           <div className="flex gap-6">
             <a href="#" className="hover:text-foreground">Integritet</a>
