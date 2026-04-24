@@ -9,19 +9,21 @@ import {
   Globe,
   TrendingUp,
   ShieldCheck,
-  BarChart3,
-  Search,
-  Megaphone,
-  Facebook,
-  Linkedin,
-  Music2,
-  ShoppingBag,
-  Store,
-  Youtube,
-  FileSpreadsheet,
   Palette,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import {
+  GoogleAnalyticsLogo,
+  GoogleSearchConsoleLogo,
+  GoogleAdsLogo,
+  MetaLogo,
+  LinkedInLogo,
+  TikTokLogo,
+  ShopifyLogo,
+  WooLogo,
+  YouTubeLogo,
+  ExcelLogo,
+} from "@/components/brand-logos";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -42,17 +44,17 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-const channels: { name: string; icon: typeof BarChart3; color: string }[] = [
-  { name: "Google Analytics 4", icon: BarChart3, color: "#E8710A" },
-  { name: "Search Console", icon: Search, color: "#4285F4" },
-  { name: "Google Ads", icon: Megaphone, color: "#34A853" },
-  { name: "Meta Ads", icon: Facebook, color: "#1877F2" },
-  { name: "LinkedIn Ads", icon: Linkedin, color: "#0A66C2" },
-  { name: "TikTok Ads", icon: Music2, color: "#111111" },
-  { name: "Shopify", icon: ShoppingBag, color: "#5A8E3A" },
-  { name: "WooCommerce", icon: Store, color: "#7F54B3" },
-  { name: "YouTube", icon: Youtube, color: "#FF0000" },
-  { name: "Egen CSV", icon: FileSpreadsheet, color: "#10B981" },
+const channels: { name: string; Logo: (p: { className?: string }) => JSX.Element }[] = [
+  { name: "Google Analytics 4", Logo: GoogleAnalyticsLogo },
+  { name: "Search Console", Logo: GoogleSearchConsoleLogo },
+  { name: "Google Ads", Logo: GoogleAdsLogo },
+  { name: "Meta Ads", Logo: MetaLogo },
+  { name: "LinkedIn Ads", Logo: LinkedInLogo },
+  { name: "TikTok Ads", Logo: TikTokLogo },
+  { name: "Shopify", Logo: ShopifyLogo },
+  { name: "WooCommerce", Logo: WooLogo },
+  { name: "YouTube", Logo: YouTubeLogo },
+  { name: "Excel / CSV", Logo: ExcelLogo },
 ];
 
 function Landing() {
