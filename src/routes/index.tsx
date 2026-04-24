@@ -72,6 +72,7 @@ function Landing() {
           <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
             <a href="#features" className="hover:text-foreground">Funktioner</a>
             <a href="#channels" className="hover:text-foreground">Kanaler</a>
+            <a href="#agencies" className="hover:text-foreground">För byråer</a>
             <a href="#pricing" className="hover:text-foreground">Priser</a>
           </nav>
           <div className="flex items-center gap-2">
