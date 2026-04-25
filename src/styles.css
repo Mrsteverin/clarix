@@ -62,7 +62,7 @@
 
   /* Light — soft warm white, deep ink */
   --background: oklch(0.99 0.003 260);
-  --foreground: oklch(0.18 0.02 265);
+  --foreground: oklch(0.13 0.025 265);
 
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.18 0.02 265);
@@ -76,7 +76,7 @@
   --secondary-foreground: oklch(0.22 0.03 265);
 
   --muted: oklch(0.965 0.008 260);
-  --muted-foreground: oklch(0.52 0.02 260);
+  --muted-foreground: oklch(0.42 0.025 260);
 
   --accent: oklch(0.65 0.19 265);
   --accent-foreground: oklch(0.99 0.003 260);
@@ -137,7 +137,7 @@
   --secondary-foreground: oklch(0.97 0.005 260);
 
   --muted: oklch(0.22 0.02 265);
-  --muted-foreground: oklch(0.68 0.02 260);
+  --muted-foreground: oklch(0.78 0.02 260);
 
   --accent: oklch(0.7 0.2 270);
   --accent-foreground: oklch(0.14 0.015 265);
