@@ -20,6 +20,7 @@ import {
 import { AppShell } from "@/components/app-shell";
 import { integrations as initialIntegrations } from "@/lib/demo-data";
 import { ShareLinksModal } from "@/components/share-links-modal";
+import { toast } from "sonner";
 import {
   GoogleAnalyticsLogo,
   GoogleSearchConsoleLogo,
