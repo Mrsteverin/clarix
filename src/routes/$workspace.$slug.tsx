@@ -27,6 +27,8 @@ import {
   AlertTriangle,
   Info,
   RefreshCw,
+  Eye,
+  User,
 } from "lucide-react";
 import {
   channelBreakdown,
@@ -38,10 +40,12 @@ import {
   trafficTrend,
 } from "@/lib/demo-data";
 import {
-  findLink,
   isExpired,
+  isInactive,
   recordVisit,
+  resolveLink,
   verifyPassword,
+  findLink,
   type ShareLink,
 } from "@/lib/share-links";
 
