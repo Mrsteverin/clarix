@@ -182,17 +182,19 @@ function SlidePreview({ slideId, onBack }: { slideId: string; onBack: () => void
 
           <div className="mt-10">{renderSlideBody(slideId)}</div>
 
-          <div className="mt-10 rounded-2xl border border-border/60 bg-background/50 p-5">
-            <div className="flex items-start gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-brand text-white shadow-glow">
-                <Sparkles className="h-4 w-4" />
-              </div>
-              <div>
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">AI-sammanfattning</p>
-                <p className="mt-1 text-base leading-relaxed">{getSlideSummary(slideId)}</p>
+          {slideId !== "conv" && (
+            <div className="mt-10 rounded-2xl border border-border/60 bg-background/50 p-5">
+              <div className="flex items-start gap-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-brand text-white shadow-glow">
+                  <Sparkles className="h-4 w-4" />
+                </div>
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">AI-sammanfattning</p>
+                  <p className="mt-1 text-base leading-relaxed">{getSlideSummary(slideId)}</p>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </motion.div>
       </div>
     </div>
