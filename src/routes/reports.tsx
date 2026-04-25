@@ -214,7 +214,7 @@ function getSlideHeadline(id: string) {
     case "social":
       return "Engagemanget fortsätter klättra";
     case "conv":
-      return "3 241 konverteringar denna månad";
+      return "3 241 konverteringar senaste 30 dagarna";
     case "opp":
       return "Var du ska investera härnäst";
     default:
