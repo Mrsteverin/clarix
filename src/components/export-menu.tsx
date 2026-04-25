@@ -30,6 +30,7 @@ export function ExportMenu({
   company?: string;
 }) {
   const [open, setOpen] = useState(false);
+  const [shareOpen, setShareOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
