@@ -13,10 +13,14 @@ import {
   Sparkles,
   Share2,
   ArrowRight,
+  Send,
+  UserPlus,
+  Mail,
 } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { integrations as initialIntegrations } from "@/lib/demo-data";
 import { ShareLinksModal } from "@/components/share-links-modal";
+import { toast } from "sonner";
 import {
   GoogleAnalyticsLogo,
   GoogleSearchConsoleLogo,
@@ -42,8 +46,9 @@ export const Route = createFileRoute("/connections")({
   component: ConnectionsPage,
 });
 
-type Integration = (typeof initialIntegrations)[number];
-type FlowStep = "consent" | "choosing" | "connecting" | "done";
+type BaseIntegration = (typeof initialIntegrations)[number];
+type Integration = BaseIntegration & { invitedBy?: string };
+type FlowStep = "consent" | "choosing" | "connecting" | "done" | "invite" | "invite-sent";
 
 const RECOMMENDED_ORDER = ["ga4", "gads", "gsc", "meta"];
 
@@ -449,6 +454,12 @@ function ChannelCard({
       {integ.connected && integ.account && (
         <p className="mt-3 truncate text-xs font-semibold text-foreground/65">{integ.account}</p>
       )}
+      {integ.connected && integ.invitedBy && (
+        <p className="mt-1 inline-flex items-center gap-1 truncate text-[11px] font-medium text-accent">
+          <UserPlus className="h-3 w-3" />
+          Ansluten av {integ.invitedBy}
+        </p>
+      )}
 
       <button
         onClick={onOpen}
@@ -608,6 +619,24 @@ function ConnectModal({
                   </button>
                 </div>
 
+                {/* Tertiary action — invite an external person to connect */}
+                <button
+                  onClick={() => setStep("invite")}
+                  className="mt-3 flex w-full items-start gap-3 rounded-xl border border-border bg-gradient-to-br from-accent/[0.06] to-transparent px-3.5 py-3 text-left transition-all hover:border-foreground/30 hover:from-accent/10"
+                >
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-foreground text-background">
+                    <UserPlus className="h-4 w-4" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-semibold">Skicka till extern person</p>
+                    <p className="mt-0.5 text-xs leading-snug text-muted-foreground">
+                      Har din byrå, kollega eller konsult access? Skicka en säker länk så kan
+                      de koppla kontot åt dig.
+                    </p>
+                  </div>
+                  <ArrowRight className="mt-2 h-4 w-4 shrink-0 text-muted-foreground" />
+                </button>
+
                 <div className="mt-5 flex items-start gap-2 rounded-xl border border-border/60 bg-muted/30 p-3 text-xs text-muted-foreground">
                   <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-success" />
                   <p>
@@ -718,6 +747,15 @@ function ConnectModal({
                   Vi synkar nu data från {integration.name} i bakgrunden.
                 </p>
 
+                {integration.invitedBy && (
+                  <div className="mt-4 flex items-center gap-2 rounded-xl border border-accent/30 bg-accent/[0.06] px-3 py-2 text-xs">
+                    <UserPlus className="h-3.5 w-3.5 text-accent" />
+                    <span>
+                      Ansluten av <span className="font-semibold text-foreground">{integration.invitedBy}</span>
+                    </span>
+                  </div>
+                )}
+
                 <div className="mt-5 space-y-3 rounded-xl border border-border bg-muted/30 p-4 text-sm">
                   <Row label="Konto" value={chosenAccount} />
                   <Row label="Status" value={<span className="text-success">Aktiv</span>} />
@@ -764,6 +802,53 @@ function ConnectModal({
                     Klar
                   </button>
                 </div>
+              </motion.div>
+            )}
+
+            {step === "invite" && (
+              <InviteForm
+                key="invite"
+                integration={integration}
+                onCancel={() => setStep("consent")}
+                onSent={(invite) => {
+                  toast.success("Anslutningslänk skickad", {
+                    description: `${invite.name} (${invite.email}) får ett mejl med en säker länk att koppla ${integration.name}.`,
+                  });
+                  // Mark integration as awaiting external connection — record who was invited.
+                  // For demo, we simulate "completed" so the badge can render.
+                  onConnect({
+                    ...integration,
+                    connected: true,
+                    account: invite.email,
+                    invitedBy: invite.name,
+                  });
+                  setStep("invite-sent");
+                }}
+              />
+            )}
+
+            {step === "invite-sent" && (
+              <motion.div
+                key="invite-sent"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                className="mt-8 flex flex-col items-center gap-3 py-4 text-center"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-success/15 text-success">
+                  <Check className="h-5 w-5" />
+                </div>
+                <h2 className="font-display text-2xl leading-tight">Inbjudan skickad</h2>
+                <p className="max-w-sm text-sm text-muted-foreground">
+                  Mottagaren får en säker engångslänk att koppla {integration.name}. Du får
+                  en notis när det är klart.
+                </p>
+                <button
+                  onClick={onClose}
+                  className="mt-3 rounded-full bg-foreground px-5 py-2 text-sm font-medium text-background hover:opacity-90"
+                >
+                  Klar
+                </button>
               </motion.div>
             )}
           </AnimatePresence>
@@ -837,4 +922,158 @@ function sampleAccountsFor(i: Integration) {
     default:
       return [{ name: "Standardkonto", email: "alex@aurora.studio", color: "#6B7280" }];
   }
+}
+
+/* ─────────────────────── InviteForm ─────────────────────── */
+
+type InvitePayload = { name: string; email: string; company: string; channel: string };
+
+function InviteForm({
+  integration,
+  onCancel,
+  onSent,
+}: {
+  integration: Integration;
+  onCancel: () => void;
+  onSent: (invite: InvitePayload) => void;
+}) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
+  const [channel, setChannel] = useState(integration.name);
+  const [busy, setBusy] = useState(false);
+
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  const canSubmit = name.trim().length >= 2 && emailValid && channel.trim().length > 0;
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!canSubmit || busy) return;
+    setBusy(true);
+    // Simulate sending the secure one-time link by email.
+    setTimeout(() => {
+      setBusy(false);
+      onSent({
+        name: name.trim(),
+        email: email.trim().toLowerCase(),
+        company: company.trim(),
+        channel: channel.trim(),
+      });
+    }, 900);
+  }
+
+  return (
+    <motion.form
+      initial={{ opacity: 0, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -6 }}
+      onSubmit={handleSubmit}
+      className="mt-6"
+    >
+      <div className="flex items-center gap-2">
+        <div className="flex h-7 w-7 items-center justify-center rounded-full bg-foreground text-background">
+          <UserPlus className="h-4 w-4" />
+        </div>
+        <h2 className="font-display text-2xl leading-tight">Skicka anslutningslänk</h2>
+      </div>
+      <p className="mt-1 text-sm text-muted-foreground">
+        Vi mejlar en säker engångslänk så att personen kan koppla {integration.name} åt dig.
+      </p>
+
+      <div className="mt-5 space-y-3">
+        <Field label="Namn">
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            maxLength={80}
+            autoFocus
+            placeholder="t.ex. Sara Bergström"
+            className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm focus:border-foreground focus:outline-none"
+          />
+        </Field>
+        <Field label="E-post">
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            maxLength={120}
+            placeholder="sara@byran.se"
+            className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm focus:border-foreground focus:outline-none"
+          />
+        </Field>
+        <Field label="Företag" hint="valfritt">
+          <input
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            maxLength={80}
+            placeholder="t.ex. Klarna Studio"
+            className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm focus:border-foreground focus:outline-none"
+          />
+        </Field>
+        <Field label="Kanal att koppla">
+          <input
+            value={channel}
+            onChange={(e) => setChannel(e.target.value)}
+            maxLength={60}
+            className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm focus:border-foreground focus:outline-none"
+          />
+        </Field>
+      </div>
+
+      <div className="mt-4 flex items-start gap-2 rounded-xl border border-border/60 bg-muted/30 p-3 text-xs text-muted-foreground">
+        <Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-foreground" />
+        <p>
+          Länken är giltig i 7 dagar och kan endast användas en gång. Mottagaren behöver
+          inget ClarityCloud-konto.
+        </p>
+      </div>
+
+      <div className="mt-6 flex justify-end gap-2">
+        <button
+          type="button"
+          onClick={onCancel}
+          className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium hover:bg-muted"
+        >
+          Tillbaka
+        </button>
+        <button
+          type="submit"
+          disabled={!canSubmit || busy}
+          className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-all hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {busy ? (
+            <>
+              <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              Skickar…
+            </>
+          ) : (
+            <>
+              <Send className="h-3.5 w-3.5" />
+              Skicka anslutningslänk
+            </>
+          )}
+        </button>
+      </div>
+    </motion.form>
+  );
+}
+
+function Field({
+  label,
+  hint,
+  children,
+}: {
+  label: string;
+  hint?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <label className="block">
+      <span className="mb-1.5 flex items-center justify-between text-xs font-medium text-foreground/80">
+        {label}
+        {hint && <span className="font-normal text-muted-foreground">{hint}</span>}
+      </span>
+      {children}
+    </label>
+  );
 }
