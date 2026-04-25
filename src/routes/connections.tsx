@@ -780,150 +780,16 @@ function ConnectModal({
 
 /* ─────────────────────── ShareModal ─────────────────────── */
 
-type ShareMode = "public" | "password" | "team" | "expiring";
+import { ShareLinksModal } from "@/components/share-links-modal";
 
 function ShareModal({ onClose }: { onClose: () => void }) {
-  const [mode, setMode] = useState<ShareMode>("public");
-  const [copied, setCopied] = useState(false);
-
-  const url = "claritycloud.se/r/aurora-april";
-
-  const options: { id: ShareMode; icon: typeof Link2; title: string; desc: string }[] = [
-    { id: "public", icon: Link2, title: "Skapa offentlig länk", desc: "Alla med länken kan se rapporten." },
-    {
-      id: "password",
-      icon: KeyRound,
-      title: "Lösenordsskyddad länk",
-      desc: "Mottagaren behöver ett lösenord för att öppna.",
-    },
-    {
-      id: "team",
-      icon: Users,
-      title: "Endast interna teammedlemmar",
-      desc: "Kräver inloggning till ClarityCloud.",
-    },
-    {
-      id: "expiring",
-      icon: Calendar,
-      title: "Sätt utgångsdatum",
-      desc: "Länken slutar fungera efter valt datum.",
-    },
-  ];
-
-  function copy() {
-    navigator.clipboard?.writeText(`https://${url}`).catch(() => {});
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1800);
-  }
-
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
-      onClick={onClose}
-    >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.96, y: 8 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.96, y: 8 }}
-        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-        onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-border bg-background shadow-elevated"
-      >
-        <div className="flex items-start justify-between border-b border-border px-6 py-5">
-          <div>
-            <h2 className="font-display text-2xl tracking-tight">Dela live-rapport</h2>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Skicka en alltid-uppdaterad version av rapporten till kund eller team.
-            </p>
-          </div>
-          <button
-            onClick={onClose}
-            className="rounded-full p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
-            aria-label="Stäng"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-
-        <div className="space-y-2 px-6 py-5">
-          {options.map((opt) => {
-            const Icon = opt.icon;
-            const active = mode === opt.id;
-            return (
-              <button
-                key={opt.id}
-                onClick={() => setMode(opt.id)}
-                className={`flex w-full items-center gap-4 rounded-xl border px-4 py-3 text-left transition-all ${
-                  active
-                    ? "border-foreground/80 bg-muted/40"
-                    : "border-border bg-background hover:bg-muted/40"
-                }`}
-              >
-                <div
-                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${
-                    active ? "bg-foreground text-background" : "bg-muted text-foreground"
-                  }`}
-                >
-                  <Icon className="h-4 w-4" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-sm font-medium">{opt.title}</p>
-                  <p className="truncate text-xs text-muted-foreground">{opt.desc}</p>
-                </div>
-                <div
-                  className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${
-                    active ? "border-foreground bg-foreground text-background" : "border-border"
-                  }`}
-                >
-                  {active && <Check className="h-3 w-3" />}
-                </div>
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="border-t border-border bg-muted/20 px-6 py-5">
-          <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-            Förhandsgranska länk
-          </p>
-          <div className="mt-2 flex items-center gap-2 rounded-xl border border-border bg-background px-3 py-2">
-            <Link2 className="h-4 w-4 text-muted-foreground" />
-            <span className="flex-1 truncate text-sm font-medium">{url}</span>
-            {mode === "password" && (
-              <span className="rounded-full bg-muted px-2 py-0.5 text-[11px] text-muted-foreground">
-                Lösenord
-              </span>
-            )}
-            {mode === "expiring" && (
-              <span className="rounded-full bg-muted px-2 py-0.5 text-[11px] text-muted-foreground">
-                30 dagar
-              </span>
-            )}
-          </div>
-
-          <div className="mt-4 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
-            <button
-              onClick={() => {}}
-              className="inline-flex items-center justify-center gap-1.5 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium hover:bg-muted"
-            >
-              <Mail className="h-4 w-4" />
-              Skicka via e-post
-            </button>
-            <button
-              onClick={copy}
-              className="inline-flex items-center justify-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background hover:opacity-90"
-            >
-              {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-              {copied ? "Kopierad" : "Kopiera länk"}
-            </button>
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
+    <ShareLinksModal
+      onClose={onClose}
+      workspaceLabel="Aurora Studios"
+      workspaceSlug="aurora"
+      currentPeriod="April 2026"
+    />
   );
 }
 
