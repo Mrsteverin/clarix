@@ -318,20 +318,28 @@ function ConnectionsPage() {
 
         {/* ───────── RECOMMENDED ───────── */}
         {recommendedFiltered.length > 0 && (
-          <section>
-            <div className="mb-4 flex items-end justify-between">
+          <section className="relative">
+            <div className="mb-6 flex items-end justify-between gap-4">
               <div>
-                <h2 className="font-display text-2xl tracking-tight">Rekommenderade</h2>
-                <p className="mt-0.5 text-sm text-muted-foreground">
-                  Starta här — de fyra kanalerna täcker 90 % av dina insikter.
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/10 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-accent">
+                    <Sparkles className="h-3 w-3" />
+                    Börja här
+                  </span>
+                </div>
+                <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground">
+                  Rekommenderade kanaler
+                </h2>
+                <p className="mt-1.5 max-w-xl text-base text-foreground/70">
+                  Dessa fyra täcker 90 % av dina insikter. Koppla dem först — resten kan vänta.
                 </p>
               </div>
-              <span className="hidden text-xs text-muted-foreground sm:inline">
+              <span className="hidden shrink-0 rounded-full border border-border/60 bg-background px-3 py-1.5 text-xs font-semibold text-foreground/70 sm:inline-flex">
                 {recommendedFiltered.filter((i) => i.connected).length}/{recommendedFiltered.length} kopplade
               </span>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               {recommendedFiltered.map((integ, i) => (
                 <ChannelCard
                   key={integ.id}
@@ -348,16 +356,18 @@ function ConnectionsPage() {
         {/* ───────── OTHERS ───────── */}
         {others.length > 0 && (
           <section>
-            <div className="mb-4 flex items-end justify-between">
+            <div className="mb-6 flex items-end justify-between">
               <div>
-                <h2 className="font-display text-2xl tracking-tight">Fler kanaler</h2>
-                <p className="mt-0.5 text-sm text-muted-foreground">
+                <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground">
+                  Fler kanaler
+                </h2>
+                <p className="mt-1.5 text-base text-foreground/70">
                   Lägg till sociala medier, e-handel och egna datakällor.
                 </p>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {others.map((integ, i) => (
                 <ChannelCard key={integ.id} integ={integ} index={i} onOpen={() => setActive(integ)} />
               ))}
