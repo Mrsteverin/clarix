@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TypographyPreviewRouteImport } from './routes/typography-preview'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as LoginRouteImport } from './routes/login'
@@ -18,6 +19,11 @@ import { Route as ClientsRouteImport } from './routes/clients'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkspaceSlugRouteImport } from './routes/$workspace.$slug'
 
+const TypographyPreviewRoute = TypographyPreviewRouteImport.update({
+  id: '/typography-preview',
+  path: '/typography-preview',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/reports': typeof ReportsRoute
   '/settings': typeof SettingsRoute
+  '/typography-preview': typeof TypographyPreviewRoute
   '/$workspace/$slug': typeof WorkspaceSlugRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/reports': typeof ReportsRoute
   '/settings': typeof SettingsRoute
+  '/typography-preview': typeof TypographyPreviewRoute
   '/$workspace/$slug': typeof WorkspaceSlugRoute
 }
 export interface FileRoutesById {
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/reports': typeof ReportsRoute
   '/settings': typeof SettingsRoute
+  '/typography-preview': typeof TypographyPreviewRoute
   '/$workspace/$slug': typeof WorkspaceSlugRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/reports'
     | '/settings'
+    | '/typography-preview'
     | '/$workspace/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/reports'
     | '/settings'
+    | '/typography-preview'
     | '/$workspace/$slug'
   id:
     | '__root__'
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/reports'
     | '/settings'
+    | '/typography-preview'
     | '/$workspace/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -131,11 +143,19 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   ReportsRoute: typeof ReportsRoute
   SettingsRoute: typeof SettingsRoute
+  TypographyPreviewRoute: typeof TypographyPreviewRoute
   WorkspaceSlugRoute: typeof WorkspaceSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/typography-preview': {
+      id: '/typography-preview'
+      path: '/typography-preview'
+      fullPath: '/typography-preview'
+      preLoaderRoute: typeof TypographyPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/settings': {
       id: '/settings'
       path: '/settings'
@@ -203,6 +223,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   ReportsRoute: ReportsRoute,
   SettingsRoute: SettingsRoute,
+  TypographyPreviewRoute: TypographyPreviewRoute,
   WorkspaceSlugRoute: WorkspaceSlugRoute,
 }
 export const routeTree = rootRouteImport
