@@ -917,3 +917,157 @@ function sampleAccountsFor(i: Integration) {
       return [{ name: "Standardkonto", email: "alex@aurora.studio", color: "#6B7280" }];
   }
 }
+
+/* ─────────────────────── InviteForm ─────────────────────── */
+
+type InvitePayload = { name: string; email: string; company: string; channel: string };
+
+function InviteForm({
+  integration,
+  onCancel,
+  onSent,
+}: {
+  integration: Integration;
+  onCancel: () => void;
+  onSent: (invite: InvitePayload) => void;
+}) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
+  const [channel, setChannel] = useState(integration.name);
+  const [busy, setBusy] = useState(false);
+
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  const canSubmit = name.trim().length >= 2 && emailValid && channel.trim().length > 0;
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!canSubmit || busy) return;
+    setBusy(true);
+    // Simulate sending the secure one-time link by email.
+    setTimeout(() => {
+      setBusy(false);
+      onSent({
+        name: name.trim(),
+        email: email.trim().toLowerCase(),
+        company: company.trim(),
+        channel: channel.trim(),
+      });
+    }, 900);
+  }
+
+  return (
+    <motion.form
+      initial={{ opacity: 0, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -6 }}
+      onSubmit={handleSubmit}
+      className="mt-6"
+    >
+      <div className="flex items-center gap-2">
+        <div className="flex h-7 w-7 items-center justify-center rounded-full bg-foreground text-background">
+          <UserPlus className="h-4 w-4" />
+        </div>
+        <h2 className="font-display text-2xl leading-tight">Skicka anslutningslänk</h2>
+      </div>
+      <p className="mt-1 text-sm text-muted-foreground">
+        Vi mejlar en säker engångslänk så att personen kan koppla {integration.name} åt dig.
+      </p>
+
+      <div className="mt-5 space-y-3">
+        <Field label="Namn">
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            maxLength={80}
+            autoFocus
+            placeholder="t.ex. Sara Bergström"
+            className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm focus:border-foreground focus:outline-none"
+          />
+        </Field>
+        <Field label="E-post">
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            maxLength={120}
+            placeholder="sara@byran.se"
+            className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm focus:border-foreground focus:outline-none"
+          />
+        </Field>
+        <Field label="Företag" hint="valfritt">
+          <input
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            maxLength={80}
+            placeholder="t.ex. Klarna Studio"
+            className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm focus:border-foreground focus:outline-none"
+          />
+        </Field>
+        <Field label="Kanal att koppla">
+          <input
+            value={channel}
+            onChange={(e) => setChannel(e.target.value)}
+            maxLength={60}
+            className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm focus:border-foreground focus:outline-none"
+          />
+        </Field>
+      </div>
+
+      <div className="mt-4 flex items-start gap-2 rounded-xl border border-border/60 bg-muted/30 p-3 text-xs text-muted-foreground">
+        <Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-foreground" />
+        <p>
+          Länken är giltig i 7 dagar och kan endast användas en gång. Mottagaren behöver
+          inget ClarityCloud-konto.
+        </p>
+      </div>
+
+      <div className="mt-6 flex justify-end gap-2">
+        <button
+          type="button"
+          onClick={onCancel}
+          className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium hover:bg-muted"
+        >
+          Tillbaka
+        </button>
+        <button
+          type="submit"
+          disabled={!canSubmit || busy}
+          className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-all hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {busy ? (
+            <>
+              <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              Skickar…
+            </>
+          ) : (
+            <>
+              <Send className="h-3.5 w-3.5" />
+              Skicka anslutningslänk
+            </>
+          )}
+        </button>
+      </div>
+    </motion.form>
+  );
+}
+
+function Field({
+  label,
+  hint,
+  children,
+}: {
+  label: string;
+  hint?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <label className="block">
+      <span className="mb-1.5 flex items-center justify-between text-xs font-medium text-foreground/80">
+        {label}
+        {hint && <span className="font-normal text-muted-foreground">{hint}</span>}
+      </span>
+      {children}
+    </label>
+  );
+}
