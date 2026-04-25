@@ -157,42 +157,52 @@ function ConnectionsPage() {
 
           <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
-                <Sparkles className="h-3 w-3 text-accent" />
-                {connectedCount} av {items.length} kanaler aktiva
-              </div>
-              <h1 className="mt-5 font-display text-4xl leading-[1.05] tracking-tight sm:text-5xl">
+              <h1 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
                 Koppla dina viktigaste kanaler
                 <br />
-                <span className="text-muted-foreground">på 2 minuter.</span>
+                <span className="bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-600 bg-clip-text font-bold italic text-transparent">
+                  på 2 minuter.
+                </span>
               </h1>
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-foreground/75">
                 Hämta in statistik automatiskt från dina viktigaste plattformar.
                 Ingen teknisk kunskap krävs — vi sköter behörigheter, synk och uppdateringar.
               </p>
 
-              <div className="mt-6 flex flex-wrap items-center gap-3">
+              <div className="mt-7 flex flex-wrap items-center gap-3">
                 <button
                   onClick={() => {
                     const next = items.find((i) => !i.connected);
                     if (next) setActive(next);
                   }}
-                  className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background shadow-soft transition-all hover:opacity-90"
+                  className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background shadow-elevated transition-all hover:opacity-90"
                 >
                   Koppla första kanalen
                   <ArrowRight className="h-4 w-4" />
                 </button>
-                <button
-                  onClick={() => setShareOpen(true)}
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-5 py-2.5 text-sm font-medium backdrop-blur transition-all hover:bg-muted"
-                >
-                  <Share2 className="h-4 w-4" />
-                  Dela live-rapport
-                </button>
+                {connectedCount > 0 ? (
+                  <button
+                    onClick={() => setShareOpen(true)}
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur transition-all hover:bg-muted"
+                  >
+                    <Share2 className="h-4 w-4" />
+                    Dela live-rapport
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      window.open("/reports", "_blank");
+                    }}
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur transition-all hover:bg-muted"
+                  >
+                    Se exempelrapport
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                )}
               </div>
 
-              <div className="mt-6 flex items-center gap-2 text-xs text-muted-foreground">
-                <ShieldCheck className="h-3.5 w-3.5 text-success" />
+              <div className="mt-6 flex items-center gap-2 text-sm text-foreground/70">
+                <ShieldCheck className="h-4 w-4 text-success" />
                 ClarityCloud läser endast statistik. Vi publicerar aldrig innehåll.
               </div>
             </div>
@@ -258,6 +268,36 @@ function ConnectionsPage() {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* ───────── PROGRESS ───────── */}
+        <div className="rounded-2xl border border-border/60 bg-gradient-card p-5 shadow-soft sm:p-6">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10">
+                <Sparkles className="h-5 w-5 text-accent" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-foreground">
+                  {connectedCount} av {items.length} kanaler aktiva
+                </p>
+                <p className="text-xs text-foreground/60">
+                  Koppla fler för att låsa upp full insikt.
+                </p>
+              </div>
+            </div>
+            <span className="text-sm font-semibold text-foreground">
+              {Math.round((connectedCount / items.length) * 100)}%
+            </span>
+          </div>
+          <div className="mt-4 h-2 overflow-hidden rounded-full bg-muted">
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: `${(connectedCount / items.length) * 100}%` }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="h-full rounded-full bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-600"
+            />
+          </div>
+        </div>
 
         {/* ───────── SEARCH ───────── */}
         <div className="relative max-w-sm">
@@ -362,49 +402,54 @@ function ChannelCard({
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, delay: index * 0.04 }}
-      className={`group relative flex flex-col overflow-hidden rounded-2xl border bg-gradient-card p-5 shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-elevated ${
-        featured ? "border-border/80 sm:p-6" : "border-border/60"
+      className={`group relative flex flex-col overflow-hidden rounded-2xl border bg-gradient-card shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-elevated ${
+        featured ? "min-h-[260px] border-border/80 p-7" : "min-h-[240px] border-border/60 p-6"
       }`}
     >
       <div className="flex items-start justify-between gap-3">
-        <div className="flex items-start gap-3.5">
-          <BrandMark integ={integ} size={featured ? 48 : 44} />
+        <div className="flex items-start gap-4">
+          <BrandMark integ={integ} size={featured ? 52 : 48} />
           <div className="min-w-0">
-            <h3 className={`font-semibold ${featured ? "text-base" : "text-sm"}`}>{integ.name}</h3>
-            <p className="text-xs text-muted-foreground">{integ.category}</p>
+            <h3 className={`font-semibold tracking-tight text-foreground ${featured ? "text-xl" : "text-lg"}`}>
+              {integ.name}
+            </h3>
+            <p className="mt-0.5 text-xs font-medium uppercase tracking-wide text-foreground/55">
+              {integ.category}
+            </p>
           </div>
         </div>
         {integ.connected ? (
-          <span className="inline-flex items-center gap-1 rounded-full bg-success/10 px-2 py-0.5 text-[11px] font-medium text-success">
+          <span className="inline-flex items-center gap-1 rounded-full bg-success/10 px-2.5 py-1 text-[11px] font-semibold text-success">
             <span className="h-1.5 w-1.5 rounded-full bg-success" />
             Ansluten
           </span>
         ) : (
-          <span className="inline-flex items-center rounded-full border border-border/60 px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+          <span className="inline-flex items-center rounded-full border border-border/60 px-2.5 py-1 text-[11px] font-semibold text-foreground/60">
             Ej ansluten
           </span>
         )}
       </div>
 
-      <p className="mt-4 line-clamp-2 text-xs leading-relaxed text-muted-foreground">{integ.purpose}</p>
+      <p className="mt-5 line-clamp-2 text-sm leading-relaxed text-foreground/75">{integ.purpose}</p>
 
       {integ.connected && integ.account && (
-        <p className="mt-2 truncate text-xs text-foreground/60">{integ.account}</p>
+        <p className="mt-2 truncate text-xs font-medium text-foreground/60">{integ.account}</p>
       )}
 
       <button
         onClick={onOpen}
-        className={`mt-5 inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all ${
+        className={`mt-auto inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-all ${
           integ.connected
-            ? "border border-border bg-background hover:bg-muted"
-            : "bg-foreground text-background hover:opacity-90"
+            ? "border border-border bg-background text-foreground hover:bg-muted"
+            : "bg-foreground text-background shadow-soft hover:opacity-90"
         }`}
+        style={{ marginTop: "1.5rem" }}
       >
         {integ.connected ? (
           "Hantera"
         ) : (
           <>
-            <Plus className="h-3.5 w-3.5" />
+            <Plus className="h-4 w-4" />
             Anslut
           </>
         )}
