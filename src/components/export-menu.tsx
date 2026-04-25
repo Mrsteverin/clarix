@@ -77,9 +77,7 @@ export function ExportMenu({
       hint: "Live-länk som uppdateras automatiskt",
       accent: "bg-sky-500/10 text-sky-600 dark:text-sky-400",
       onClick: () => {
-        const url = `https://claritycloud.app/r/${Math.random().toString(36).slice(2, 10)}`;
-        navigator.clipboard?.writeText(url).catch(() => {});
-        toast.success("Länk kopierad", { description: url });
+        setShareOpen(true);
       },
     },
     {
