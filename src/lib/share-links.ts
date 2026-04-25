@@ -20,6 +20,9 @@ export type ShareLink = {
   passwordHash?: string;   // sha-256 hex when password-protected
   expiresAt?: number;      // epoch ms
   createdAt: number;
+  createdBy?: string;      // human name or email of creator
+  isActive?: boolean;      // defaults true; set false to disable
+  lastViewedAt?: number;   // epoch ms of last public visit
   visits: ShareLinkVisit[];
 };
 
