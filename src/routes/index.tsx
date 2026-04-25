@@ -159,7 +159,7 @@ function Landing() {
                 ].map((k) => (
                   <div key={k.l} className="rounded-xl border border-border/60 bg-background/50 p-4 text-left">
                     <p className="text-xs text-muted-foreground">{k.l}</p>
-                    <p className="mt-1 font-display text-2xl">{k.v}</p>
+                    <p className="mt-1 font-numeric text-3xl text-foreground">{k.v}</p>
                     <p className="text-xs text-success">{k.d}</p>
                   </div>
                 ))}
@@ -287,7 +287,7 @@ function Landing() {
             <h2 className="mt-3 font-display text-5xl tracking-tight">
               Driver du en byrå?
               <br />
-              <span className="italic text-gradient-brand">White-label allt.</span>
+              <span className="font-accent text-gradient-brand">White-label allt.</span>
             </h2>
             <p className="mt-5 text-base text-muted-foreground">
               Vår filosofi: kunder ska inte behöva en byrå för att förstå sin marknadsföring.
@@ -336,7 +336,7 @@ function Landing() {
                 ].map((s) => (
                   <div key={s.l} className="rounded-xl border border-border/60 bg-muted/30 p-3">
                     <p className="text-xs text-muted-foreground">{s.l}</p>
-                    <p className="mt-1 font-display text-xl">{s.v}</p>
+                    <p className="mt-1 font-numeric text-2xl text-foreground">{s.v}</p>
                   </div>
                 ))}
               </div>
@@ -349,7 +349,7 @@ function Landing() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Priser</p>
           <h2 className="mt-3 font-display text-5xl tracking-tight">
-            Tre paket. <span className="italic text-muted-foreground">Noll förvirring.</span>
+            Tre paket. <span className="font-accent text-muted-foreground">Noll förvirring.</span>
           </h2>
           <p className="mt-4 text-base text-muted-foreground">
             Välj nivån som matchar din ambition. Uppgradera när du växer.
@@ -471,7 +471,7 @@ function Landing() {
             <h2 className="mx-auto max-w-2xl font-display text-5xl tracking-tight">
               Äntligen rapporter som är både
               <br />
-              <span className="italic text-gradient-brand">snygga och tydliga.</span>
+              <span className="font-accent text-gradient-brand">snygga och tydliga.</span>
             </h2>
             <Link
               to="/dashboard"
