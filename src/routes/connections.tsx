@@ -775,8 +775,6 @@ function ConnectModal({
 
 /* ─────────────────────── ShareModal ─────────────────────── */
 
-import { ShareLinksModal } from "@/components/share-links-modal";
-
 function ShareModal({ onClose }: { onClose: () => void }) {
   return (
     <ShareLinksModal
