@@ -50,6 +50,9 @@ import {
 } from "@/lib/share-links";
 
 export const Route = createFileRoute("/$workspace/$slug")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    t: typeof search.t === "string" ? search.t : undefined,
+  }),
   head: ({ params }) => ({
     meta: [
       { title: `Rapport — ${params.workspace} | ClarityCloud` },
@@ -86,7 +89,7 @@ export const Route = createFileRoute("/$workspace/$slug")({
       <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">404</p>
       <h1 className="mt-4 font-display text-4xl tracking-tight">Rapporten hittades inte</h1>
       <p className="mt-3 text-sm text-muted-foreground">
-        Länken kan vara felstavad, raderad eller utgången.
+        Länken kan vara felstavad, raderad, inaktiv eller utgången.
       </p>
       <Link
         to="/"
