@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { generateDashboardPdf } from "@/lib/export-pdf";
+import { ShareLinksModal } from "@/components/share-links-modal";
 
 type Option = {
   id: string;
