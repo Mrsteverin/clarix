@@ -1,140 +1,323 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
-import { Check, Plus, Search, ShieldCheck, X, Loader2, ChevronDown, Lock } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import {
+  Check,
+  Plus,
+  Search,
+  ShieldCheck,
+  X,
+  Loader2,
+  ChevronDown,
+  Lock,
+  Sparkles,
+  Share2,
+  Link2,
+  KeyRound,
+  Users,
+  Calendar,
+  Mail,
+  Copy,
+  ArrowRight,
+} from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { integrations as initialIntegrations } from "@/lib/demo-data";
+import {
+  GoogleAnalyticsLogo,
+  GoogleSearchConsoleLogo,
+  GoogleAdsLogo,
+  MetaLogo,
+  LinkedInLogo,
+  TikTokLogo,
+  ShopifyLogo,
+  YouTubeLogo,
+} from "@/components/brand-logos";
 
 export const Route = createFileRoute("/connections")({
   head: () => ({
     meta: [
       { title: "Anslutningar — ClarityCloud" },
-      { name: "description", content: "Anslut dina marknadskanaler med två klick." },
+      {
+        name: "description",
+        content:
+          "Koppla dina viktigaste kanaler på 2 minuter. Hämta in statistik automatiskt — utan teknisk kunskap.",
+      },
     ],
   }),
   component: ConnectionsPage,
 });
 
-const categories = ["Alla", "Analys", "SEO", "Annonser", "E-handel", "Sociala medier", "Övrigt"];
-
 type Integration = (typeof initialIntegrations)[number];
 type FlowStep = "consent" | "choosing" | "connecting" | "done";
 
+const RECOMMENDED_ORDER = ["ga4", "gads", "gsc", "meta"];
+
+const LOGO_MAP: Record<string, (p: { className?: string }) => React.ReactElement> = {
+  ga4: GoogleAnalyticsLogo,
+  gsc: GoogleSearchConsoleLogo,
+  gads: GoogleAdsLogo,
+  meta: MetaLogo,
+  linkedin: LinkedInLogo,
+  tiktok: TikTokLogo,
+  shopify: ShopifyLogo,
+  youtube: YouTubeLogo,
+};
+
+function BrandMark({ integ, size = 44 }: { integ: Integration; size?: number }) {
+  const Logo = LOGO_MAP[integ.id];
+  if (Logo) {
+    return (
+      <div
+        className="flex shrink-0 items-center justify-center rounded-2xl border border-border/60 bg-white shadow-soft"
+        style={{ width: size, height: size }}
+      >
+        <Logo className="h-[58%] w-[58%]" />
+      </div>
+    );
+  }
+  return (
+    <div
+      className="flex shrink-0 items-center justify-center rounded-2xl text-white shadow-soft"
+      style={{ width: size, height: size, background: integ.color }}
+    >
+      <span className="text-base font-bold">{integ.name.charAt(0)}</span>
+    </div>
+  );
+}
+
 function ConnectionsPage() {
-  const [filter, setFilter] = useState("Alla");
   const [query, setQuery] = useState("");
   const [items, setItems] = useState<Integration[]>(initialIntegrations);
   const [active, setActive] = useState<Integration | null>(null);
+  const [shareOpen, setShareOpen] = useState(false);
+  const [smartHintShown, setSmartHintShown] = useState(false);
+  const [smartTarget, setSmartTarget] = useState<Integration | null>(null);
 
-  const filtered = items.filter(
-    (i) =>
-      (filter === "Alla" || i.category === filter) &&
-      i.name.toLowerCase().includes(query.toLowerCase())
+  const recommended = useMemo(
+    () =>
+      RECOMMENDED_ORDER.map((id) => items.find((i) => i.id === id)).filter(
+        Boolean,
+      ) as Integration[],
+    [items],
+  );
+
+  const others = useMemo(
+    () =>
+      items
+        .filter((i) => !RECOMMENDED_ORDER.includes(i.id))
+        .filter((i) => i.name.toLowerCase().includes(query.toLowerCase())),
+    [items, query],
+  );
+
+  const recommendedFiltered = recommended.filter((i) =>
+    i.name.toLowerCase().includes(query.toLowerCase()),
   );
 
   const connectedCount = items.filter((i) => i.connected).length;
 
+  // Smart Google onboarding: when GA4 just connected, suggest related Google services.
+  function maybeShowSmartHint(updated: Integration) {
+    if (updated.id !== "ga4") return;
+    const related = items.filter(
+      (i) =>
+        i.provider === "Google" &&
+        i.id !== "ga4" &&
+        !i.connected &&
+        ["gads", "gsc"].includes(i.id),
+    );
+    if (related.length > 0) {
+      setSmartTarget(updated);
+      setSmartHintShown(true);
+    }
+  }
+
+  function connectAllGoogle() {
+    setItems((prev) =>
+      prev.map((p) =>
+        p.provider === "Google" && ["gads", "gsc"].includes(p.id)
+          ? { ...p, connected: true, account: smartTarget?.account || p.account }
+          : p,
+      ),
+    );
+    setSmartHintShown(false);
+  }
+
   return (
     <AppShell>
-      <div className="mx-auto max-w-7xl space-y-8 px-4 py-6 lg:px-8 lg:py-8">
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
+      <div className="mx-auto max-w-6xl space-y-12 px-4 py-8 lg:px-8 lg:py-12">
+        {/* ───────── HERO ───────── */}
+        <motion.section
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="relative overflow-hidden rounded-3xl border border-border/60 bg-gradient-card px-6 py-10 shadow-soft sm:px-12 sm:py-14"
         >
-          <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">Datakällor</p>
-          <h1 className="mt-2 font-display text-5xl tracking-tight">Anslut dina kanaler</h1>
-          <p className="mt-2 max-w-xl text-sm text-muted-foreground">
-            Logga in hos kanalen, godkänn behörigheterna — vi sköter resten.{" "}
-            <span className="text-foreground/80">{connectedCount} av {items.length} anslutna.</span>
-          </p>
-        </motion.div>
+          <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-32 -left-16 h-72 w-72 rounded-full bg-primary/5 blur-3xl" />
 
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="relative max-w-xs flex-1">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Sök integrationer…"
-              className="w-full rounded-full border border-border bg-background py-2 pl-10 pr-4 text-sm focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/20"
-            />
-          </div>
-          <div className="flex gap-1 overflow-x-auto">
-            {categories.map((c) => (
-              <button
-                key={c}
-                onClick={() => setFilter(c)}
-                className={`whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium transition-all ${
-                  filter === c
-                    ? "bg-foreground text-background"
-                    : "bg-muted/40 text-muted-foreground hover:bg-muted"
-                }`}
-              >
-                {c}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((integ, i) => (
-            <motion.div
-              key={integ.id}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: i * 0.04 }}
-              className="group relative overflow-hidden rounded-2xl border border-border/60 bg-gradient-card p-6 shadow-soft transition-all hover:shadow-elevated"
-            >
-              <div className="flex items-start justify-between">
-                <div
-                  className="flex h-12 w-12 items-center justify-center rounded-xl text-lg font-bold text-white shadow-soft"
-                  style={{ background: integ.color }}
-                >
-                  {integ.name.charAt(0)}
-                </div>
-                {integ.connected ? (
-                  <span className="inline-flex items-center gap-1 rounded-full bg-success/10 px-2 py-0.5 text-xs font-medium text-success">
-                    <Check className="h-3 w-3" />
-                    Ansluten
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center gap-1 rounded-full bg-muted/60 px-2 py-0.5 text-xs font-medium text-muted-foreground">
-                    Ej ansluten
-                  </span>
-                )}
+          <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
+                <Sparkles className="h-3 w-3 text-accent" />
+                {connectedCount} av {items.length} kanaler aktiva
               </div>
-              <h3 className="mt-4 text-base font-semibold">{integ.name}</h3>
-              <p className="text-xs text-muted-foreground">{integ.category}</p>
-              <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-muted-foreground/90">
-                {integ.purpose}
+              <h1 className="mt-5 font-display text-4xl leading-[1.05] tracking-tight sm:text-5xl">
+                Koppla dina viktigaste kanaler
+                <br />
+                <span className="text-muted-foreground">på 2 minuter.</span>
+              </h1>
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
+                Hämta in statistik automatiskt från dina viktigaste plattformar.
+                Ingen teknisk kunskap krävs — vi sköter behörigheter, synk och uppdateringar.
               </p>
-              {integ.connected && integ.account && (
-                <p className="mt-2 truncate text-xs text-foreground/70">
-                  <span className="text-muted-foreground">Konto: </span>
-                  {integ.account}
-                </p>
+
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <button
+                  onClick={() => {
+                    const next = items.find((i) => !i.connected);
+                    if (next) setActive(next);
+                  }}
+                  className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background shadow-soft transition-all hover:opacity-90"
+                >
+                  Koppla första kanalen
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => setShareOpen(true)}
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-5 py-2.5 text-sm font-medium backdrop-blur transition-all hover:bg-muted"
+                >
+                  <Share2 className="h-4 w-4" />
+                  Dela live-rapport
+                </button>
+              </div>
+
+              <div className="mt-6 flex items-center gap-2 text-xs text-muted-foreground">
+                <ShieldCheck className="h-3.5 w-3.5 text-success" />
+                ClarityCloud läser endast statistik. Vi publicerar aldrig innehåll.
+              </div>
+            </div>
+
+            {/* Logo cluster */}
+            <div className="relative hidden h-32 w-72 lg:block">
+              {[GoogleAnalyticsLogo, GoogleAdsLogo, GoogleSearchConsoleLogo, MetaLogo, ShopifyLogo].map(
+                (Logo, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + i * 0.06 }}
+                    className="absolute flex h-14 w-14 items-center justify-center rounded-2xl border border-border/60 bg-white shadow-elevated"
+                    style={{ left: `${i * 56}px`, top: `${(i % 2) * 14}px` }}
+                  >
+                    <Logo className="h-7 w-7" />
+                  </motion.div>
+                ),
               )}
-              <button
-                onClick={() => setActive(integ)}
-                className={`mt-5 inline-flex w-full items-center justify-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                  integ.connected
-                    ? "border border-border bg-background hover:bg-muted"
-                    : "bg-foreground text-background hover:opacity-90"
-                }`}
-              >
-                {integ.connected ? (
-                  "Hantera"
-                ) : (
-                  <>
-                    <Plus className="h-3.5 w-3.5" />
-                    Anslut
-                  </>
-                )}
-              </button>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* ───────── SMART GOOGLE HINT ───────── */}
+        <AnimatePresence>
+          {smartHintShown && (
+            <motion.div
+              initial={{ opacity: 0, y: -8, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.98 }}
+              transition={{ duration: 0.25 }}
+              className="flex flex-col gap-4 rounded-2xl border border-accent/30 bg-accent/5 p-5 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white shadow-soft">
+                  <Sparkles className="h-5 w-5 text-accent" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold">
+                    Vi hittade även Google Ads och Search Console på samma konto
+                  </p>
+                  <p className="mt-0.5 text-xs text-muted-foreground">
+                    Spara tid — koppla alla tre tjänster i ett svep.
+                  </p>
+                </div>
+              </div>
+              <div className="flex shrink-0 items-center gap-2">
+                <button
+                  onClick={() => setSmartHintShown(false)}
+                  className="rounded-full border border-border bg-background px-4 py-2 text-xs font-medium hover:bg-muted"
+                >
+                  Välj manuellt
+                </button>
+                <button
+                  onClick={connectAllGoogle}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-xs font-medium text-background shadow-soft hover:opacity-90"
+                >
+                  <Check className="h-3.5 w-3.5" />
+                  Koppla allt med ett klick
+                </button>
+              </div>
             </motion.div>
-          ))}
+          )}
+        </AnimatePresence>
+
+        {/* ───────── SEARCH ───────── */}
+        <div className="relative max-w-sm">
+          <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Sök bland integrationer…"
+            className="w-full rounded-full border border-border bg-background py-2.5 pl-10 pr-4 text-sm placeholder:text-muted-foreground/70 focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/20"
+          />
         </div>
+
+        {/* ───────── RECOMMENDED ───────── */}
+        {recommendedFiltered.length > 0 && (
+          <section>
+            <div className="mb-4 flex items-end justify-between">
+              <div>
+                <h2 className="font-display text-2xl tracking-tight">Rekommenderade</h2>
+                <p className="mt-0.5 text-sm text-muted-foreground">
+                  Starta här — de fyra kanalerna täcker 90 % av dina insikter.
+                </p>
+              </div>
+              <span className="hidden text-xs text-muted-foreground sm:inline">
+                {recommendedFiltered.filter((i) => i.connected).length}/{recommendedFiltered.length} kopplade
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {recommendedFiltered.map((integ, i) => (
+                <ChannelCard
+                  key={integ.id}
+                  integ={integ}
+                  index={i}
+                  featured
+                  onOpen={() => setActive(integ)}
+                />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* ───────── OTHERS ───────── */}
+        {others.length > 0 && (
+          <section>
+            <div className="mb-4 flex items-end justify-between">
+              <div>
+                <h2 className="font-display text-2xl tracking-tight">Fler kanaler</h2>
+                <p className="mt-0.5 text-sm text-muted-foreground">
+                  Lägg till sociala medier, e-handel och egna datakällor.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {others.map((integ, i) => (
+                <ChannelCard key={integ.id} integ={integ} index={i} onOpen={() => setActive(integ)} />
+              ))}
+            </div>
+          </section>
+        )}
       </div>
 
       <AnimatePresence>
@@ -144,20 +327,93 @@ function ConnectionsPage() {
             onClose={() => setActive(null)}
             onConnect={(updated) => {
               setItems((prev) => prev.map((p) => (p.id === updated.id ? updated : p)));
+              setActive(null);
+              maybeShowSmartHint(updated);
             }}
             onDisconnect={(id) => {
               setItems((prev) =>
-                prev.map((p) => (p.id === id ? { ...p, connected: false, account: "" } : p))
+                prev.map((p) => (p.id === id ? { ...p, connected: false, account: "" } : p)),
               );
             }}
           />
         )}
       </AnimatePresence>
+
+      <AnimatePresence>{shareOpen && <ShareModal onClose={() => setShareOpen(false)} />}</AnimatePresence>
     </AppShell>
   );
 }
 
-/* -------------------- OAuth-style Connect Modal -------------------- */
+/* ─────────────────────── ChannelCard ─────────────────────── */
+
+function ChannelCard({
+  integ,
+  index,
+  featured,
+  onOpen,
+}: {
+  integ: Integration;
+  index: number;
+  featured?: boolean;
+  onOpen: () => void;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35, delay: index * 0.04 }}
+      className={`group relative flex flex-col overflow-hidden rounded-2xl border bg-gradient-card p-5 shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-elevated ${
+        featured ? "border-border/80 sm:p-6" : "border-border/60"
+      }`}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex items-start gap-3.5">
+          <BrandMark integ={integ} size={featured ? 48 : 44} />
+          <div className="min-w-0">
+            <h3 className={`font-semibold ${featured ? "text-base" : "text-sm"}`}>{integ.name}</h3>
+            <p className="text-xs text-muted-foreground">{integ.category}</p>
+          </div>
+        </div>
+        {integ.connected ? (
+          <span className="inline-flex items-center gap-1 rounded-full bg-success/10 px-2 py-0.5 text-[11px] font-medium text-success">
+            <span className="h-1.5 w-1.5 rounded-full bg-success" />
+            Ansluten
+          </span>
+        ) : (
+          <span className="inline-flex items-center rounded-full border border-border/60 px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+            Ej ansluten
+          </span>
+        )}
+      </div>
+
+      <p className="mt-4 line-clamp-2 text-xs leading-relaxed text-muted-foreground">{integ.purpose}</p>
+
+      {integ.connected && integ.account && (
+        <p className="mt-2 truncate text-xs text-foreground/60">{integ.account}</p>
+      )}
+
+      <button
+        onClick={onOpen}
+        className={`mt-5 inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all ${
+          integ.connected
+            ? "border border-border bg-background hover:bg-muted"
+            : "bg-foreground text-background hover:opacity-90"
+        }`}
+      >
+        {integ.connected ? (
+          "Hantera"
+        ) : (
+          <>
+            <Plus className="h-3.5 w-3.5" />
+            Anslut
+          </>
+        )}
+      </button>
+    </motion.div>
+  );
+}
+
+/* ─────────────────────── ConnectModal ─────────────────────── */
 
 function ConnectModal({
   integration,
@@ -170,16 +426,14 @@ function ConnectModal({
   onConnect: (i: Integration) => void;
   onDisconnect: (id: string) => void;
 }) {
-  // If already connected, show "manage" view, otherwise start OAuth-style flow.
   const [step, setStep] = useState<FlowStep>(integration.connected ? "done" : "consent");
   const [accepted, setAccepted] = useState<Record<string, boolean>>(() =>
-    Object.fromEntries(integration.scopes.map((s) => [s, true]))
+    Object.fromEntries(integration.scopes.map((s) => [s, true])),
   );
   const [chosenAccount, setChosenAccount] = useState<string>(
-    integration.account || sampleAccountFor(integration)
+    integration.account || sampleAccountFor(integration),
   );
 
-  // Auto-advance the "connecting" step
   useEffect(() => {
     if (step !== "connecting") return;
     const t = setTimeout(() => {
@@ -189,7 +443,6 @@ function ConnectModal({
         account: chosenAccount,
       };
       onConnect(finished);
-      setStep("done");
     }, 1400);
     return () => clearTimeout(t);
   }, [step, integration, chosenAccount, onConnect]);
@@ -213,7 +466,6 @@ function ConnectModal({
         onClick={(e) => e.stopPropagation()}
         className="relative w-full max-w-md overflow-hidden rounded-2xl border border-border bg-background shadow-elevated"
       >
-        {/* Provider chrome — feels like the real OAuth window */}
         <div className="flex items-center justify-between border-b border-border bg-muted/40 px-4 py-2.5">
           <div className="flex items-center gap-2">
             <Lock className="h-3 w-3 text-muted-foreground" />
@@ -231,14 +483,8 @@ function ConnectModal({
         </div>
 
         <div className="p-6">
-          {/* Provider logo */}
           <div className="flex items-center gap-3">
-            <div
-              className="flex h-10 w-10 items-center justify-center rounded-xl text-base font-bold text-white shadow-soft"
-              style={{ background: integration.color }}
-            >
-              {integration.name.charAt(0)}
-            </div>
+            <BrandMark integ={integration} size={44} />
             <div className="flex-1">
               <p className="text-xs uppercase tracking-wider text-muted-foreground">
                 {integration.provider}
@@ -248,7 +494,6 @@ function ConnectModal({
           </div>
 
           <AnimatePresence mode="wait">
-            {/* STEP 1 — Account chooser */}
             {step === "consent" && (
               <motion.div
                 key="consent"
@@ -262,7 +507,8 @@ function ConnectModal({
                   Välj ett {integration.provider}-konto
                 </h2>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  för att fortsätta till <span className="font-medium text-foreground">ClarityCloud</span>
+                  för att fortsätta till{" "}
+                  <span className="font-medium text-foreground">ClarityCloud</span>
                 </p>
 
                 <div className="mt-5 space-y-1.5">
@@ -301,14 +547,16 @@ function ConnectModal({
                   </button>
                 </div>
 
-                <p className="mt-6 text-[11px] leading-relaxed text-muted-foreground">
-                  För att fortsätta delar {integration.provider} ditt namn, din e-postadress
-                  och språkinställning med ClarityCloud.
-                </p>
+                <div className="mt-5 flex items-start gap-2 rounded-xl border border-border/60 bg-muted/30 p-3 text-xs text-muted-foreground">
+                  <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-success" />
+                  <p>
+                    ClarityCloud läser endast statistik. Vi publicerar aldrig innehåll och kan
+                    inte ändra eller radera data.
+                  </p>
+                </div>
               </motion.div>
             )}
 
-            {/* STEP 2 — Scope / permission consent */}
             {step === "choosing" && (
               <motion.div
                 key="choosing"
@@ -352,8 +600,8 @@ function ConnectModal({
                 <div className="mt-4 flex items-start gap-2 rounded-xl border border-border/60 bg-background p-3 text-xs text-muted-foreground">
                   <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-success" />
                   <p>
-                    ClarityCloud läser endast data — vi kan aldrig publicera, redigera
-                    eller radera. Du kan dra tillbaka åtkomsten när som helst.
+                    ClarityCloud läser endast statistik. Vi publicerar aldrig innehåll. Du
+                    kan dra tillbaka åtkomsten när som helst.
                   </p>
                 </div>
 
@@ -375,7 +623,6 @@ function ConnectModal({
               </motion.div>
             )}
 
-            {/* STEP 3 — Loading */}
             {step === "connecting" && (
               <motion.div
                 key="connecting"
@@ -392,7 +639,6 @@ function ConnectModal({
               </motion.div>
             )}
 
-            {/* STEP 4 — Done / Manage */}
             {step === "done" && (
               <motion.div
                 key="done"
@@ -466,6 +712,157 @@ function ConnectModal({
   );
 }
 
+/* ─────────────────────── ShareModal ─────────────────────── */
+
+type ShareMode = "public" | "password" | "team" | "expiring";
+
+function ShareModal({ onClose }: { onClose: () => void }) {
+  const [mode, setMode] = useState<ShareMode>("public");
+  const [copied, setCopied] = useState(false);
+
+  const url = "claritycloud.se/r/aurora-april";
+
+  const options: { id: ShareMode; icon: typeof Link2; title: string; desc: string }[] = [
+    { id: "public", icon: Link2, title: "Skapa offentlig länk", desc: "Alla med länken kan se rapporten." },
+    {
+      id: "password",
+      icon: KeyRound,
+      title: "Lösenordsskyddad länk",
+      desc: "Mottagaren behöver ett lösenord för att öppna.",
+    },
+    {
+      id: "team",
+      icon: Users,
+      title: "Endast interna teammedlemmar",
+      desc: "Kräver inloggning till ClarityCloud.",
+    },
+    {
+      id: "expiring",
+      icon: Calendar,
+      title: "Sätt utgångsdatum",
+      desc: "Länken slutar fungera efter valt datum.",
+    },
+  ];
+
+  function copy() {
+    navigator.clipboard?.writeText(`https://${url}`).catch(() => {});
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1800);
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96, y: 8 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.96, y: 8 }}
+        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-border bg-background shadow-elevated"
+      >
+        <div className="flex items-start justify-between border-b border-border px-6 py-5">
+          <div>
+            <h2 className="font-display text-2xl tracking-tight">Dela live-rapport</h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Skicka en alltid-uppdaterad version av rapporten till kund eller team.
+            </p>
+          </div>
+          <button
+            onClick={onClose}
+            className="rounded-full p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
+            aria-label="Stäng"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div className="space-y-2 px-6 py-5">
+          {options.map((opt) => {
+            const Icon = opt.icon;
+            const active = mode === opt.id;
+            return (
+              <button
+                key={opt.id}
+                onClick={() => setMode(opt.id)}
+                className={`flex w-full items-center gap-4 rounded-xl border px-4 py-3 text-left transition-all ${
+                  active
+                    ? "border-foreground/80 bg-muted/40"
+                    : "border-border bg-background hover:bg-muted/40"
+                }`}
+              >
+                <div
+                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${
+                    active ? "bg-foreground text-background" : "bg-muted text-foreground"
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-medium">{opt.title}</p>
+                  <p className="truncate text-xs text-muted-foreground">{opt.desc}</p>
+                </div>
+                <div
+                  className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${
+                    active ? "border-foreground bg-foreground text-background" : "border-border"
+                  }`}
+                >
+                  {active && <Check className="h-3 w-3" />}
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="border-t border-border bg-muted/20 px-6 py-5">
+          <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Förhandsgranska länk
+          </p>
+          <div className="mt-2 flex items-center gap-2 rounded-xl border border-border bg-background px-3 py-2">
+            <Link2 className="h-4 w-4 text-muted-foreground" />
+            <span className="flex-1 truncate text-sm font-medium">{url}</span>
+            {mode === "password" && (
+              <span className="rounded-full bg-muted px-2 py-0.5 text-[11px] text-muted-foreground">
+                Lösenord
+              </span>
+            )}
+            {mode === "expiring" && (
+              <span className="rounded-full bg-muted px-2 py-0.5 text-[11px] text-muted-foreground">
+                30 dagar
+              </span>
+            )}
+          </div>
+
+          <div className="mt-4 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+            <button
+              onClick={() => {}}
+              className="inline-flex items-center justify-center gap-1.5 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium hover:bg-muted"
+            >
+              <Mail className="h-4 w-4" />
+              Skicka via e-post
+            </button>
+            <button
+              onClick={copy}
+              className="inline-flex items-center justify-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background hover:opacity-90"
+            >
+              {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+              {copied ? "Kopierad" : "Kopiera länk"}
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+/* ─────────────────────── Helpers ─────────────────────── */
+
 function Row({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div className="flex items-center justify-between">
@@ -505,21 +902,13 @@ function sampleAccountsFor(i: Integration) {
         { name: "Halo Commerce · BM", email: "Business Manager · 947 110 822", color: "#1877F2" },
       ];
     case "LinkedIn":
-      return [
-        { name: "Alex Lindqvist", email: "alex@aurora.studio", color: "#0A66C2" },
-      ];
+      return [{ name: "Alex Lindqvist", email: "alex@aurora.studio", color: "#0A66C2" }];
     case "TikTok":
-      return [
-        { name: "Aurora Studios", email: "TikTok Business · 7234 8821", color: "#FF0050" },
-      ];
+      return [{ name: "Aurora Studios", email: "TikTok Business · 7234 8821", color: "#FF0050" }];
     case "Shopify":
-      return [
-        { name: "Aurora Studios", email: "aurora-studios.myshopify.com", color: "#95BF47" },
-      ];
+      return [{ name: "Aurora Studios", email: "aurora-studios.myshopify.com", color: "#95BF47" }];
     case "WooCommerce":
-      return [
-        { name: "Aurora WP", email: "aurora.studio/wp-admin", color: "#7F54B3" },
-      ];
+      return [{ name: "Aurora WP", email: "aurora.studio/wp-admin", color: "#7F54B3" }];
     default:
       return [{ name: "Standardkonto", email: "alex@aurora.studio", color: "#6B7280" }];
   }
