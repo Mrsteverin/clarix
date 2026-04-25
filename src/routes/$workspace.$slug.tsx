@@ -113,42 +113,72 @@ function CenteredCard({ children }: { children: React.ReactNode }) {
 
 function PublicReportPage() {
   const { workspace, slug } = Route.useParams();
+  const { t: token } = Route.useSearch();
   const [state, setState] = useState<
     | { kind: "loading" }
     | { kind: "missing" }
     | { kind: "expired"; link: ShareLink }
+    | { kind: "inactive"; link: ShareLink }
     | { kind: "locked"; link: ShareLink }
     | { kind: "ready"; link: ShareLink }
   >({ kind: "loading" });
 
   useEffect(() => {
-    const link = findLink(workspace, slug);
-    if (!link) {
-      setState({ kind: "missing" });
-      return;
-    }
-    if (isExpired(link)) {
-      setState({ kind: "expired", link });
-      return;
-    }
-    if (link.passwordHash) {
-      setState({ kind: "locked", link });
-      return;
-    }
-    setState({ kind: "ready", link });
-    recordVisit(workspace, slug);
-  }, [workspace, slug]);
+    // Small delay so the loading state is visible (feels intentional, not janky).
+    const handle = setTimeout(() => {
+      const link = resolveLink(workspace, slug, token);
+      if (!link) {
+        setState({ kind: "missing" });
+        return;
+      }
+      if (isInactive(link)) {
+        setState({ kind: "inactive", link });
+        return;
+      }
+      if (isExpired(link)) {
+        setState({ kind: "expired", link });
+        return;
+      }
+      if (link.passwordHash) {
+        setState({ kind: "locked", link });
+        return;
+      }
+      setState({ kind: "ready", link });
+      // Only record a visit if we have a local record for it (creator's own browser).
+      if (findLink(workspace, slug)) recordVisit(workspace, slug);
+    }, 280);
+    return () => clearTimeout(handle);
+  }, [workspace, slug, token]);
 
   if (state.kind === "loading") {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-background">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-border border-t-foreground" />
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-background">
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-fuchsia-500 to-violet-600 text-white shadow-soft">
+          <Sparkles className="h-5 w-5 animate-pulse" />
+        </div>
+        <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+          Hämtar rapport…
+        </p>
       </div>
     );
   }
 
   if (state.kind === "missing") {
     throw notFound();
+  }
+
+  if (state.kind === "inactive") {
+    return (
+      <CenteredCard>
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-muted">
+          <Lock className="h-5 w-5 text-muted-foreground" />
+        </div>
+        <h1 className="mt-4 font-display text-3xl tracking-tight">Rapporten hittades inte</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Länken är inaktiverad av avsändaren.
+        </p>
+      </CenteredCard>
+    );
   }
 
   if (state.kind === "expired") {
@@ -171,7 +201,7 @@ function PublicReportPage() {
         link={state.link}
         onUnlock={() => {
           setState({ kind: "ready", link: state.link });
-          recordVisit(workspace, slug);
+          if (findLink(workspace, slug)) recordVisit(workspace, slug);
         }}
       />
     );
