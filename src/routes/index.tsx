@@ -107,13 +107,13 @@ function Landing() {
             För kommunikatörer, ägare, VD:ar och CFO:er
           </div>
 
-          <h1 className="mx-auto mt-8 max-w-5xl font-display text-6xl font-bold leading-[1.02] sm:text-7xl md:text-8xl" style={{ fontWeight: 800, fontVariationSettings: '"opsz" 144, "SOFT" 0, "WONK" 1' }}>
+          <h1 className="mx-auto mt-8 max-w-5xl font-display text-6xl leading-[1.02] text-foreground sm:text-7xl md:text-[5.75rem]">
             Förstå din marknadsföring
             <br />
-            <span className="italic text-gradient-brand" style={{ fontWeight: 700, fontStyle: "italic" }}>på 30 sekunder.</span>
+            <span className="font-accent text-gradient-brand">på 30 sekunder.</span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
+          <p className="mx-auto mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
             ClarityCloud förvandlar rådata från alla dina kanaler till klara, vackra rapporter
             — så enkelt att du inte behöver en byrå för att förstå dem.
           </p>
