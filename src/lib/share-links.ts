@@ -20,6 +20,9 @@ export type ShareLink = {
   passwordHash?: string;   // sha-256 hex when password-protected
   expiresAt?: number;      // epoch ms
   createdAt: number;
+  createdBy?: string;      // human name or email of creator
+  isActive?: boolean;      // defaults true; set false to disable
+  lastViewedAt?: number;   // epoch ms of last public visit
   visits: ShareLinkVisit[];
 };
 
@@ -133,6 +136,7 @@ export type CreateLinkInput = {
   period?: string;
   password?: string;
   expiresAt?: number;
+  createdBy?: string;
 };
 
 export async function createLink(input: CreateLinkInput): Promise<ShareLink> {
@@ -150,6 +154,8 @@ export async function createLink(input: CreateLinkInput): Promise<ShareLink> {
     passwordHash: input.password ? await hashPassword(input.password) : undefined,
     expiresAt: input.expiresAt,
     createdAt: Date.now(),
+    createdBy: input.createdBy,
+    isActive: true,
     visits: [],
   };
   links.push(link);
@@ -171,6 +177,10 @@ export function isExpired(link: ShareLink, now = Date.now()): boolean {
   return !!link.expiresAt && link.expiresAt < now;
 }
 
+export function isInactive(link: ShareLink): boolean {
+  return link.isActive === false;
+}
+
 export function recordVisit(workspace: string, slug: string) {
   const links = read();
   const idx = links.findIndex((l) => l.workspace === workspace && l.slug === slug);
@@ -187,16 +197,111 @@ export function recordVisit(workspace: string, slug: string) {
           }
         })()
       : undefined;
+  const now = Date.now();
   links[idx] = {
     ...links[idx],
-    visits: [...links[idx].visits, { ts: Date.now(), ua, ref }].slice(-500),
+    lastViewedAt: now,
+    visits: [...links[idx].visits, { ts: now, ua, ref }].slice(-500),
   };
   write(links);
 }
 
-export function buildShareUrl(link: Pick<ShareLink, "workspace" | "slug">): string {
+/* ─────────────────── Self-describing URL token ───────────────────
+ * Encodes the public-safe parts of a link into a URL-safe base64 token.
+ * This makes share URLs work across devices/browsers without a backend.
+ * NOTE: only includes a SHA-256 password HASH (never the password itself).
+ */
+
+type LinkToken = {
+  v: 1;
+  w: string;             // workspace slug
+  l: string;             // workspace label
+  s: string;             // slug
+  t: ShareLinkType;
+  p?: string;            // period (snapshot)
+  h?: string;            // password hash
+  e?: number;            // expiresAt
+  c: number;             // createdAt
+  b?: string;            // createdBy
+};
+
+function b64urlEncode(str: string): string {
+  if (!isBrowser()) return Buffer.from(str, "utf-8").toString("base64").replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  const bytes = new TextEncoder().encode(str);
+  let bin = "";
+  bytes.forEach((b) => (bin += String.fromCharCode(b)));
+  return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+function b64urlDecode(token: string): string {
+  const padded = token.replace(/-/g, "+").replace(/_/g, "/") + "===".slice((token.length + 3) % 4);
+  if (!isBrowser()) return Buffer.from(padded, "base64").toString("utf-8");
+  const bin = atob(padded);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+
+export function encodeLinkToken(link: ShareLink): string {
+  const payload: LinkToken = {
+    v: 1,
+    w: link.workspace,
+    l: link.workspaceLabel,
+    s: link.slug,
+    t: link.type,
+    p: link.period,
+    h: link.passwordHash,
+    e: link.expiresAt,
+    c: link.createdAt,
+    b: link.createdBy,
+  };
+  return b64urlEncode(JSON.stringify(payload));
+}
+
+export function decodeLinkToken(token: string): ShareLink | null {
+  try {
+    const obj = JSON.parse(b64urlDecode(token)) as LinkToken;
+    if (obj.v !== 1 || !obj.w || !obj.s || !obj.t) return null;
+    return {
+      id: `tok_${obj.c.toString(36)}`,
+      workspace: obj.w,
+      workspaceLabel: obj.l,
+      slug: obj.s,
+      type: obj.t,
+      period: obj.p,
+      passwordHash: obj.h,
+      expiresAt: obj.e,
+      createdAt: obj.c,
+      createdBy: obj.b,
+      isActive: true,
+      visits: [],
+    };
+  } catch {
+    return null;
+  }
+}
+
+/** Resolve a link by route params, falling back to URL token when local store has nothing. */
+export function resolveLink(workspace: string, slug: string, token?: string | null): ShareLink | null {
+  const local = findLink(workspace, slug);
+  if (local) return local;
+  if (token) {
+    const decoded = decodeLinkToken(token);
+    if (decoded && decoded.workspace === workspace && decoded.slug === slug) {
+      return decoded;
+    }
+  }
+  return null;
+}
+
+export function buildShareUrl(link: ShareLink | Pick<ShareLink, "workspace" | "slug">): string {
   const origin = isBrowser() ? window.location.origin : "https://claritycloud.lovable.app";
-  return `${origin}/${link.workspace}/${link.slug}`;
+  const base = `${origin}/${link.workspace}/${link.slug}`;
+  // Append self-describing token if we have a full link, so URL works cross-device.
+  if ("createdAt" in link) {
+    return `${base}?t=${encodeLinkToken(link as ShareLink)}`;
+  }
+  return base;
 }
 
 export function buildShareDisplay(link: Pick<ShareLink, "workspace" | "slug">): string {

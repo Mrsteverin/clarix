@@ -27,6 +27,8 @@ import {
   AlertTriangle,
   Info,
   RefreshCw,
+  Eye,
+  User,
 } from "lucide-react";
 import {
   channelBreakdown,
@@ -38,14 +40,19 @@ import {
   trafficTrend,
 } from "@/lib/demo-data";
 import {
-  findLink,
   isExpired,
+  isInactive,
   recordVisit,
+  resolveLink,
   verifyPassword,
+  findLink,
   type ShareLink,
 } from "@/lib/share-links";
 
 export const Route = createFileRoute("/$workspace/$slug")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    t: typeof search.t === "string" ? search.t : undefined,
+  }),
   head: ({ params }) => ({
     meta: [
       { title: `Rapport — ${params.workspace} | ClarityCloud` },
@@ -82,7 +89,7 @@ export const Route = createFileRoute("/$workspace/$slug")({
       <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">404</p>
       <h1 className="mt-4 font-display text-4xl tracking-tight">Rapporten hittades inte</h1>
       <p className="mt-3 text-sm text-muted-foreground">
-        Länken kan vara felstavad, raderad eller utgången.
+        Länken kan vara felstavad, raderad, inaktiv eller utgången.
       </p>
       <Link
         to="/"
@@ -106,42 +113,72 @@ function CenteredCard({ children }: { children: React.ReactNode }) {
 
 function PublicReportPage() {
   const { workspace, slug } = Route.useParams();
+  const { t: token } = Route.useSearch();
   const [state, setState] = useState<
     | { kind: "loading" }
     | { kind: "missing" }
     | { kind: "expired"; link: ShareLink }
+    | { kind: "inactive"; link: ShareLink }
     | { kind: "locked"; link: ShareLink }
     | { kind: "ready"; link: ShareLink }
   >({ kind: "loading" });
 
   useEffect(() => {
-    const link = findLink(workspace, slug);
-    if (!link) {
-      setState({ kind: "missing" });
-      return;
-    }
-    if (isExpired(link)) {
-      setState({ kind: "expired", link });
-      return;
-    }
-    if (link.passwordHash) {
-      setState({ kind: "locked", link });
-      return;
-    }
-    setState({ kind: "ready", link });
-    recordVisit(workspace, slug);
-  }, [workspace, slug]);
+    // Small delay so the loading state is visible (feels intentional, not janky).
+    const handle = setTimeout(() => {
+      const link = resolveLink(workspace, slug, token);
+      if (!link) {
+        setState({ kind: "missing" });
+        return;
+      }
+      if (isInactive(link)) {
+        setState({ kind: "inactive", link });
+        return;
+      }
+      if (isExpired(link)) {
+        setState({ kind: "expired", link });
+        return;
+      }
+      if (link.passwordHash) {
+        setState({ kind: "locked", link });
+        return;
+      }
+      setState({ kind: "ready", link });
+      // Only record a visit if we have a local record for it (creator's own browser).
+      if (findLink(workspace, slug)) recordVisit(workspace, slug);
+    }, 280);
+    return () => clearTimeout(handle);
+  }, [workspace, slug, token]);
 
   if (state.kind === "loading") {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-background">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-border border-t-foreground" />
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-background">
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-fuchsia-500 to-violet-600 text-white shadow-soft">
+          <Sparkles className="h-5 w-5 animate-pulse" />
+        </div>
+        <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+          Hämtar rapport…
+        </p>
       </div>
     );
   }
 
   if (state.kind === "missing") {
     throw notFound();
+  }
+
+  if (state.kind === "inactive") {
+    return (
+      <CenteredCard>
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-muted">
+          <Lock className="h-5 w-5 text-muted-foreground" />
+        </div>
+        <h1 className="mt-4 font-display text-3xl tracking-tight">Rapporten hittades inte</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Länken är inaktiverad av avsändaren.
+        </p>
+      </CenteredCard>
+    );
   }
 
   if (state.kind === "expired") {
@@ -164,7 +201,7 @@ function PublicReportPage() {
         link={state.link}
         onUnlock={() => {
           setState({ kind: "ready", link: state.link });
-          recordVisit(workspace, slug);
+          if (findLink(workspace, slug)) recordVisit(workspace, slug);
         }}
       />
     );
@@ -485,7 +522,23 @@ function BrandedReport({ link }: { link: ShareLink }) {
       </section>
 
       {/* Footer */}
-      <footer className="mx-auto mt-12 max-w-6xl px-4 text-center sm:px-6">
+      <footer className="mx-auto mt-12 max-w-6xl space-y-3 px-4 text-center sm:px-6">
+        {(link.createdBy || link.visits.length > 0) && (
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] text-muted-foreground">
+            {link.createdBy && (
+              <span className="inline-flex items-center gap-1.5">
+                <User className="h-3 w-3" />
+                Skapad av <span className="font-medium text-foreground">{link.createdBy}</span>
+              </span>
+            )}
+            {link.visits.length > 0 && (
+              <span className="inline-flex items-center gap-1.5">
+                <Eye className="h-3 w-3" />
+                {link.visits.length} {link.visits.length === 1 ? "visning" : "visningar"}
+              </span>
+            )}
+          </div>
+        )}
         <Link
           to="/"
           className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground"
