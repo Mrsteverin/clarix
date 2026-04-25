@@ -274,26 +274,28 @@ function ConnectionsPage() {
         </AnimatePresence>
 
         {/* ───────── PROGRESS ───────── */}
-        <div className="rounded-2xl border border-border/60 bg-gradient-card p-5 shadow-soft sm:p-6">
+        <div className="rounded-2xl border border-border/60 bg-gradient-card p-6 shadow-soft sm:p-7">
           <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10">
+            <div className="flex items-center gap-4">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10">
                 <Sparkles className="h-5 w-5 text-accent" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-foreground">
-                  {connectedCount} av {items.length} kanaler aktiva
+                <p className="text-base font-semibold text-foreground">
+                  {connectedCount} av {items.length} kanaler kopplade.
                 </p>
-                <p className="text-xs text-foreground/60">
-                  Koppla fler för att låsa upp full insikt.
+                <p className="mt-0.5 text-sm text-foreground/70">
+                  {connectedCount < items.length
+                    ? `Koppla ${Math.min(1, items.length - connectedCount)} till för bättre AI-insikter.`
+                    : "Alla kanaler är kopplade — full insikt aktiverad."}
                 </p>
               </div>
             </div>
-            <span className="text-sm font-semibold text-foreground">
+            <span className="text-base font-bold text-foreground">
               {Math.round((connectedCount / items.length) * 100)}%
             </span>
           </div>
-          <div className="mt-4 h-2 overflow-hidden rounded-full bg-muted">
+          <div className="mt-5 h-2 overflow-hidden rounded-full bg-muted">
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: `${(connectedCount / items.length) * 100}%` }}
