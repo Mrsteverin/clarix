@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { generateDashboardPdf } from "@/lib/export-pdf";
+import { ShareLinksModal } from "@/components/share-links-modal";
 
 type Option = {
   id: string;
@@ -29,6 +30,7 @@ export function ExportMenu({
   company?: string;
 }) {
   const [open, setOpen] = useState(false);
+  const [shareOpen, setShareOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -77,9 +79,7 @@ export function ExportMenu({
       hint: "Live-länk som uppdateras automatiskt",
       accent: "bg-sky-500/10 text-sky-600 dark:text-sky-400",
       onClick: () => {
-        const url = `https://claritycloud.app/r/${Math.random().toString(36).slice(2, 10)}`;
-        navigator.clipboard?.writeText(url).catch(() => {});
-        toast.success("Länk kopierad", { description: url });
+        setShareOpen(true);
       },
     },
     {
@@ -181,6 +181,22 @@ export function ExportMenu({
               </p>
             </div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {shareOpen && (
+          <ShareLinksModal
+            onClose={() => setShareOpen(false)}
+            workspaceLabel={company}
+            workspaceSlug={company
+              .toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+              .replace(/[^a-z0-9]+/g, "-")
+              .replace(/^-+|-+$/g, "")}
+            currentPeriod={dateRange}
+          />
         )}
       </AnimatePresence>
     </div>
