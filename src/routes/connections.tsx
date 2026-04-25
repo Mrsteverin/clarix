@@ -157,42 +157,52 @@ function ConnectionsPage() {
 
           <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
-                <Sparkles className="h-3 w-3 text-accent" />
-                {connectedCount} av {items.length} kanaler aktiva
-              </div>
-              <h1 className="mt-5 font-display text-4xl leading-[1.05] tracking-tight sm:text-5xl">
+              <h1 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
                 Koppla dina viktigaste kanaler
                 <br />
-                <span className="text-muted-foreground">på 2 minuter.</span>
+                <span className="bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-600 bg-clip-text font-bold italic text-transparent">
+                  på 2 minuter.
+                </span>
               </h1>
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-foreground/75">
                 Hämta in statistik automatiskt från dina viktigaste plattformar.
                 Ingen teknisk kunskap krävs — vi sköter behörigheter, synk och uppdateringar.
               </p>
 
-              <div className="mt-6 flex flex-wrap items-center gap-3">
+              <div className="mt-7 flex flex-wrap items-center gap-3">
                 <button
                   onClick={() => {
                     const next = items.find((i) => !i.connected);
                     if (next) setActive(next);
                   }}
-                  className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background shadow-soft transition-all hover:opacity-90"
+                  className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background shadow-elevated transition-all hover:opacity-90"
                 >
                   Koppla första kanalen
                   <ArrowRight className="h-4 w-4" />
                 </button>
-                <button
-                  onClick={() => setShareOpen(true)}
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-5 py-2.5 text-sm font-medium backdrop-blur transition-all hover:bg-muted"
-                >
-                  <Share2 className="h-4 w-4" />
-                  Dela live-rapport
-                </button>
+                {connectedCount > 0 ? (
+                  <button
+                    onClick={() => setShareOpen(true)}
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur transition-all hover:bg-muted"
+                  >
+                    <Share2 className="h-4 w-4" />
+                    Dela live-rapport
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      window.open("/reports", "_blank");
+                    }}
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur transition-all hover:bg-muted"
+                  >
+                    Se exempelrapport
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                )}
               </div>
 
-              <div className="mt-6 flex items-center gap-2 text-xs text-muted-foreground">
-                <ShieldCheck className="h-3.5 w-3.5 text-success" />
+              <div className="mt-6 flex items-center gap-2 text-sm text-foreground/70">
+                <ShieldCheck className="h-4 w-4 text-success" />
                 ClarityCloud läser endast statistik. Vi publicerar aldrig innehåll.
               </div>
             </div>
