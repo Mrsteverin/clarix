@@ -183,6 +183,22 @@ export function ExportMenu({
           </motion.div>
         )}
       </AnimatePresence>
+
+      <AnimatePresence>
+        {shareOpen && (
+          <ShareLinksModal
+            onClose={() => setShareOpen(false)}
+            workspaceLabel={company}
+            workspaceSlug={company
+              .toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+              .replace(/[^a-z0-9]+/g, "-")
+              .replace(/^-+|-+$/g, "")}
+            currentPeriod={dateRange}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
