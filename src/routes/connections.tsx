@@ -269,6 +269,36 @@ function ConnectionsPage() {
           )}
         </AnimatePresence>
 
+        {/* ───────── PROGRESS ───────── */}
+        <div className="rounded-2xl border border-border/60 bg-gradient-card p-5 shadow-soft sm:p-6">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10">
+                <Sparkles className="h-5 w-5 text-accent" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-foreground">
+                  {connectedCount} av {items.length} kanaler aktiva
+                </p>
+                <p className="text-xs text-foreground/60">
+                  Koppla fler för att låsa upp full insikt.
+                </p>
+              </div>
+            </div>
+            <span className="text-sm font-semibold text-foreground">
+              {Math.round((connectedCount / items.length) * 100)}%
+            </span>
+          </div>
+          <div className="mt-4 h-2 overflow-hidden rounded-full bg-muted">
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: `${(connectedCount / items.length) * 100}%` }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="h-full rounded-full bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-600"
+            />
+          </div>
+        </div>
+
         {/* ───────── SEARCH ───────── */}
         <div className="relative max-w-sm">
           <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
