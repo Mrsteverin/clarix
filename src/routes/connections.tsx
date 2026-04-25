@@ -12,16 +12,11 @@ import {
   Lock,
   Sparkles,
   Share2,
-  Link2,
-  KeyRound,
-  Users,
-  Calendar,
-  Mail,
-  Copy,
   ArrowRight,
 } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { integrations as initialIntegrations } from "@/lib/demo-data";
+import { ShareLinksModal } from "@/components/share-links-modal";
 import {
   GoogleAnalyticsLogo,
   GoogleSearchConsoleLogo,
