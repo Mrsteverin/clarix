@@ -13,6 +13,9 @@ import {
   Sparkles,
   Share2,
   ArrowRight,
+  Send,
+  UserPlus,
+  Mail,
 } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { integrations as initialIntegrations } from "@/lib/demo-data";
