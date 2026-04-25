@@ -182,17 +182,19 @@ function SlidePreview({ slideId, onBack }: { slideId: string; onBack: () => void
 
           <div className="mt-10">{renderSlideBody(slideId)}</div>
 
-          <div className="mt-10 rounded-2xl border border-border/60 bg-background/50 p-5">
-            <div className="flex items-start gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-brand text-white shadow-glow">
-                <Sparkles className="h-4 w-4" />
-              </div>
-              <div>
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">AI-sammanfattning</p>
-                <p className="mt-1 text-base leading-relaxed">{getSlideSummary(slideId)}</p>
+          {slideId !== "conv" && (
+            <div className="mt-10 rounded-2xl border border-border/60 bg-background/50 p-5">
+              <div className="flex items-start gap-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-brand text-white shadow-glow">
+                  <Sparkles className="h-4 w-4" />
+                </div>
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">AI-sammanfattning</p>
+                  <p className="mt-1 text-base leading-relaxed">{getSlideSummary(slideId)}</p>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </motion.div>
       </div>
     </div>
@@ -214,7 +216,7 @@ function getSlideHeadline(id: string) {
     case "social":
       return "Engagemanget fortsätter klättra";
     case "conv":
-      return "3 241 konverteringar denna månad";
+      return "3 241 konverteringar senaste 30 dagarna";
     case "opp":
       return "Var du ska investera härnäst";
     default:
@@ -382,12 +384,16 @@ function renderSlideBody(id: string) {
     );
   }
 
+  if (id === "conv") {
+    return <ConversionsReport />;
+  }
+
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
       {[
-        { l: "Primärt nyckeltal", v: "1,85 mn kr", d: "+18,6 %" },
-        { l: "Sekundärt", v: "96,8k", d: "+11,4 %" },
-        { l: "Tertiärt", v: "4,37×", d: "+23 %" },
+        { l: "Intäkter", v: "1,85 mn kr", d: "+18,6 %" },
+        { l: "Användare", v: "96,8k", d: "+11,4 %" },
+        { l: "ROAS", v: "4,37×", d: "+23 %" },
       ].map((m) => (
         <div key={m.l} className="rounded-xl border border-border/60 bg-background/50 p-5">
           <p className="text-sm text-muted-foreground">{m.l}</p>
@@ -395,6 +401,194 @@ function renderSlideBody(id: string) {
           <p className="mt-1 text-xs font-medium text-success">{m.d}</p>
         </div>
       ))}
+    </div>
+  );
+}
+
+function ConversionsReport() {
+  const channels = [
+    { name: "Google Ads", count: 1124, share: 34.7, value: 642_300, cost: 165_400 },
+    { name: "Organiskt sök", count: 892, share: 27.5, value: 498_200, cost: null },
+    { name: "Meta Ads", count: 614, share: 18.9, value: 312_800, cost: 142_600 },
+    { name: "Direkt", count: 386, share: 11.9, value: 218_400, cost: null },
+    { name: "Referral", count: 225, share: 6.9, value: 124_900, cost: null },
+  ];
+
+  const types = [
+    { name: "Köp", count: 1842, share: 56.8, icon: ShoppingBag, accent: "var(--chart-1)" },
+    { name: "Kontaktformulär", count: 742, share: 22.9, icon: Sparkles, accent: "var(--chart-2)" },
+    { name: "Bokningar", count: 412, share: 12.7, icon: Target, accent: "var(--chart-3)" },
+    { name: "Telefonsamtal", count: 245, share: 7.6, icon: Heart, accent: "var(--chart-4)" },
+  ];
+
+  const recommendations = [
+    {
+      t: "Skala Google Ads · Varumärkesskydd",
+      b: "8,4× ROAS — öka budgeten 25 % för cirka 280 extra konverteringar nästa månad.",
+      impact: "+280 konv.",
+    },
+    {
+      t: "Optimera kontaktformuläret",
+      b: "Avhopp på 38 % i steg 2. Förkorta från 7 till 4 fält för att lyfta konv. ~1,4 %.",
+      impact: "+1,4 %",
+    },
+    {
+      t: "Aktivera samtalsspårning",
+      b: "Telefonsamtal växer 18 % men spåras inte i Meta Ads. Koppla på för rätt attribuering.",
+      impact: "Bättre data",
+    },
+  ];
+
+  return (
+    <div className="space-y-10">
+      {/* Top KPI cards */}
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { l: "Totala konverteringar", v: "3 241", d: "+22,8 %" },
+          { l: "Intäkt från konverteringar", v: "1,79 mn kr", d: "+18,6 %" },
+          { l: "Kostnad per konvertering", v: "130 kr", d: "−9,4 %" },
+          { l: "Bästa kanal", v: "Google Ads", d: "34,7 % andel" },
+        ].map((m) => (
+          <div
+            key={m.l}
+            className="rounded-2xl border border-border/60 bg-background/50 p-5"
+          >
+            <p className="text-sm text-muted-foreground">{m.l}</p>
+            <p className="mt-2 font-display text-3xl tracking-tight">{m.v}</p>
+            <p className="mt-1 text-xs font-medium text-success">{m.d}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Conversions by channel */}
+      <section>
+        <div className="mb-4 flex items-baseline justify-between">
+          <h2 className="font-display text-2xl tracking-tight">Konverteringar per kanal</h2>
+          <p className="text-xs text-muted-foreground">Senaste 30 dagarna</p>
+        </div>
+        <div className="overflow-hidden rounded-2xl border border-border/60 bg-background/50">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-muted/40 text-xs uppercase tracking-wider text-muted-foreground">
+              <tr>
+                <th className="px-5 py-3">Kanal</th>
+                <th className="px-5 py-3 text-right">Antal</th>
+                <th className="px-5 py-3">Andel</th>
+                <th className="px-5 py-3 text-right">Värde</th>
+                <th className="px-5 py-3 text-right">Kostnad</th>
+              </tr>
+            </thead>
+            <tbody>
+              {channels.map((c) => (
+                <tr key={c.name} className="border-t border-border/60">
+                  <td className="px-5 py-4 font-medium">{c.name}</td>
+                  <td className="px-5 py-4 text-right tabular-nums">
+                    {c.count.toLocaleString("sv-SE")}
+                  </td>
+                  <td className="px-5 py-4">
+                    <div className="flex items-center gap-3">
+                      <div className="h-1.5 w-32 overflow-hidden rounded-full bg-muted">
+                        <div
+                          className="h-full rounded-full bg-foreground/80"
+                          style={{ width: `${c.share}%` }}
+                        />
+                      </div>
+                      <span className="tabular-nums text-muted-foreground">
+                        {c.share.toFixed(1).replace(".", ",")} %
+                      </span>
+                    </div>
+                  </td>
+                  <td className="px-5 py-4 text-right tabular-nums">
+                    {formatCurrency(c.value)}
+                  </td>
+                  <td className="px-5 py-4 text-right tabular-nums text-muted-foreground">
+                    {c.cost ? formatCurrency(c.cost) : "—"}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* Conversion types */}
+      <section>
+        <div className="mb-4 flex items-baseline justify-between">
+          <h2 className="font-display text-2xl tracking-tight">Typ av konvertering</h2>
+          <p className="text-xs text-muted-foreground">Fördelning över alla kanaler</p>
+        </div>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {types.map((t) => {
+            const Icon = t.icon;
+            return (
+              <div
+                key={t.name}
+                className="rounded-2xl border border-border/60 bg-background/50 p-5"
+              >
+                <div
+                  className="flex h-10 w-10 items-center justify-center rounded-xl"
+                  style={{ background: `color-mix(in oklab, ${t.accent} 14%, transparent)`, color: t.accent }}
+                >
+                  <Icon className="h-5 w-5" />
+                </div>
+                <p className="mt-4 text-sm text-muted-foreground">{t.name}</p>
+                <div className="mt-1 flex items-baseline gap-2">
+                  <p className="font-display text-3xl tracking-tight">
+                    {t.count.toLocaleString("sv-SE")}
+                  </p>
+                  <span className="text-xs text-muted-foreground tabular-nums">
+                    {t.share.toFixed(1).replace(".", ",")} %
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* AI Summary */}
+      <section className="rounded-2xl border border-border/60 bg-gradient-card p-6 shadow-soft">
+        <div className="flex items-start gap-4">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-brand text-white shadow-glow">
+            <Sparkles className="h-5 w-5" />
+          </div>
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">
+              AI-sammanfattning
+            </p>
+            <p className="mt-2 text-base leading-relaxed">
+              Konverteringarna växer 22,8 % månad över månad, drivet av Google Ads och
+              starkare organisk trafik. Köp står för 56,8 % av volymen, men
+              kontaktformulär växer snabbast (+34 %). Kostnaden per konvertering föll
+              till 130 kr — en av era starkaste månader hittills.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Recommendations */}
+      <section>
+        <div className="mb-4 flex items-baseline justify-between">
+          <h2 className="font-display text-2xl tracking-tight">Rekommendationer</h2>
+          <p className="text-xs text-muted-foreground">Tre nästa steg</p>
+        </div>
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+          {recommendations.map((r) => (
+            <div
+              key={r.t}
+              className="rounded-2xl border border-border/60 bg-background/50 p-5"
+            >
+              <div className="flex items-start justify-between">
+                <Lightbulb className="h-5 w-5 text-accent" />
+                <span className="rounded-full bg-success/10 px-2 py-0.5 text-xs font-medium text-success">
+                  {r.impact}
+                </span>
+              </div>
+              <h3 className="mt-3 font-semibold">{r.t}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{r.b}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

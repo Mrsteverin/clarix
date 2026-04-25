@@ -249,7 +249,7 @@ export const reportSlides = [
   { id: "paid", title: "Annonser", icon: "Target", description: "Kostnad, ROAS och kampanjer" },
   { id: "ecom", title: "E-handel", icon: "ShoppingBag", description: "Intäkter, snittordervärde och produkter" },
   { id: "social", title: "Sociala medier", icon: "Heart", description: "Räckvidd, engagemang och tillväxt" },
-  { id: "conv", title: "Konverteringar", icon: "Target", description: "Mål och trattar" },
+  { id: "conv", title: "Konverteringar", icon: "Target", description: "Kontakter, köp och bokningar från alla kanaler" },
   { id: "opp", title: "Möjligheter", icon: "Lightbulb", description: "AI-drivna nästa steg" },
 ];
 
