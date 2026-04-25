@@ -522,7 +522,23 @@ function BrandedReport({ link }: { link: ShareLink }) {
       </section>
 
       {/* Footer */}
-      <footer className="mx-auto mt-12 max-w-6xl px-4 text-center sm:px-6">
+      <footer className="mx-auto mt-12 max-w-6xl space-y-3 px-4 text-center sm:px-6">
+        {(link.createdBy || link.visits.length > 0) && (
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] text-muted-foreground">
+            {link.createdBy && (
+              <span className="inline-flex items-center gap-1.5">
+                <User className="h-3 w-3" />
+                Skapad av <span className="font-medium text-foreground">{link.createdBy}</span>
+              </span>
+            )}
+            {link.visits.length > 0 && (
+              <span className="inline-flex items-center gap-1.5">
+                <Eye className="h-3 w-3" />
+                {link.visits.length} {link.visits.length === 1 ? "visning" : "visningar"}
+              </span>
+            )}
+          </div>
+        )}
         <Link
           to="/"
           className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground"
