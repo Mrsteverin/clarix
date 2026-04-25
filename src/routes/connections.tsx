@@ -454,6 +454,12 @@ function ChannelCard({
       {integ.connected && integ.account && (
         <p className="mt-3 truncate text-xs font-semibold text-foreground/65">{integ.account}</p>
       )}
+      {integ.connected && integ.invitedBy && (
+        <p className="mt-1 inline-flex items-center gap-1 truncate text-[11px] font-medium text-accent">
+          <UserPlus className="h-3 w-3" />
+          Ansluten av {integ.invitedBy}
+        </p>
+      )}
 
       <button
         onClick={onOpen}
