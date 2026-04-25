@@ -46,8 +46,9 @@ export const Route = createFileRoute("/connections")({
   component: ConnectionsPage,
 });
 
-type Integration = (typeof initialIntegrations)[number];
-type FlowStep = "consent" | "choosing" | "connecting" | "done";
+type BaseIntegration = (typeof initialIntegrations)[number];
+type Integration = BaseIntegration & { invitedBy?: string };
+type FlowStep = "consent" | "choosing" | "connecting" | "done" | "invite" | "invite-sent";
 
 const RECOMMENDED_ORDER = ["ga4", "gads", "gsc", "meta"];
 
