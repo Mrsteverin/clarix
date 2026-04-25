@@ -613,6 +613,24 @@ function ConnectModal({
                   </button>
                 </div>
 
+                {/* Tertiary action — invite an external person to connect */}
+                <button
+                  onClick={() => setStep("invite")}
+                  className="mt-3 flex w-full items-start gap-3 rounded-xl border border-border bg-gradient-to-br from-accent/[0.06] to-transparent px-3.5 py-3 text-left transition-all hover:border-foreground/30 hover:from-accent/10"
+                >
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-foreground text-background">
+                    <UserPlus className="h-4 w-4" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-semibold">Skicka till extern person</p>
+                    <p className="mt-0.5 text-xs leading-snug text-muted-foreground">
+                      Har din byrå, kollega eller konsult access? Skicka en säker länk så kan
+                      de koppla kontot åt dig.
+                    </p>
+                  </div>
+                  <ArrowRight className="mt-2 h-4 w-4 shrink-0 text-muted-foreground" />
+                </button>
+
                 <div className="mt-5 flex items-start gap-2 rounded-xl border border-border/60 bg-muted/30 p-3 text-xs text-muted-foreground">
                   <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-success" />
                   <p>
