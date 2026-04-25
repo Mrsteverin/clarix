@@ -741,6 +741,15 @@ function ConnectModal({
                   Vi synkar nu data från {integration.name} i bakgrunden.
                 </p>
 
+                {integration.invitedBy && (
+                  <div className="mt-4 flex items-center gap-2 rounded-xl border border-accent/30 bg-accent/[0.06] px-3 py-2 text-xs">
+                    <UserPlus className="h-3.5 w-3.5 text-accent" />
+                    <span>
+                      Ansluten av <span className="font-semibold text-foreground">{integration.invitedBy}</span>
+                    </span>
+                  </div>
+                )}
+
                 <div className="mt-5 space-y-3 rounded-xl border border-border bg-muted/30 p-4 text-sm">
                   <Row label="Konto" value={chosenAccount} />
                   <Row label="Status" value={<span className="text-success">Aktiv</span>} />
@@ -787,6 +796,53 @@ function ConnectModal({
                     Klar
                   </button>
                 </div>
+              </motion.div>
+            )}
+
+            {step === "invite" && (
+              <InviteForm
+                key="invite"
+                integration={integration}
+                onCancel={() => setStep("consent")}
+                onSent={(invite) => {
+                  toast.success("Anslutningslänk skickad", {
+                    description: `${invite.name} (${invite.email}) får ett mejl med en säker länk att koppla ${integration.name}.`,
+                  });
+                  // Mark integration as awaiting external connection — record who was invited.
+                  // For demo, we simulate "completed" so the badge can render.
+                  onConnect({
+                    ...integration,
+                    connected: true,
+                    account: invite.email,
+                    invitedBy: invite.name,
+                  });
+                  setStep("invite-sent");
+                }}
+              />
+            )}
+
+            {step === "invite-sent" && (
+              <motion.div
+                key="invite-sent"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                className="mt-8 flex flex-col items-center gap-3 py-4 text-center"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-success/15 text-success">
+                  <Check className="h-5 w-5" />
+                </div>
+                <h2 className="font-display text-2xl leading-tight">Inbjudan skickad</h2>
+                <p className="max-w-sm text-sm text-muted-foreground">
+                  Mottagaren får en säker engångslänk att koppla {integration.name}. Du får
+                  en notis när det är klart.
+                </p>
+                <button
+                  onClick={onClose}
+                  className="mt-3 rounded-full bg-foreground px-5 py-2 text-sm font-medium text-background hover:opacity-90"
+                >
+                  Klar
+                </button>
               </motion.div>
             )}
           </AnimatePresence>
