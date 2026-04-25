@@ -155,27 +155,31 @@ function ConnectionsPage() {
           <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-32 -left-16 h-72 w-72 rounded-full bg-primary/5 blur-3xl" />
 
-          <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <div className="relative flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
-              <h1 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+              <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-foreground/70 backdrop-blur">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                Anslutningar
+              </span>
+              <h1 className="mt-5 font-display text-[2.75rem] font-bold leading-[1.02] tracking-[-0.02em] text-foreground sm:text-6xl lg:text-7xl">
                 Koppla dina viktigaste kanaler
                 <br />
                 <span className="bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-600 bg-clip-text font-bold italic text-transparent">
                   på 2 minuter.
                 </span>
               </h1>
-              <p className="mt-5 max-w-xl text-lg leading-relaxed text-foreground/75">
+              <p className="mt-7 max-w-xl text-lg leading-relaxed text-foreground/80">
                 Hämta in statistik automatiskt från dina viktigaste plattformar.
                 Ingen teknisk kunskap krävs — vi sköter behörigheter, synk och uppdateringar.
               </p>
 
-              <div className="mt-7 flex flex-wrap items-center gap-3">
+              <div className="mt-9 flex flex-wrap items-center gap-3">
                 <button
                   onClick={() => {
                     const next = items.find((i) => !i.connected);
                     if (next) setActive(next);
                   }}
-                  className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background shadow-elevated transition-all hover:opacity-90"
+                  className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-[15px] font-semibold text-background shadow-elevated transition-all hover:-translate-y-0.5 hover:opacity-95"
                 >
                   Koppla första kanalen
                   <ArrowRight className="h-4 w-4" />
@@ -183,7 +187,7 @@ function ConnectionsPage() {
                 {connectedCount > 0 ? (
                   <button
                     onClick={() => setShareOpen(true)}
-                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur transition-all hover:bg-muted"
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-7 py-3.5 text-[15px] font-semibold text-foreground backdrop-blur transition-all hover:bg-muted"
                   >
                     <Share2 className="h-4 w-4" />
                     Dela live-rapport
@@ -193,7 +197,7 @@ function ConnectionsPage() {
                     onClick={() => {
                       window.open("/reports", "_blank");
                     }}
-                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur transition-all hover:bg-muted"
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-7 py-3.5 text-[15px] font-semibold text-foreground backdrop-blur transition-all hover:bg-muted"
                   >
                     Se exempelrapport
                     <ArrowRight className="h-4 w-4" />
@@ -201,7 +205,7 @@ function ConnectionsPage() {
                 )}
               </div>
 
-              <div className="mt-6 flex items-center gap-2 text-sm text-foreground/70">
+              <div className="mt-7 flex items-center gap-2 text-sm font-medium text-foreground/75">
                 <ShieldCheck className="h-4 w-4 text-success" />
                 ClarityCloud läser endast statistik. Vi publicerar aldrig innehåll.
               </div>
