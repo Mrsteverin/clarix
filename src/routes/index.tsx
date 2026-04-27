@@ -194,30 +194,28 @@ function Landing() {
         </motion.div>
       </section>
 
-      <section id="channels" className="border-y border-border/40 bg-muted/30 py-16">
-        <div className="mx-auto max-w-7xl px-6">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.22em] text-foreground/70">
-            Anslut dina favoritkanaler
-          </p>
-          <p className="mx-auto mt-4 max-w-lg text-center text-base text-foreground/65">
-            Säkra OAuth-anslutningar till plattformarna du redan använder.
-          </p>
-          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
-            {channels.map((c) => (
-              <div
-                key={c.name}
-                className="group flex items-center gap-3 rounded-xl border border-border/60 bg-background px-4 py-3 transition-all hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-elevated"
-              >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white ring-1 ring-black/5">
-                  <c.Logo className="h-6 w-6" />
-                </span>
-                <span className="truncate text-sm font-semibold text-foreground">
-                  {c.name}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
+      <section id="showcase" className="mx-auto max-w-7xl px-6 py-32 space-y-32 sm:space-y-40">
+        <Showcase
+          eyebrow="Översikt"
+          title="Få svar direkt"
+          body="Se trafik, leads och intäkter på några sekunder — utan att öppna fem flikar."
+          reverse={false}
+          visual={<DashboardKpiVisual />}
+        />
+        <Showcase
+          eyebrow="AI-insikter"
+          title="Slipp tolka grafer"
+          body="AI sammanfattar utvecklingen på enkel svenska och föreslår nästa steg."
+          reverse={true}
+          visual={<AiInsightsVisual />}
+        />
+        <Showcase
+          eyebrow="Kanaler"
+          title="Se vad som faktiskt fungerar"
+          body="Följ SEO, annonser och konverteringar i samma vy — och jämför över tid."
+          reverse={false}
+          visual={<SeoChannelsVisual />}
+        />
       </section>
 
       <section id="features" className="mx-auto max-w-7xl px-6 py-24">
