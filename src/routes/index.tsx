@@ -469,14 +469,13 @@ function Landing() {
         <div className="relative overflow-hidden rounded-3xl border border-border/60 bg-gradient-card p-12 text-center shadow-elevated">
           <div className="pointer-events-none absolute inset-0 bg-gradient-aurora opacity-60" />
           <div className="relative">
-            <h2 className="mx-auto max-w-2xl font-display text-5xl tracking-tight">
+            <h2 className="mx-auto max-w-2xl font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
               Äntligen rapporter som är både
-              <br />
-              <span className="font-accent text-gradient-brand">snygga och tydliga.</span>
+              <span className="mt-1 block font-accent text-gradient-brand">snygga och tydliga.</span>
             </h2>
             <Link
               to="/dashboard"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background shadow-elevated hover:opacity-90"
+              className="mt-10 inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-[0.95rem] font-semibold text-background shadow-elevated transition-all hover:-translate-y-0.5 hover:shadow-glow"
             >
               Prova ClarityCloud gratis
               <ArrowRight className="h-4 w-4" />
