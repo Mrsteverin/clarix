@@ -10,6 +10,10 @@ import {
   TrendingUp,
   ShieldCheck,
   Palette,
+  ArrowUpRight,
+  Search,
+  MousePointerClick,
+  Target,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import {
