@@ -461,54 +461,67 @@ function Landing() {
               cta: "Boka demo",
               featured: false,
             },
-          ].map((p) => (
-            <div
-              key={p.name}
-              className={`relative flex flex-col rounded-2xl border p-8 transition-all ${
-                p.featured
-                  ? "border-foreground/30 bg-gradient-card shadow-elevated md:-translate-y-4 md:scale-[1.02]"
-                  : "border-border/60 bg-card/40 hover:border-border"
-              }`}
-            >
-              {p.featured && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-brand px-3 py-1 text-xs font-medium tracking-wide text-white shadow-elevated">
-                  Mest populär
-                </span>
-              )}
+          ].map((p) => {
+            const isPro = p.name === "Pro";
+            const isMax = p.name === "Max";
+            const isBas = p.name === "Bas";
 
-              <div>
-                <h3 className="font-display text-2xl tracking-tight">{p.name}</h3>
-                <p className="mt-3 text-[0.975rem] leading-relaxed text-foreground/70">{p.tagline}</p>
-              </div>
+            const cardClasses = isPro
+              ? "border-[oklch(0.78_0.06_295)]/50 bg-[linear-gradient(180deg,oklch(0.985_0.012_295)_0%,oklch(0.965_0.022_290)_55%,oklch(0.955_0.028_285)_100%)] shadow-[0_30px_80px_-30px_oklch(0.55_0.15_290/0.35),0_8px_24px_-12px_oklch(0.55_0.15_290/0.25)] md:-translate-y-6 md:scale-[1.025]"
+              : isMax
+                ? "border-[oklch(0.82_0.012_270)] bg-[linear-gradient(180deg,oklch(0.97_0.006_270)_0%,oklch(0.945_0.008_265)_100%)] shadow-[0_20px_50px_-25px_rgba(15,23,42,0.25)]"
+                : "border-border/60 bg-card hover:border-border shadow-[0_10px_30px_-20px_rgba(15,23,42,0.18)]";
 
-              <div className="mt-8 flex items-baseline gap-1.5">
-                <span className="font-display text-6xl tracking-[-0.04em]">{p.price}</span>
-                <span className="text-base text-foreground/60">kr / mån</span>
-              </div>
-
-              <div className="my-8 h-px w-full bg-border/60" />
-
-              <ul className="space-y-3.5 text-[0.975rem]">
-                {p.features.map((feat) => (
-                  <li key={feat} className="flex items-start gap-3">
-                    <Check className={`mt-0.5 h-5 w-5 shrink-0 ${p.featured ? "text-accent" : "text-success"}`} />
-                    <span className="text-foreground/85">{feat}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <Link
-                to="/dashboard"
-                className={`mt-10 inline-flex w-full items-center justify-center rounded-full px-5 py-3.5 text-[0.95rem] font-semibold transition-all ${
-                  p.featured
-                    ? "bg-foreground text-background shadow-elevated hover:-translate-y-0.5 hover:shadow-glow"
-                    : "border border-border bg-background hover:bg-muted hover:border-foreground/20"
-                }`}
+            return (
+              <div
+                key={p.name}
+                className={`relative flex flex-col rounded-3xl border p-8 transition-all ${cardClasses} ${isPro ? "sm:p-10" : ""}`}
               >
-                {p.cta}
-              </Link>
-            </div>
-          ))}
+                {isPro && (
+                  <>
+                    <div aria-hidden className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(ellipse_at_top,oklch(0.92_0.05_295/0.6),transparent_60%)]" />
+                    <span className="absolute -top-3.5 left-1/2 z-10 -translate-x-1/2 rounded-full bg-foreground px-3.5 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-background shadow-[0_8px_24px_-6px_rgba(15,23,42,0.35)]">
+                      Mest vald
+                    </span>
+                  </>
+                )}
+
+                <div className="relative">
+                  <h3 className="font-display text-2xl font-bold tracking-tight">{p.name}</h3>
+                  <p className="mt-3 text-[0.975rem] leading-relaxed text-foreground/70">{p.tagline}</p>
+                </div>
+
+                <div className="relative mt-8 flex items-baseline gap-1.5">
+                  <span className="font-display text-6xl font-extrabold tracking-[-0.04em]">{p.price}</span>
+                  <span className="text-base text-foreground/60">kr / mån</span>
+                </div>
+
+                <div className={`relative my-8 h-px w-full ${isPro ? "bg-[oklch(0.75_0.06_290)]/30" : "bg-border/60"}`} />
+
+                <ul className="relative space-y-3.5 text-[0.975rem]">
+                  {p.features.map((feat) => (
+                    <li key={feat} className="flex items-start gap-3">
+                      <Check className={`mt-0.5 h-5 w-5 shrink-0 ${isPro ? "text-[oklch(0.55_0.15_290)]" : "text-success"}`} />
+                      <span className="text-foreground/85">{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  to="/dashboard"
+                  className={`relative mt-10 inline-flex w-full items-center justify-center rounded-full px-5 py-3.5 text-[0.95rem] font-semibold transition-all ${
+                    isPro
+                      ? "bg-foreground text-background shadow-[0_14px_30px_-10px_rgba(15,23,42,0.45)] hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-10px_rgba(15,23,42,0.55)]"
+                      : isMax
+                        ? "bg-[oklch(0.28_0.015_270)] text-background hover:-translate-y-0.5 hover:bg-[oklch(0.22_0.015_270)]"
+                        : "border border-border bg-background hover:bg-muted hover:border-foreground/20"
+                  }`}
+                >
+                  {p.cta}
+                </Link>
+              </div>
+            );
+          })}
         </div>
 
         <p className="mt-10 text-center text-xs text-muted-foreground">
