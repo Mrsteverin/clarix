@@ -96,41 +96,43 @@ function Landing() {
         </div>
       </header>
 
-      <section className="relative mx-auto max-w-7xl px-6 pb-24 pt-20 text-center sm:pt-32">
+      <section className="relative mx-auto max-w-7xl px-6 pb-24 pt-24 text-center sm:pt-36">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
+          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3.5 py-1.5 text-xs font-medium text-foreground/70 backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-success" />
             För kommunikatörer, ägare, VD:ar och CFO:er
           </div>
 
-          <h1 className="mx-auto mt-8 max-w-5xl font-display text-6xl leading-[1.02] text-foreground sm:text-7xl md:text-[5.75rem]">
+          <h1 className="mx-auto mt-10 max-w-5xl font-display text-6xl leading-[1.04] tracking-[-0.04em] text-foreground sm:text-7xl md:text-[5.75rem]">
             Förstå din marknadsföring
-            <br />
-            <span className="font-accent text-gradient-brand">på 30 sekunder.</span>
+            <span className="mt-2 block font-accent text-gradient-brand">
+              på 30 sekunder.
+            </span>
           </h1>
 
-          <p className="mx-auto mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+          <p className="mx-auto mt-9 max-w-2xl text-xl leading-relaxed text-foreground/70 sm:text-[1.375rem]">
             ClarityCloud förvandlar rådata från alla dina kanaler till klara, vackra rapporter
             — så enkelt att du inte behöver en byrå för att förstå dem.
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
             <Link
               to="/dashboard"
-              className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background shadow-elevated transition-all hover:opacity-90"
+              className="group inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-[0.95rem] font-semibold text-background shadow-elevated transition-all hover:-translate-y-0.5 hover:shadow-glow"
             >
               Öppna dashboarden
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link
               to="/reports"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-6 py-3 text-sm font-medium backdrop-blur hover:bg-muted"
+              className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[0.95rem] font-medium text-foreground/80 transition-colors hover:text-foreground"
             >
               Se en exempelrapport
+              <ArrowRight className="h-4 w-4 opacity-60" />
             </Link>
           </div>
         </motion.div>
@@ -194,10 +196,10 @@ function Landing() {
 
       <section id="channels" className="border-y border-border/40 bg-muted/30 py-16">
         <div className="mx-auto max-w-7xl px-6">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.22em] text-foreground/70">
             Anslut dina favoritkanaler
           </p>
-          <p className="mx-auto mt-3 max-w-lg text-center text-sm text-muted-foreground">
+          <p className="mx-auto mt-4 max-w-lg text-center text-base text-foreground/65">
             Säkra OAuth-anslutningar till plattformarna du redan använder.
           </p>
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
@@ -220,11 +222,11 @@ function Landing() {
 
       <section id="features" className="mx-auto max-w-7xl px-6 py-24">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Byggt för klarhet</p>
-          <h2 className="mt-3 font-display text-5xl tracking-tight">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">Byggt för klarhet</p>
+          <h2 className="mt-4 font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
             Marknadsdata som vem som helst kan läsa.
           </h2>
-          <p className="mt-4 text-base text-muted-foreground">
+          <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-foreground/70">
             Oavsett om du är VD, CFO, kommunikatör eller ägare — få svaren utan att tolka grafer.
           </p>
         </div>
@@ -268,13 +270,13 @@ function Landing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="rounded-2xl border border-border/60 bg-gradient-card p-6 transition-all hover:shadow-elevated"
+              className="rounded-2xl border border-border/60 bg-gradient-card p-7 transition-all hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-elevated"
             >
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-brand text-white shadow-glow">
+              <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-brand text-white shadow-glow">
                 <f.icon className="h-5 w-5" />
               </div>
-              <h3 className="mt-5 text-lg font-semibold">{f.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+              <h3 className="mt-6 text-xl font-bold tracking-tight">{f.title}</h3>
+              <p className="mt-2.5 text-[0.975rem] leading-relaxed text-foreground/70">{f.body}</p>
             </motion.div>
           ))}
         </div>
@@ -283,33 +285,32 @@ function Landing() {
       <section id="agencies" className="border-y border-border/40 bg-muted/20 py-24">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2">
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">För byråer</p>
-            <h2 className="mt-3 font-display text-5xl tracking-tight">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">För byråer</p>
+            <h2 className="mt-4 font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
               Driver du en byrå?
-              <br />
-              <span className="font-accent text-gradient-brand">White-label allt.</span>
+              <span className="mt-1 block font-accent text-gradient-brand">White-label allt.</span>
             </h2>
-            <p className="mt-5 text-base text-muted-foreground">
+            <p className="mt-6 text-lg leading-relaxed text-foreground/70">
               Vår filosofi: kunder ska inte behöva en byrå för att förstå sin marknadsföring.
               Men om du driver en — gör vi dig till hjälten i rummet. Egen logotyp, färger,
               domän och kundinloggningar.
             </p>
-            <ul className="mt-8 space-y-3 text-sm">
+            <ul className="mt-8 space-y-3.5 text-[0.975rem]">
               {[
                 "Eget varumärke på dashboards och rapporter",
                 "Eget domännamn (rapport.dinbyra.se)",
                 "Obegränsat antal kundkonton",
                 "Volymrabatt från 10 kunder",
               ].map((f) => (
-                <li key={f} className="flex items-start gap-2">
-                  <Check className="mt-0.5 h-4 w-4 text-success" />
+                <li key={f} className="flex items-start gap-2.5 text-foreground/85">
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-success" />
                   <span>{f}</span>
                 </li>
               ))}
             </ul>
             <a
               href="#pricing"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background hover:opacity-90"
+              className="mt-10 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-[0.95rem] font-semibold text-background shadow-elevated transition-all hover:-translate-y-0.5 hover:shadow-glow"
             >
               Se byråpriser
               <ArrowRight className="h-4 w-4" />
@@ -347,11 +348,11 @@ function Landing() {
 
       <section id="pricing" className="mx-auto max-w-7xl px-6 py-24">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Priser</p>
-          <h2 className="mt-3 font-display text-5xl tracking-tight">
-            Tre paket. <span className="font-accent text-muted-foreground">Noll förvirring.</span>
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">Priser</p>
+          <h2 className="mt-4 font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
+            Tre paket. <span className="font-accent text-foreground/60">Noll förvirring.</span>
           </h2>
-          <p className="mt-4 text-base text-muted-foreground">
+          <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-foreground/70">
             Välj nivån som matchar din ambition. Uppgradera när du växer.
           </p>
         </div>
@@ -426,31 +427,31 @@ function Landing() {
 
               <div>
                 <h3 className="font-display text-2xl tracking-tight">{p.name}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.tagline}</p>
+                <p className="mt-3 text-[0.975rem] leading-relaxed text-foreground/70">{p.tagline}</p>
               </div>
 
-              <div className="mt-8 flex items-baseline gap-1">
-                <span className="font-display text-5xl tracking-tight">{p.price}</span>
-                <span className="text-base text-muted-foreground">kr / mån</span>
+              <div className="mt-8 flex items-baseline gap-1.5">
+                <span className="font-display text-6xl tracking-[-0.04em]">{p.price}</span>
+                <span className="text-base text-foreground/60">kr / mån</span>
               </div>
 
               <div className="my-8 h-px w-full bg-border/60" />
 
-              <ul className="space-y-3 text-sm">
+              <ul className="space-y-3.5 text-[0.975rem]">
                 {p.features.map((feat) => (
                   <li key={feat} className="flex items-start gap-3">
-                    <Check className={`mt-0.5 h-4 w-4 shrink-0 ${p.featured ? "text-accent" : "text-success"}`} />
-                    <span className="text-foreground/90">{feat}</span>
+                    <Check className={`mt-0.5 h-5 w-5 shrink-0 ${p.featured ? "text-accent" : "text-success"}`} />
+                    <span className="text-foreground/85">{feat}</span>
                   </li>
                 ))}
               </ul>
 
               <Link
                 to="/dashboard"
-                className={`mt-10 inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-sm font-medium transition-all ${
+                className={`mt-10 inline-flex w-full items-center justify-center rounded-full px-5 py-3.5 text-[0.95rem] font-semibold transition-all ${
                   p.featured
-                    ? "bg-foreground text-background hover:opacity-90 shadow-elevated"
-                    : "border border-border bg-background hover:bg-muted"
+                    ? "bg-foreground text-background shadow-elevated hover:-translate-y-0.5 hover:shadow-glow"
+                    : "border border-border bg-background hover:bg-muted hover:border-foreground/20"
                 }`}
               >
                 {p.cta}
@@ -468,14 +469,13 @@ function Landing() {
         <div className="relative overflow-hidden rounded-3xl border border-border/60 bg-gradient-card p-12 text-center shadow-elevated">
           <div className="pointer-events-none absolute inset-0 bg-gradient-aurora opacity-60" />
           <div className="relative">
-            <h2 className="mx-auto max-w-2xl font-display text-5xl tracking-tight">
+            <h2 className="mx-auto max-w-2xl font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
               Äntligen rapporter som är både
-              <br />
-              <span className="font-accent text-gradient-brand">snygga och tydliga.</span>
+              <span className="mt-1 block font-accent text-gradient-brand">snygga och tydliga.</span>
             </h2>
             <Link
               to="/dashboard"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background shadow-elevated hover:opacity-90"
+              className="mt-10 inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-[0.95rem] font-semibold text-background shadow-elevated transition-all hover:-translate-y-0.5 hover:shadow-glow"
             >
               Prova ClarityCloud gratis
               <ArrowRight className="h-4 w-4" />

@@ -76,7 +76,7 @@
   --secondary-foreground: oklch(0.22 0.03 265);
 
   --muted: oklch(0.965 0.008 260);
-  --muted-foreground: oklch(0.42 0.025 260);
+  --muted-foreground: oklch(0.32 0.022 260);
 
   --accent: oklch(0.65 0.19 265);
   --accent-foreground: oklch(0.99 0.003 260);
@@ -196,21 +196,21 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 1.0625rem;
+    line-height: 1.65;
     letter-spacing: -0.011em;
   }
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.08;
+    letter-spacing: -0.035em;
+    line-height: 1.06;
     color: var(--color-foreground);
   }
 
   p {
-    line-height: 1.65;
+    line-height: 1.7;
   }
 }
 
