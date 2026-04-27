@@ -348,11 +348,11 @@ function Landing() {
 
       <section id="pricing" className="mx-auto max-w-7xl px-6 py-24">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Priser</p>
-          <h2 className="mt-3 font-display text-5xl tracking-tight">
-            Tre paket. <span className="font-accent text-muted-foreground">Noll förvirring.</span>
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">Priser</p>
+          <h2 className="mt-4 font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
+            Tre paket. <span className="font-accent text-foreground/60">Noll förvirring.</span>
           </h2>
-          <p className="mt-4 text-base text-muted-foreground">
+          <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-foreground/70">
             Välj nivån som matchar din ambition. Uppgradera när du växer.
           </p>
         </div>
