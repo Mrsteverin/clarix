@@ -114,7 +114,7 @@ function Landing() {
             </span>
           </h1>
 
-          <p className="mx-auto mt-9 max-w-2xl text-xl leading-relaxed text-foreground/70 sm:text-[1.375rem]">
+          <p className="mx-auto mt-8 max-w-2xl text-lg leading-[1.6] text-foreground/75 sm:text-xl">
             ClarityCloud förvandlar rådata från alla dina kanaler till klara, vackra rapporter
             — så enkelt att du inte behöver en byrå för att förstå dem.
           </p>
