@@ -285,13 +285,12 @@ function Landing() {
       <section id="agencies" className="border-y border-border/40 bg-muted/20 py-24">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2">
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">För byråer</p>
-            <h2 className="mt-3 font-display text-5xl tracking-tight">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">För byråer</p>
+            <h2 className="mt-4 font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
               Driver du en byrå?
-              <br />
-              <span className="font-accent text-gradient-brand">White-label allt.</span>
+              <span className="mt-1 block font-accent text-gradient-brand">White-label allt.</span>
             </h2>
-            <p className="mt-5 text-base text-muted-foreground">
+            <p className="mt-6 text-lg leading-relaxed text-foreground/70">
               Vår filosofi: kunder ska inte behöva en byrå för att förstå sin marknadsföring.
               Men om du driver en — gör vi dig till hjälten i rummet. Egen logotyp, färger,
               domän och kundinloggningar.
