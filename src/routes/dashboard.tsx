@@ -101,21 +101,52 @@ function DashboardPage() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.35 }}
-          className="relative overflow-hidden rounded-2xl border border-border/60 bg-gradient-card p-6 shadow-soft"
+          className="relative overflow-hidden rounded-3xl border border-white/40 dark:border-white/10 p-8 sm:p-10 shadow-[0_20px_60px_-20px_rgba(139,92,246,0.35)]"
+          style={{
+            background:
+              "linear-gradient(135deg, oklch(0.97 0.04 300) 0%, oklch(0.96 0.05 260) 45%, oklch(0.97 0.04 350) 100%)",
+          }}
         >
-          <div className="pointer-events-none absolute inset-0 bg-gradient-aurora opacity-50" />
-          <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-brand text-white shadow-glow">
-              <Sparkles className="h-6 w-6" />
+          {/* glow blobs */}
+          <div
+            className="pointer-events-none absolute -top-24 -left-16 h-64 w-64 rounded-full opacity-60 blur-3xl"
+            style={{ background: "radial-gradient(circle, oklch(0.85 0.16 300 / 0.55), transparent 70%)" }}
+          />
+          <div
+            className="pointer-events-none absolute -bottom-24 -right-10 h-72 w-72 rounded-full opacity-60 blur-3xl"
+            style={{ background: "radial-gradient(circle, oklch(0.86 0.14 220 / 0.5), transparent 70%)" }}
+          />
+          <div
+            className="pointer-events-none absolute top-10 right-1/3 h-40 w-40 rounded-full opacity-50 blur-3xl"
+            style={{ background: "radial-gradient(circle, oklch(0.88 0.12 350 / 0.5), transparent 70%)" }}
+          />
+
+          <div className="relative flex flex-col gap-6 sm:flex-row sm:items-start">
+            <div
+              className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-white shadow-[0_10px_30px_-8px_rgba(139,92,246,0.7)]"
+              style={{
+                background:
+                  "linear-gradient(135deg, oklch(0.62 0.22 295), oklch(0.65 0.2 255))",
+              }}
+            >
+              <Sparkles className="h-7 w-7" />
             </div>
             <div className="flex-1">
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">AI-insikt</p>
-              <p className="mt-1 text-lg font-medium leading-snug">
-                Trafiken ökade <span className="text-success">+14 %</span> denna månad — främst
-                drivet av organisk tillväxt på tre nya blogginlägg som rankar topp 5.
+              <div className="flex items-center gap-2">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[oklch(0.45_0.18_290)]">
+                  AI-sammanfattning
+                </p>
+                <span className="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-[oklch(0.62_0.22_295)]" />
+              </div>
+              <p className="mt-4 text-2xl font-medium leading-[1.4] tracking-[-0.01em] text-[oklch(0.18_0.02_280)] sm:text-[1.7rem]">
+                Intäkterna växte{" "}
+                <span className="font-semibold text-success">+18,6 %</span> till{" "}
+                <span className="font-semibold">1,85 mn kr</span>. Snittordervärdet ökade{" "}
+                <span className="font-semibold text-success">+4,2 %</span>. Aurora Pro driver
+                fortsatt störst andel av försäljningen.
               </p>
             </div>
-            <button className="self-start whitespace-nowrap rounded-full border border-border bg-background/60 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-muted sm:self-center">
+            <button className="self-start whitespace-nowrap rounded-full border border-white/60 bg-white/70 px-5 py-2.5 text-sm font-semibold text-[oklch(0.35_0.15_290)] shadow-sm backdrop-blur transition hover:bg-white sm:self-center">
               Se uppdelning
             </button>
           </div>
