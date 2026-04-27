@@ -427,31 +427,31 @@ function Landing() {
 
               <div>
                 <h3 className="font-display text-2xl tracking-tight">{p.name}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.tagline}</p>
+                <p className="mt-3 text-[0.975rem] leading-relaxed text-foreground/70">{p.tagline}</p>
               </div>
 
-              <div className="mt-8 flex items-baseline gap-1">
-                <span className="font-display text-5xl tracking-tight">{p.price}</span>
-                <span className="text-base text-muted-foreground">kr / mån</span>
+              <div className="mt-8 flex items-baseline gap-1.5">
+                <span className="font-display text-6xl tracking-[-0.04em]">{p.price}</span>
+                <span className="text-base text-foreground/60">kr / mån</span>
               </div>
 
               <div className="my-8 h-px w-full bg-border/60" />
 
-              <ul className="space-y-3 text-sm">
+              <ul className="space-y-3.5 text-[0.975rem]">
                 {p.features.map((feat) => (
                   <li key={feat} className="flex items-start gap-3">
-                    <Check className={`mt-0.5 h-4 w-4 shrink-0 ${p.featured ? "text-accent" : "text-success"}`} />
-                    <span className="text-foreground/90">{feat}</span>
+                    <Check className={`mt-0.5 h-5 w-5 shrink-0 ${p.featured ? "text-accent" : "text-success"}`} />
+                    <span className="text-foreground/85">{feat}</span>
                   </li>
                 ))}
               </ul>
 
               <Link
                 to="/dashboard"
-                className={`mt-10 inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-sm font-medium transition-all ${
+                className={`mt-10 inline-flex w-full items-center justify-center rounded-full px-5 py-3.5 text-[0.95rem] font-semibold transition-all ${
                   p.featured
-                    ? "bg-foreground text-background hover:opacity-90 shadow-elevated"
-                    : "border border-border bg-background hover:bg-muted"
+                    ? "bg-foreground text-background shadow-elevated hover:-translate-y-0.5 hover:shadow-glow"
+                    : "border border-border bg-background hover:bg-muted hover:border-foreground/20"
                 }`}
               >
                 {p.cta}
