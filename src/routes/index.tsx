@@ -114,7 +114,7 @@ function Landing() {
             </span>
           </h1>
 
-          <p className="mx-auto mt-9 max-w-2xl text-xl leading-relaxed text-foreground/70 sm:text-[1.375rem]">
+          <p className="mx-auto mt-8 max-w-2xl text-lg leading-[1.6] text-foreground/75 sm:text-xl">
             ClarityCloud förvandlar rådata från alla dina kanaler till klara, vackra rapporter
             — så enkelt att du inte behöver en byrå för att förstå dem.
           </p>
@@ -288,7 +288,7 @@ function Landing() {
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">För byråer</p>
             <h2 className="mt-4 font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
               Driver du en byrå?
-              <span className="mt-1 block font-accent text-gradient-brand">White-label allt.</span>
+              <span className="mt-1 block text-gradient-brand">White-label allt.</span>
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-foreground/70">
               Vår filosofi: kunder ska inte behöva en byrå för att förstå sin marknadsföring.
@@ -350,7 +350,7 @@ function Landing() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">Priser</p>
           <h2 className="mt-4 font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
-            Tre paket. <span className="font-accent text-foreground/60">Noll förvirring.</span>
+            Tre paket. <span className="text-foreground/55">Noll förvirring.</span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-foreground/70">
             Välj nivån som matchar din ambition. Uppgradera när du växer.
