@@ -200,12 +200,13 @@ function Landing() {
         </motion.div>
       </section>
 
-      <section id="showcase" className="mx-auto max-w-7xl px-6 py-32 space-y-32 sm:space-y-40">
+      <section id="showcase" className="relative mx-auto max-w-7xl px-6 py-40 space-y-40 sm:space-y-48">
         <Showcase
           eyebrow="Översikt"
           title="Få svar direkt"
           body="Se trafik, leads och intäkter på några sekunder — utan att öppna fem flikar."
           reverse={false}
+          tilt="left"
           visual={<DashboardKpiVisual />}
         />
         <Showcase
@@ -213,6 +214,7 @@ function Landing() {
           title="Slipp tolka grafer"
           body="AI sammanfattar utvecklingen på enkel svenska och föreslår nästa steg."
           reverse={true}
+          tilt="right"
           visual={<AiInsightsVisual />}
         />
         <Showcase
@@ -220,6 +222,7 @@ function Landing() {
           title="Se vad som faktiskt fungerar"
           body="Följ SEO, annonser och konverteringar i samma vy — och jämför över tid."
           reverse={false}
+          tilt="left"
           visual={<SeoChannelsVisual />}
         />
       </section>
