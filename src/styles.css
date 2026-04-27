@@ -196,21 +196,21 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 1.0625rem;
+    line-height: 1.65;
     letter-spacing: -0.011em;
   }
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.08;
+    letter-spacing: -0.035em;
+    line-height: 1.06;
     color: var(--color-foreground);
   }
 
   p {
-    line-height: 1.65;
+    line-height: 1.7;
   }
 }
 
