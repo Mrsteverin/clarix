@@ -196,10 +196,10 @@ function Landing() {
 
       <section id="channels" className="border-y border-border/40 bg-muted/30 py-16">
         <div className="mx-auto max-w-7xl px-6">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.22em] text-foreground/70">
             Anslut dina favoritkanaler
           </p>
-          <p className="mx-auto mt-3 max-w-lg text-center text-sm text-muted-foreground">
+          <p className="mx-auto mt-4 max-w-lg text-center text-base text-foreground/65">
             Säkra OAuth-anslutningar till plattformarna du redan använder.
           </p>
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
