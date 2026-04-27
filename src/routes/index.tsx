@@ -270,13 +270,13 @@ function Landing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="rounded-2xl border border-border/60 bg-gradient-card p-6 transition-all hover:shadow-elevated"
+              className="rounded-2xl border border-border/60 bg-gradient-card p-7 transition-all hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-elevated"
             >
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-brand text-white shadow-glow">
+              <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-brand text-white shadow-glow">
                 <f.icon className="h-5 w-5" />
               </div>
-              <h3 className="mt-5 text-lg font-semibold">{f.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+              <h3 className="mt-6 text-xl font-bold tracking-tight">{f.title}</h3>
+              <p className="mt-2.5 text-[0.975rem] leading-relaxed text-foreground/70">{f.body}</p>
             </motion.div>
           ))}
         </div>
