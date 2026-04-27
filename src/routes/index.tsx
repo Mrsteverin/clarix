@@ -102,7 +102,7 @@ function Landing() {
         </div>
       </header>
 
-      <section className="relative mx-auto max-w-7xl px-6 pb-24 pt-24 text-center sm:pt-36">
+      <section className="relative mx-auto max-w-7xl px-6 pb-32 pt-28 text-center sm:pt-40">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -113,16 +113,16 @@ function Landing() {
             För kommunikatörer, ägare, VD:ar och CFO:er
           </div>
 
-          <h1 className="mx-auto mt-10 max-w-5xl font-display text-6xl leading-[1.04] tracking-[-0.04em] text-foreground sm:text-7xl md:text-[5.75rem]">
+          <h1 className="mx-auto mt-10 max-w-5xl font-display text-6xl leading-[1.04] tracking-[-0.04em] text-foreground sm:text-7xl md:text-[6rem]">
             Förstå din marknadsföring
-            <span className="mt-2 block font-accent text-gradient-brand">
+            <span className="mt-3 block font-accent text-gradient-brand">
               på 30 sekunder.
             </span>
           </h1>
 
-          <p className="mx-auto mt-8 max-w-2xl text-lg leading-[1.6] text-foreground/75 sm:text-xl">
-            ClarityCloud förvandlar rådata från alla dina kanaler till klara, vackra rapporter
-            — så enkelt att du inte behöver en byrå för att förstå dem.
+          <p className="mx-auto mt-10 max-w-2xl text-lg leading-[1.6] text-foreground/70 sm:text-xl">
+            Anslut dina kanaler. Få vackra rapporter och AI-insikter på enkel svenska
+            — utan att tolka en enda graf.
           </p>
 
           <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
@@ -144,87 +144,107 @@ function Landing() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mx-auto mt-20 max-w-6xl"
+          transition={{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="relative mx-auto mt-24 max-w-6xl"
         >
-          <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-brand opacity-20 blur-3xl" />
-          <div className="overflow-hidden rounded-2xl border border-border/60 bg-gradient-card shadow-elevated">
-            <div className="flex items-center gap-1.5 border-b border-border/60 bg-muted/30 px-4 py-3">
-              <span className="h-2.5 w-2.5 rounded-full bg-destructive/70" />
-              <span className="h-2.5 w-2.5 rounded-full bg-warning/70" />
-              <span className="h-2.5 w-2.5 rounded-full bg-success/70" />
-              <span className="ml-3 text-xs text-muted-foreground">claritycloud.se/oversikt</span>
-            </div>
-            <div className="grid grid-cols-12 gap-4 p-6">
-              <div className="col-span-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
-                {[
-                  { l: "Sessioner", v: "184k", d: "+14 %" },
-                  { l: "Intäkter", v: "1,8 mn kr", d: "+18 %" },
-                  { l: "ROAS", v: "4,37×", d: "+23 %" },
-                  { l: "Konv.", v: "3,2k", d: "+22 %" },
-                ].map((k) => (
-                  <div key={k.l} className="rounded-xl border border-border/60 bg-background/50 p-4 text-left">
-                    <p className="text-xs text-muted-foreground">{k.l}</p>
-                    <p className="mt-1 font-numeric text-3xl text-foreground">{k.v}</p>
-                    <p className="text-xs text-success">{k.d}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="col-span-12 h-48 rounded-xl border border-border/60 bg-background/50 p-4 sm:col-span-8">
-                <div className="flex items-end gap-1.5 h-full">
-                  {[40, 55, 48, 62, 70, 58, 75, 82, 78, 88, 95, 110, 102, 118, 130].map((h, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ height: 0 }}
-                      animate={{ height: `${h}%` }}
-                      transition={{ delay: 0.6 + i * 0.04, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                      className="flex-1 rounded-t-md bg-gradient-to-t from-accent/40 to-accent"
-                    />
-                  ))}
-                </div>
-              </div>
-              <div className="col-span-12 rounded-xl border border-border/60 bg-background/50 p-4 text-left sm:col-span-4">
-                <div className="flex items-center gap-2">
-                  <Sparkles className="h-4 w-4 text-accent" />
-                  <span className="text-xs font-medium">AI-insikt</span>
-                </div>
-                <p className="mt-2 text-sm leading-relaxed">
-                  Trafiken ökade <span className="font-semibold">14 %</span> tack vare organisk
-                  tillväxt på tre nya blogginlägg.
-                </p>
-              </div>
-            </div>
+          <div className="pointer-events-none absolute -inset-12 -z-10">
+            <div className="absolute inset-0 rounded-[3rem] bg-gradient-brand opacity-25 blur-3xl" />
+            <div className="absolute -bottom-16 left-1/4 h-48 w-1/2 rounded-full bg-accent/30 blur-3xl" />
           </div>
+          <DashboardKpiVisual />
         </motion.div>
       </section>
 
-      <section id="showcase" className="relative mx-auto max-w-7xl px-6 py-40 space-y-40 sm:space-y-48">
-        <Showcase
-          eyebrow="Översikt"
-          title="Få svar direkt"
-          body="Se trafik, leads och intäkter på några sekunder — utan att öppna fem flikar."
-          reverse={false}
-          tilt="left"
-          visual={<DashboardKpiVisual />}
-        />
+      <section id="showcase" className="relative mx-auto max-w-7xl px-6 py-32 space-y-40 sm:py-40 sm:space-y-48">
         <Showcase
           eyebrow="AI-insikter"
-          title="Slipp tolka grafer"
-          body="AI sammanfattar utvecklingen på enkel svenska och föreslår nästa steg."
-          reverse={true}
-          tilt="right"
+          title="Slipp tolka grafer."
+          body="AI sammanfattar utvecklingen på enkel svenska och föreslår vad du ska göra härnäst."
           visual={<AiInsightsVisual />}
         />
         <Showcase
           eyebrow="Kanaler"
-          title="Se vad som faktiskt fungerar"
+          title="Se vad som faktiskt fungerar."
           body="Följ SEO, annonser och konverteringar i samma vy — och jämför över tid."
-          reverse={false}
-          tilt="left"
           visual={<SeoChannelsVisual />}
         />
+      </section>
+
+      {/* Premium AI insight panel */}
+      <section className="mx-auto max-w-7xl px-6 pb-32">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="relative overflow-hidden rounded-[2rem] border border-white/40 p-10 shadow-[0_30px_80px_-30px_rgba(139,92,246,0.4)] sm:p-16 dark:border-white/10"
+          style={{
+            background:
+              "linear-gradient(135deg, oklch(0.97 0.04 300) 0%, oklch(0.96 0.05 260) 50%, oklch(0.97 0.04 350) 100%)",
+          }}
+        >
+          <div
+            className="pointer-events-none absolute -top-32 -left-20 h-80 w-80 rounded-full opacity-60 blur-3xl"
+            style={{ background: "radial-gradient(circle, oklch(0.85 0.16 300 / 0.55), transparent 70%)" }}
+          />
+          <div
+            className="pointer-events-none absolute -bottom-32 -right-10 h-96 w-96 rounded-full opacity-60 blur-3xl"
+            style={{ background: "radial-gradient(circle, oklch(0.86 0.14 220 / 0.5), transparent 70%)" }}
+          />
+          <div className="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-5">
+              <div
+                className="inline-flex h-14 w-14 items-center justify-center rounded-2xl text-white shadow-[0_10px_30px_-8px_rgba(139,92,246,0.7)]"
+                style={{
+                  background:
+                    "linear-gradient(135deg, oklch(0.62 0.22 295), oklch(0.65 0.2 255))",
+                }}
+              >
+                <Sparkles className="h-7 w-7" />
+              </div>
+              <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-[oklch(0.45_0.18_290)]">
+                AI-sammanfattning
+              </p>
+              <h2 className="mt-4 font-display text-4xl tracking-[-0.035em] text-[oklch(0.18_0.02_280)] sm:text-5xl md:text-[3.25rem] md:leading-[1.05]">
+                Som att ha en analytiker i fickan.
+              </h2>
+              <p className="mt-5 max-w-md text-lg leading-[1.6] text-[oklch(0.3_0.03_280)]">
+                Få veckans viktigaste händelser sammanfattade på svenska — utan jargong, utan grafer att tolka.
+              </p>
+            </div>
+
+            <div className="lg:col-span-7">
+              <div className="rounded-2xl border border-white/60 bg-white/70 p-7 shadow-[0_20px_50px_-20px_rgba(15,23,42,0.25)] backdrop-blur-xl sm:p-9 dark:bg-background/40">
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-[oklch(0.62_0.22_295)]" />
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[oklch(0.45_0.18_290)]">
+                    Denna vecka
+                  </p>
+                </div>
+                <p className="mt-5 text-2xl font-medium leading-[1.4] tracking-[-0.01em] text-[oklch(0.18_0.02_280)] sm:text-[1.7rem]">
+                  Intäkterna växte{" "}
+                  <span className="font-semibold text-success">+18,6 %</span> till{" "}
+                  <span className="font-semibold">1,85 mn kr</span>. Snittordervärdet ökade{" "}
+                  <span className="font-semibold text-success">+4,2 %</span>. Aurora Pro driver fortsatt störst andel av försäljningen.
+                </p>
+                <div className="mt-7 flex flex-wrap gap-2">
+                  {["Höj Meta-budget +30 %", "Fixa checkout iOS", "Skala blogg-format"].map(
+                    (t) => (
+                      <span
+                        key={t}
+                        className="rounded-full border border-white/70 bg-white/60 px-3 py-1.5 text-xs font-semibold text-[oklch(0.35_0.15_290)] shadow-sm dark:bg-background/30"
+                      >
+                        {t}
+                      </span>
+                    ),
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </section>
 
       <section id="features" className="mx-auto max-w-7xl px-6 py-24">
@@ -238,7 +258,7 @@ function Landing() {
           </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-3">
           {[
             {
               icon: Zap,
@@ -285,6 +305,30 @@ function Landing() {
               <h3 className="mt-6 text-xl font-bold tracking-tight">{f.title}</h3>
               <p className="mt-2.5 text-[0.975rem] leading-relaxed text-foreground/70">{f.body}</p>
             </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Premium integrations grid */}
+      <section id="channels" className="mx-auto max-w-7xl px-6 py-32">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">Integrationer</p>
+          <h2 className="mt-4 font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
+            Koppla allt du redan använder.
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-foreground/70">
+            Anslut dina kanaler på två klick. Vi sköter resten.
+          </p>
+        </div>
+        <div className="mx-auto mt-20 grid max-w-5xl grid-cols-2 gap-px overflow-hidden rounded-3xl border border-border/40 bg-border/40 shadow-[0_30px_80px_-30px_rgba(15,23,42,0.3)] sm:grid-cols-3 md:grid-cols-5">
+          {channels.map((c) => (
+            <div
+              key={c.name}
+              className="group flex flex-col items-center justify-center gap-3 bg-background/80 px-6 py-10 transition-colors hover:bg-background"
+            >
+              <c.Logo className="h-10 w-10 transition-transform group-hover:scale-105" />
+              <span className="text-xs font-medium text-foreground/70">{c.name}</span>
+            </div>
           ))}
         </div>
       </section>
