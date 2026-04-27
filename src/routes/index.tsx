@@ -222,11 +222,11 @@ function Landing() {
 
       <section id="features" className="mx-auto max-w-7xl px-6 py-24">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Byggt för klarhet</p>
-          <h2 className="mt-3 font-display text-5xl tracking-tight">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">Byggt för klarhet</p>
+          <h2 className="mt-4 font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
             Marknadsdata som vem som helst kan läsa.
           </h2>
-          <p className="mt-4 text-base text-muted-foreground">
+          <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-foreground/70">
             Oavsett om du är VD, CFO, kommunikatör eller ägare — få svaren utan att tolka grafer.
           </p>
         </div>
