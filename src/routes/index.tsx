@@ -295,22 +295,22 @@ function Landing() {
               Men om du driver en — gör vi dig till hjälten i rummet. Egen logotyp, färger,
               domän och kundinloggningar.
             </p>
-            <ul className="mt-8 space-y-3 text-sm">
+            <ul className="mt-8 space-y-3.5 text-[0.975rem]">
               {[
                 "Eget varumärke på dashboards och rapporter",
                 "Eget domännamn (rapport.dinbyra.se)",
                 "Obegränsat antal kundkonton",
                 "Volymrabatt från 10 kunder",
               ].map((f) => (
-                <li key={f} className="flex items-start gap-2">
-                  <Check className="mt-0.5 h-4 w-4 text-success" />
+                <li key={f} className="flex items-start gap-2.5 text-foreground/85">
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-success" />
                   <span>{f}</span>
                 </li>
               ))}
             </ul>
             <a
               href="#pricing"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background hover:opacity-90"
+              className="mt-10 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-[0.95rem] font-semibold text-background shadow-elevated transition-all hover:-translate-y-0.5 hover:shadow-glow"
             >
               Se byråpriser
               <ArrowRight className="h-4 w-4" />
