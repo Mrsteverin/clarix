@@ -96,41 +96,43 @@ function Landing() {
         </div>
       </header>
 
-      <section className="relative mx-auto max-w-7xl px-6 pb-24 pt-20 text-center sm:pt-32">
+      <section className="relative mx-auto max-w-7xl px-6 pb-24 pt-24 text-center sm:pt-36">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
+          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3.5 py-1.5 text-xs font-medium text-foreground/70 backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-success" />
             För kommunikatörer, ägare, VD:ar och CFO:er
           </div>
 
-          <h1 className="mx-auto mt-8 max-w-5xl font-display text-6xl leading-[1.02] text-foreground sm:text-7xl md:text-[5.75rem]">
+          <h1 className="mx-auto mt-10 max-w-5xl font-display text-6xl leading-[1.04] tracking-[-0.04em] text-foreground sm:text-7xl md:text-[5.75rem]">
             Förstå din marknadsföring
-            <br />
-            <span className="font-accent text-gradient-brand">på 30 sekunder.</span>
+            <span className="mt-2 block font-accent text-gradient-brand">
+              på 30 sekunder.
+            </span>
           </h1>
 
-          <p className="mx-auto mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+          <p className="mx-auto mt-9 max-w-2xl text-xl leading-relaxed text-foreground/70 sm:text-[1.375rem]">
             ClarityCloud förvandlar rådata från alla dina kanaler till klara, vackra rapporter
             — så enkelt att du inte behöver en byrå för att förstå dem.
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
             <Link
               to="/dashboard"
-              className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background shadow-elevated transition-all hover:opacity-90"
+              className="group inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-[0.95rem] font-semibold text-background shadow-elevated transition-all hover:-translate-y-0.5 hover:shadow-glow"
             >
               Öppna dashboarden
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link
               to="/reports"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-6 py-3 text-sm font-medium backdrop-blur hover:bg-muted"
+              className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[0.95rem] font-medium text-foreground/80 transition-colors hover:text-foreground"
             >
               Se en exempelrapport
+              <ArrowRight className="h-4 w-4 opacity-60" />
             </Link>
           </div>
         </motion.div>
