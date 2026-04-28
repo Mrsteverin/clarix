@@ -386,7 +386,7 @@ function Landing() {
 
 
       <section id="agencies" className="border-y border-border/40 bg-muted/20 py-24">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 px-6 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">För byråer</p>
             <h2 className="mt-4 font-display text-5xl leading-[1.02] tracking-[-0.035em] sm:text-[3.5rem]">
@@ -395,73 +395,59 @@ function Landing() {
                 className="mt-2 block bg-clip-text text-[2.4rem] text-transparent sm:text-[2.85rem]"
                 style={{
                   backgroundImage:
-                    "linear-gradient(105deg, #D26492 0%, #E2A079 35%, #E8B782 65%, #DCD27A 100%)",
+                    "linear-gradient(105deg, #E255A1 0%, #F2A46F 52%, #E9E56B 100%)",
                 }}
               >
                 White-labla om du vill
               </span>
             </h2>
-            <p className="mt-7 max-w-xl text-[1.075rem] leading-[1.7] text-foreground/80">
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-foreground/70">
               Vår filosofi: kunder ska inte behöva en byrå för att förstå sin marknadsföring.
               Men om du driver en — gör vi dig till hjälten i rummet. Egen logotyp, färger,
               domän och kundinloggningar.
             </p>
-            <ul className="mt-9 space-y-4 text-[0.975rem]">
+            <ul className="mt-9 space-y-3.5 text-[0.975rem]">
               {[
                 "Eget varumärke på dashboards och rapporter",
                 "Eget domännamn (rapport.dinbyra.se)",
                 "Obegränsat antal kundkonton",
                 "Volymrabatt från 10 kunder",
               ].map((f) => (
-                <li key={f} className="flex items-center gap-3 text-foreground/90">
+                <li key={f} className="flex items-start gap-2.5 text-foreground/85">
                   <span
-                    aria-hidden
-                    className="inline-block h-2 w-2 shrink-0 rounded-full shadow-[0_0_8px_-1px_rgba(210,100,146,0.5)]"
+                    className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full"
                     style={{
                       backgroundImage:
-                        "linear-gradient(105deg, #D26492 0%, #E2A079 50%, #DCD27A 100%)",
+                        "linear-gradient(105deg, #E255A1 0%, #F2A46F 52%, #E9E56B 100%)",
                     }}
                   />
                   <span>{f}</span>
                 </li>
               ))}
             </ul>
-            <div className="relative mt-12 inline-block">
+            <div className="relative mt-11 inline-block">
               <span
                 aria-hidden
-                className="pointer-events-none absolute -inset-4 -z-10 rounded-full opacity-50 blur-2xl transition-opacity duration-500 group-hover:opacity-70"
+                className="pointer-events-none absolute -inset-3 -z-10 rounded-full opacity-60 blur-2xl"
                 style={{
                   backgroundImage:
-                    "linear-gradient(105deg, #D26492 0%, #E2A079 50%, #DCD27A 100%)",
+                    "linear-gradient(105deg, #E255A1 0%, #F2A46F 52%, #E9E56B 100%)",
                 }}
               />
               <a
                 href="#pricing"
-                className="group inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-[0.95rem] font-semibold text-background shadow-[0_10px_30px_-10px_rgba(15,23,42,0.5)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(15,23,42,0.6)]"
+                className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-[0.95rem] font-semibold text-background shadow-elevated transition-all hover:-translate-y-0.5 hover:shadow-glow"
               >
                 Se byråpriser
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           </div>
           <div className="relative">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -inset-8 -z-10 rounded-[2.5rem] opacity-20 blur-3xl"
-              style={{
-                backgroundImage:
-                  "linear-gradient(135deg, #D26492 0%, #E2A079 50%, #DCD27A 100%)",
-              }}
-            />
-            <div className="rounded-2xl border border-border/50 bg-background/90 p-7 shadow-[0_30px_60px_-25px_rgba(15,23,42,0.25),0_12px_30px_-15px_rgba(15,23,42,0.15)] backdrop-blur-xl ring-1 ring-white/40">
-              <div className="flex items-center gap-3 border-b border-border/50 pb-5">
-                <div
-                  className="flex h-10 w-10 items-center justify-center rounded-lg text-white shadow-sm"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(135deg, #D26492 0%, #E2A079 50%, #DCD27A 100%)",
-                  }}
-                >
+            <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-brand opacity-15 blur-3xl" />
+            <div className="rounded-2xl border border-border/60 bg-background/80 p-6 shadow-elevated backdrop-blur">
+              <div className="flex items-center gap-3 border-b border-border/60 pb-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-brand text-white">
                   <Palette className="h-5 w-5" />
                 </div>
                 <div>
@@ -469,16 +455,16 @@ function Landing() {
                   <p className="text-xs text-muted-foreground">Eget varumärke aktiverat</p>
                 </div>
               </div>
-              <div className="mt-5 grid grid-cols-2 gap-3">
+              <div className="mt-4 grid grid-cols-2 gap-3">
                 {[
                   { l: "Klientkonton", v: "24" },
                   { l: "Aktiva rapporter", v: "112" },
                   { l: "Schemalagda PDF", v: "48/mån" },
                   { l: "Domänstatus", v: "Verifierad" },
                 ].map((s) => (
-                  <div key={s.l} className="rounded-xl border border-border/50 bg-muted/20 p-4">
+                  <div key={s.l} className="rounded-xl border border-border/60 bg-muted/30 p-3">
                     <p className="text-xs text-muted-foreground">{s.l}</p>
-                    <p className="mt-1.5 font-numeric text-2xl text-foreground">{s.v}</p>
+                    <p className="mt-1 font-numeric text-2xl text-foreground">{s.v}</p>
                   </div>
                 ))}
               </div>
