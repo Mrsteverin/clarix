@@ -4,6 +4,7 @@ import {
   Globe,
   MousePointerClick,
   Sparkles,
+  Target,
   TrendingUp,
 } from "lucide-react";
 import {
