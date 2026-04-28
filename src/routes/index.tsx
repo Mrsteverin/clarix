@@ -621,7 +621,7 @@ function Landing() {
                 className="font-accent bg-clip-text text-transparent"
                 style={{
                   backgroundImage:
-                    "linear-gradient(95deg, #E92D8B 0%, #F46A54 45%, #F39A1E 72%, #F7C400 100%)",
+                    "linear-gradient(95deg, #E8268F 0%, #E8268F 14%, #EE5C7A 32%, #F58040 52%, #FBB827 74%, #FFD60A 92%, #FFE34D 100%)",
                 }}
               >
                 snygga och tydliga.
