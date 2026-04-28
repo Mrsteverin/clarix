@@ -160,8 +160,8 @@ function Landing() {
       <section id="showcase" className="relative mx-auto max-w-7xl px-6 py-32 space-y-40 sm:py-40 sm:space-y-48">
         <Showcase
           eyebrow="AI-insikter"
-          title="Slipp tolka grafer."
-          body="AI sammanfattar utvecklingen på enkel svenska och föreslår vad du ska göra härnäst."
+          title="Sluta tolka otydliga grafer och tårtdiagram."
+          body="Vår AI skapar pedagogiska, tydliga och enkla sammanfattningar på svenska, som du förstår och kan ta action på."
           visual={<AiInsightsVisual />}
         />
         <Showcase
