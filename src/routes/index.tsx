@@ -125,7 +125,7 @@ function Landing() {
               className="mt-3 block bg-clip-text font-accent text-transparent"
               style={{
                 backgroundImage:
-                  "linear-gradient(95deg, #E8268F 0%, #E8268F 14%, #EE5C7A 32%, #F58040 52%, #FBB827 74%, #FFD60A 92%, #FFE34D 100%)",
+                  "linear-gradient(95deg, #E92D8B 0%, #F46A54 45%, #F39A1E 72%, #F7C400 100%)",
               }}
             >
               på 30 sekunder.
@@ -401,7 +401,7 @@ function Landing() {
                 className="block bg-clip-text text-transparent"
                 style={{
                   backgroundImage:
-                    "linear-gradient(95deg, #E8268F 0%, #E8268F 18%, #EE5C7A 38%, #F58040 62%, #F9A82E 82%, #F4C534 100%)",
+                    "linear-gradient(95deg, #E92D8B 0%, #F46A54 45%, #F39A1E 72%, #F7C400 100%)",
                 }}
               >
                 White-labla om du vill
@@ -621,7 +621,7 @@ function Landing() {
                 className="font-accent bg-clip-text text-transparent"
                 style={{
                   backgroundImage:
-                    "linear-gradient(95deg, #E8268F 0%, #E8268F 14%, #EE5C7A 32%, #F58040 52%, #FBB827 74%, #FFD60A 92%, #FFE34D 100%)",
+                    "linear-gradient(95deg, #E92D8B 0%, #F46A54 45%, #F39A1E 72%, #F7C400 100%)",
                 }}
               >
                 snygga och tydliga.
