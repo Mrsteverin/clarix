@@ -332,50 +332,80 @@ function Landing() {
           </p>
         </div>
 
-        {/* Elegant container with subtle lavender-blue gradient */}
-        <div
-          className="relative mx-auto mt-14 max-w-5xl overflow-hidden rounded-[28px] border border-[rgba(15,23,42,0.05)] p-6 sm:p-10"
-          style={{
-            background:
-              "linear-gradient(180deg, oklch(0.985 0.012 270) 0%, oklch(0.98 0.014 245) 100%)",
-            boxShadow:
-              "0 1px 2px rgba(15,23,42,0.04), 0 24px 60px -28px rgba(15,23,42,0.18)",
-          }}
-        >
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 opacity-70"
-            style={{
-              background:
-                "radial-gradient(60% 50% at 20% 0%, oklch(0.97 0.025 280) 0%, transparent 70%), radial-gradient(55% 50% at 85% 100%, oklch(0.975 0.022 235) 0%, transparent 72%)",
-            }}
-          />
-          <div className="relative grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-5">
-            {channels.map((c, i) => (
-              <motion.a
-                key={c.name}
+        {/* Featured integrations — large premium cards */}
+        <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { name: "Google Analytics 4", label: "Webbtrafik", Logo: GoogleAnalyticsLogo, badge: "Mest vald" },
+            { name: "Search Console", label: "SEO", Logo: GoogleSearchConsoleLogo },
+            { name: "Google Ads", label: "Annonser", Logo: GoogleAdsLogo },
+            { name: "Meta", label: "Annonser", Logo: MetaLogo },
+          ].map((c, i) => (
+            <motion.div
+              key={c.name}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.4, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
+              className="group relative flex flex-col rounded-3xl border border-[rgba(15,23,42,0.06)] bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(15,23,42,0.12)] transition-all duration-[240ms] ease-out hover:-translate-y-1 hover:border-[rgba(15,23,42,0.10)] hover:shadow-[0_8px_24px_-6px_rgba(15,23,42,0.10),0_28px_56px_-20px_rgba(15,23,42,0.18)]"
+            >
+              {c.badge && (
+                <span className="absolute right-4 top-4 inline-flex items-center rounded-full bg-accent/10 px-2 py-0.5 text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-accent">
+                  {c.badge}
+                </span>
+              )}
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[rgba(15,23,42,0.06)] bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
+                <c.Logo className="h-7 w-7" />
+              </div>
+              <div className="mt-6">
+                <h3 className="text-[1.05rem] font-semibold tracking-tight text-foreground">{c.name}</h3>
+                <p className="mt-1 text-[0.82rem] font-medium uppercase tracking-[0.12em] text-foreground/55">
+                  {c.label}
+                </p>
+              </div>
+              <a
                 href="#pricing"
-                initial={{ opacity: 0, y: 8 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.35, delay: i * 0.03, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative flex flex-col items-center justify-between gap-3 rounded-2xl border border-[rgba(15,23,42,0.06)] bg-white/85 px-4 py-5 text-center backdrop-blur-sm shadow-[0_1px_2px_-1px_rgba(15,23,42,0.04),0_6px_18px_-10px_rgba(15,23,42,0.10)] transition-all duration-[240ms] ease-out hover:-translate-y-1 hover:border-[rgba(15,23,42,0.10)] hover:bg-white hover:shadow-[0_8px_18px_-4px_rgba(15,23,42,0.08),0_24px_48px_-16px_rgba(15,23,42,0.16)]"
+                className="mt-7 inline-flex h-10 items-center justify-center gap-1.5 rounded-xl bg-foreground px-4 text-sm font-semibold text-background transition-all duration-[200ms] hover:bg-foreground/90"
               >
-                {c.badge && (
-                  <span className="absolute right-2 top-2 inline-flex items-center rounded-full bg-foreground/[0.06] px-1.5 py-0.5 text-[0.58rem] font-semibold uppercase tracking-[0.08em] text-foreground/70">
-                    {c.badge}
-                  </span>
-                )}
-                <c.Logo className="mt-2 h-10 w-10 transition-transform duration-[240ms] ease-out group-hover:scale-[1.04]" />
-                <span className="text-[0.875rem] font-semibold tracking-tight text-foreground/90">
-                  {c.name}
-                </span>
-                <span className="inline-flex h-4 items-center gap-0.5 text-[0.7rem] font-semibold tracking-tight text-accent opacity-0 transition-opacity duration-[220ms] group-hover:opacity-100">
-                  Koppla <ArrowRight className="h-3 w-3" />
-                </span>
-              </motion.a>
-            ))}
-          </div>
+                Koppla <ArrowRight className="h-3.5 w-3.5" />
+              </a>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Secondary integrations — smaller cards */}
+        <div className="mx-auto mt-6 grid max-w-6xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+          {[
+            { name: "LinkedIn", label: "Annonser", Logo: LinkedInLogo },
+            { name: "YouTube", label: "Video", Logo: YouTubeLogo },
+            { name: "Shopify", label: "E-handel", Logo: ShopifyLogo },
+            { name: "Matomo", label: "Webbtrafik", Logo: MatomoLogo },
+            { name: "Excel / CSV", label: "Import", Logo: ExcelLogo },
+          ].map((c, i) => (
+            <motion.div
+              key={c.name}
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.35, delay: i * 0.03, ease: [0.22, 1, 0.36, 1] }}
+              className="group relative flex items-center gap-4 rounded-3xl border border-[rgba(15,23,42,0.06)] bg-white p-5 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_-14px_rgba(15,23,42,0.10)] transition-all duration-[240ms] ease-out hover:-translate-y-0.5 hover:border-[rgba(15,23,42,0.10)] hover:shadow-[0_6px_18px_-6px_rgba(15,23,42,0.10),0_20px_40px_-18px_rgba(15,23,42,0.16)]"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[rgba(15,23,42,0.06)] bg-white">
+                <c.Logo className="h-6 w-6" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h4 className="truncate text-sm font-semibold tracking-tight text-foreground">{c.name}</h4>
+                <p className="mt-0.5 text-[0.7rem] font-medium uppercase tracking-[0.1em] text-foreground/55">
+                  {c.label}
+                </p>
+              </div>
+              <a
+                href="#pricing"
+                className="inline-flex h-8 shrink-0 items-center justify-center gap-1 rounded-lg border border-[rgba(15,23,42,0.10)] bg-white px-3 text-[0.75rem] font-semibold text-foreground transition-all duration-[200ms] hover:border-foreground/30 hover:bg-foreground hover:text-background"
+              >
+                Koppla
+              </a>
+            </motion.div>
+          ))}
         </div>
 
         <div className="mx-auto mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-foreground/65">
