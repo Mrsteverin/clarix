@@ -79,7 +79,7 @@ function Landing() {
       <header className="sticky top-0 z-40 border-b border-border/40 bg-background/60 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           <Link to="/" className="flex items-center">
-            <img src={clarixLogo} alt="Clarix" className="h-9 w-auto" />
+            <img src={clarixLogo} alt="Clarix" className="h-14 w-auto" />
           </Link>
           <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
             <a href="#features" className="hover:text-foreground">Funktioner</a>
