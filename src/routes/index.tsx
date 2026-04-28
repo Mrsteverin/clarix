@@ -398,7 +398,7 @@ function Landing() {
                     "linear-gradient(105deg, #E255A1 0%, #F2A46F 52%, #E9E56B 100%)",
                 }}
               >
-                White-labela allt.
+                White-labla om du vill
               </span>
             </h2>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-foreground/70">
