@@ -50,18 +50,38 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-const channels: { name: string; category: string; Logo: (p: { className?: string }) => React.ReactElement }[] = [
-  { name: "Google Analytics 4", category: "Analytics", Logo: GoogleAnalyticsLogo },
-  { name: "Search Console", category: "SEO", Logo: GoogleSearchConsoleLogo },
-  { name: "Google Ads", category: "Ads", Logo: GoogleAdsLogo },
-  { name: "Google Business", category: "Local", Logo: GoogleBusinessLogo },
-  { name: "Meta", category: "Social Ads", Logo: MetaLogo },
-  { name: "LinkedIn", category: "Social Ads", Logo: LinkedInLogo },
-  { name: "YouTube", category: "Video", Logo: YouTubeLogo },
-  { name: "Shopify", category: "E-handel", Logo: ShopifyLogo },
-  { name: "Matomo", category: "Analytics", Logo: MatomoLogo },
-  { name: "Excel / CSV", category: "Data", Logo: ExcelLogo },
+type Channel = {
+  name: string;
+  category: string;
+  badgeTone: "popular" | "analytics" | "ads" | "social" | "seo" | "ecom" | "video" | "data" | "local";
+  glow?: string;
+  Logo: (p: { className?: string }) => React.ReactElement;
+};
+
+const channels: Channel[] = [
+  { name: "Google Analytics 4", category: "Popular", badgeTone: "popular", glow: "rgba(245, 158, 11, 0.32)", Logo: GoogleAnalyticsLogo },
+  { name: "Search Console", category: "SEO", badgeTone: "seo", Logo: GoogleSearchConsoleLogo },
+  { name: "Google Ads", category: "Ads", badgeTone: "ads", Logo: GoogleAdsLogo },
+  { name: "Google Business", category: "Local", badgeTone: "local", Logo: GoogleBusinessLogo },
+  { name: "Meta", category: "Social Ads", badgeTone: "social", glow: "rgba(37, 99, 235, 0.32)", Logo: MetaLogo },
+  { name: "LinkedIn", category: "Social Ads", badgeTone: "social", Logo: LinkedInLogo },
+  { name: "YouTube", category: "Video", badgeTone: "video", Logo: YouTubeLogo },
+  { name: "Shopify", category: "E-handel", badgeTone: "ecom", glow: "rgba(16, 185, 129, 0.32)", Logo: ShopifyLogo },
+  { name: "Matomo", category: "Analytics", badgeTone: "analytics", Logo: MatomoLogo },
+  { name: "Excel / CSV", category: "Data", badgeTone: "data", Logo: ExcelLogo },
 ];
+
+const badgeStyles: Record<Channel["badgeTone"], string> = {
+  popular: "bg-amber-50 text-amber-700 ring-1 ring-amber-200/70",
+  analytics: "bg-violet-50 text-violet-700 ring-1 ring-violet-200/70",
+  ads: "bg-sky-50 text-sky-700 ring-1 ring-sky-200/70",
+  social: "bg-blue-50 text-blue-700 ring-1 ring-blue-200/70",
+  seo: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200/70",
+  ecom: "bg-green-50 text-green-700 ring-1 ring-green-200/70",
+  video: "bg-rose-50 text-rose-700 ring-1 ring-rose-200/70",
+  data: "bg-slate-100 text-slate-700 ring-1 ring-slate-200/80",
+  local: "bg-teal-50 text-teal-700 ring-1 ring-teal-200/70",
+};
 
 function Landing() {
   return (
