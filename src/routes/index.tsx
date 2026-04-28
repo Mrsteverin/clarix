@@ -125,7 +125,7 @@ function Landing() {
               className="mt-3 block bg-clip-text font-accent text-transparent"
               style={{
                 backgroundImage:
-                  "linear-gradient(95deg, #E92D8B 0%, #F46A54 45%, #F39A1E 72%, #FFF249 100%)",
+                  "linear-gradient(95deg, #E92D8B 0%, #F46A54 35%, #F39A1E 60%, #FFF249 95%)",
               }}
             >
               på 30 sekunder.
@@ -401,7 +401,7 @@ function Landing() {
                 className="block bg-clip-text text-transparent"
                 style={{
                   backgroundImage:
-                    "linear-gradient(95deg, #E92D8B 0%, #F46A54 45%, #F39A1E 72%, #FFF249 100%)",
+                    "linear-gradient(95deg, #E92D8B 0%, #F46A54 35%, #F39A1E 60%, #FFF249 95%)",
                 }}
               >
                 White-labla om du vill
