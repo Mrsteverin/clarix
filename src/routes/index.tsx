@@ -18,6 +18,7 @@ import {
   SeoChannelsVisual,
 } from "@/components/landing-showcase";
 import { ThemeToggle } from "@/components/theme-toggle";
+import clarixLogo from "@/assets/clarix-logo.png";
 import {
   GoogleAnalyticsLogo,
   GoogleSearchConsoleLogo,
@@ -77,11 +78,8 @@ function Landing() {
 
       <header className="sticky top-0 z-40 border-b border-border/40 bg-background/60 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-brand shadow-glow">
-              <Sparkles className="h-4 w-4 text-white" />
-            </div>
-            <span className="font-display text-xl">Clarix</span>
+          <Link to="/" className="flex items-center">
+            <img src={clarixLogo} alt="Clarix" className="h-9 w-auto" />
           </Link>
           <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
             <a href="#features" className="hover:text-foreground">Funktioner</a>
@@ -652,8 +650,8 @@ function Landing() {
       <footer className="border-t border-border/40 py-8">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 text-sm text-muted-foreground sm:flex-row">
           <div className="flex items-center gap-2">
-            <Sparkles className="h-4 w-4" />
-            <span>© 2025 Clarix</span>
+            <img src={clarixLogo} alt="Clarix" className="h-5 w-auto" />
+            <span>© 2025</span>
           </div>
           <div className="flex gap-6">
             <a href="#" className="hover:text-foreground">Integritet</a>
