@@ -392,7 +392,7 @@ function Landing() {
             <h2 className="mt-4 font-display text-5xl leading-[1.02] tracking-[-0.035em] sm:text-[3.5rem]">
               Driver du en byrå?
               <span
-                className="mt-2 block bg-clip-text text-transparent"
+                className="mt-2 block bg-clip-text text-[2.4rem] text-transparent sm:text-[2.85rem]"
                 style={{
                   backgroundImage:
                     "linear-gradient(105deg, #E255A1 0%, #F2A46F 52%, #E9E56B 100%)",
