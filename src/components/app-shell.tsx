@@ -34,7 +34,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-brand shadow-glow">
             <Sparkles className="h-4 w-4 text-white" />
           </div>
-          <span className="font-display text-xl">ClarityCloud</span>
+          <span className="font-display text-xl">Clarix</span>
         </div>
 
         <nav className="flex-1 space-y-1 px-3 py-4">
@@ -90,7 +90,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-brand">
               <Sparkles className="h-4 w-4 text-white" />
             </div>
-            <span className="font-display text-lg">ClarityCloud</span>
+            <span className="font-display text-lg">Clarix</span>
           </div>
 
           <div className="relative hidden max-w-md flex-1 md:block">

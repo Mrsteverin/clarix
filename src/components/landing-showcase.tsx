@@ -87,7 +87,7 @@ export function DashboardKpiVisual() {
     { l: "ROAS", v: "4,37×", d: "+23 %", icon: Target },
   ];
   return (
-    <VisualFrame label="claritycloud.se/oversikt">
+    <VisualFrame label="clarix.se/oversikt">
       <div className="space-y-5 p-7">
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           {kpis.map((k) => (
@@ -147,7 +147,7 @@ export function AiInsightsVisual() {
     warning: "bg-warning/20 text-warning-foreground",
   };
   return (
-    <VisualFrame label="claritycloud.se/ai-insikter">
+    <VisualFrame label="clarix.se/ai-insikter">
       <div className="space-y-3 p-7">
         <div className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-accent/15 to-transparent px-4 py-3">
           <Sparkles className="h-4 w-4 text-accent" />
@@ -186,7 +186,7 @@ export function SeoChannelsVisual() {
     { name: "Direkt", icon: Globe, value: "24 105", delta: "+3 %", bar: 38 },
   ];
   return (
-    <VisualFrame label="claritycloud.se/kanaler">
+    <VisualFrame label="clarix.se/kanaler">
       <div className="space-y-5 p-7">
         <div className="flex items-center justify-between">
           <p className="text-base font-semibold">Trafik & konvertering per kanal</p>

@@ -35,7 +35,7 @@ import {
 export const Route = createFileRoute("/connections")({
   head: () => ({
     meta: [
-      { title: "Anslutningar — ClarityCloud" },
+      { title: "Anslutningar — Clarix" },
       {
         name: "description",
         content:
@@ -207,7 +207,7 @@ function ConnectionsPage() {
 
               <div className="mt-7 flex items-center gap-2 text-sm font-medium text-foreground/75">
                 <ShieldCheck className="h-4 w-4 text-success" />
-                ClarityCloud läser endast statistik. Vi publicerar aldrig innehåll.
+                Clarix läser endast statistik. Vi publicerar aldrig innehåll.
               </div>
             </div>
 
@@ -580,7 +580,7 @@ function ConnectModal({
                 </h2>
                 <p className="mt-1 text-sm text-muted-foreground">
                   för att fortsätta till{" "}
-                  <span className="font-medium text-foreground">ClarityCloud</span>
+                  <span className="font-medium text-foreground">Clarix</span>
                 </p>
 
                 <div className="mt-5 space-y-1.5">
@@ -640,7 +640,7 @@ function ConnectModal({
                 <div className="mt-5 flex items-start gap-2 rounded-xl border border-border/60 bg-muted/30 p-3 text-xs text-muted-foreground">
                   <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-success" />
                   <p>
-                    ClarityCloud läser endast statistik. Vi publicerar aldrig innehåll och kan
+                    Clarix läser endast statistik. Vi publicerar aldrig innehåll och kan
                     inte ändra eller radera data.
                   </p>
                 </div>
@@ -657,13 +657,13 @@ function ConnectModal({
                 className="mt-6"
               >
                 <h2 className="font-display text-2xl leading-tight">
-                  ClarityCloud vill ha åtkomst till ditt {integration.provider}-konto
+                  Clarix vill ha åtkomst till ditt {integration.provider}-konto
                 </h2>
                 <p className="mt-1 truncate text-sm text-muted-foreground">{chosenAccount}</p>
 
                 <div className="mt-5 rounded-xl border border-border bg-muted/30 p-3">
                   <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                    Det här tillåter ClarityCloud att:
+                    Det här tillåter Clarix att:
                   </p>
                   <ul className="mt-3 space-y-2.5">
                     {integration.scopes.map((scope) => (
@@ -690,7 +690,7 @@ function ConnectModal({
                 <div className="mt-4 flex items-start gap-2 rounded-xl border border-border/60 bg-background p-3 text-xs text-muted-foreground">
                   <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-success" />
                   <p>
-                    ClarityCloud läser endast statistik. Vi publicerar aldrig innehåll. Du
+                    Clarix läser endast statistik. Vi publicerar aldrig innehåll. Du
                     kan dra tillbaka åtkomsten när som helst.
                   </p>
                 </div>
@@ -890,7 +890,7 @@ function providerHost(provider: string) {
     TikTok: "business-api.tiktok.com",
     Shopify: "shopify.com/admin/oauth",
     WooCommerce: "wordpress.org/wp-admin",
-    ClarityCloud: "claritycloud.se",
+    Clarix: "clarix.se",
   };
   return map[provider] ?? provider.toLowerCase() + ".com";
 }
@@ -1024,7 +1024,7 @@ function InviteForm({
         <Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-foreground" />
         <p>
           Länken är giltig i 7 dagar och kan endast användas en gång. Mottagaren behöver
-          inget ClarityCloud-konto.
+          inget Clarix-konto.
         </p>
       </div>
 

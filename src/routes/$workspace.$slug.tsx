@@ -55,10 +55,10 @@ export const Route = createFileRoute("/$workspace/$slug")({
   }),
   head: ({ params }) => ({
     meta: [
-      { title: `Rapport — ${params.workspace} | ClarityCloud` },
+      { title: `Rapport — ${params.workspace} | Clarix` },
       {
         name: "description",
-        content: `Live marknadsrapport för ${params.workspace} — drivs av ClarityCloud.`,
+        content: `Live marknadsrapport för ${params.workspace} — drivs av Clarix.`,
       },
       { name: "robots", content: "noindex, nofollow" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
@@ -95,7 +95,7 @@ export const Route = createFileRoute("/$workspace/$slug")({
         to="/"
         className="mt-6 inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background hover:opacity-90"
       >
-        Till ClarityCloud
+        Till Clarix
       </Link>
     </CenteredCard>
   ),
@@ -269,7 +269,7 @@ function PasswordGate({ link, onUnlock }: { link: ShareLink; onUnlock: () => voi
         </button>
         <div className="mt-6 flex items-center gap-2 text-xs text-muted-foreground">
           <ShieldCheck className="h-3.5 w-3.5" />
-          Säker, krypterad anslutning. Drivs av ClarityCloud.
+          Säker, krypterad anslutning. Drivs av Clarix.
         </div>
       </motion.form>
     </div>
@@ -544,7 +544,7 @@ function BrandedReport({ link }: { link: ShareLink }) {
           className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground"
         >
           <Sparkles className="h-3.5 w-3.5" />
-          Drivs av <span className="font-medium text-foreground">ClarityCloud</span>
+          Drivs av <span className="font-medium text-foreground">Clarix</span>
         </Link>
       </footer>
     </div>
