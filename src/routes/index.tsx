@@ -328,17 +328,17 @@ function Landing() {
             Koppla allt du redan använder.
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-foreground/70">
-            Klart på minuter. Vi sköter resten.
+            Koppla på några minuter. Vi hämtar resten automatiskt.
           </p>
         </div>
 
         {/* Featured integrations — large premium cards */}
-        <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto mt-20 grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { name: "Google Analytics 4", label: "Webbtrafik", Logo: GoogleAnalyticsLogo, badge: "Mest vald" },
+            { name: "Google Analytics 4", label: "WEBBTRAFIK", Logo: GoogleAnalyticsLogo, badge: "Mest vald", primary: true },
             { name: "Search Console", label: "SEO", Logo: GoogleSearchConsoleLogo },
-            { name: "Google Ads", label: "Annonser", Logo: GoogleAdsLogo },
-            { name: "Meta", label: "Annonser", Logo: MetaLogo },
+            { name: "Google Ads", label: "ANNONSER", Logo: GoogleAdsLogo },
+            { name: "Meta Ads", label: "ANNONSER", Logo: MetaLogo },
           ].map((c, i) => (
             <motion.div
               key={c.name}
@@ -346,7 +346,7 @@ function Landing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.4, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative flex flex-col rounded-3xl border border-[rgba(15,23,42,0.06)] bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(15,23,42,0.12)] transition-all duration-[240ms] ease-out hover:-translate-y-1 hover:border-[rgba(15,23,42,0.10)] hover:shadow-[0_8px_24px_-6px_rgba(15,23,42,0.10),0_28px_56px_-20px_rgba(15,23,42,0.18)]"
+              className="group relative flex flex-col rounded-3xl border border-[rgba(15,23,42,0.06)] bg-white p-8 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(15,23,42,0.12)] transition-all duration-[240ms] ease-out hover:-translate-y-1 hover:border-[rgba(15,23,42,0.10)] hover:shadow-[0_8px_24px_-6px_rgba(15,23,42,0.10),0_28px_56px_-20px_rgba(15,23,42,0.18)]"
             >
               {c.badge && (
                 <span className="absolute right-4 top-4 inline-flex items-center rounded-full bg-accent/10 px-2 py-0.5 text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-accent">
@@ -356,15 +356,19 @@ function Landing() {
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[rgba(15,23,42,0.06)] bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
                 <c.Logo className="h-7 w-7" />
               </div>
-              <div className="mt-6">
+              <div className="mt-7">
                 <h3 className="text-[1.05rem] font-semibold tracking-tight text-foreground">{c.name}</h3>
-                <p className="mt-1 text-[0.82rem] font-medium uppercase tracking-[0.12em] text-foreground/55">
+                <p className="mt-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-foreground/50">
                   {c.label}
                 </p>
               </div>
               <a
                 href="#pricing"
-                className="mt-7 inline-flex h-10 items-center justify-center gap-1.5 rounded-xl bg-foreground px-4 text-sm font-semibold text-background transition-all duration-[200ms] hover:bg-foreground/90"
+                className={
+                  c.primary
+                    ? "mt-8 inline-flex h-10 items-center justify-center gap-1.5 rounded-xl bg-foreground px-4 text-sm font-semibold text-background transition-all duration-[200ms] hover:bg-foreground/90"
+                    : "mt-8 inline-flex h-10 items-center justify-center gap-1.5 rounded-xl border border-[rgba(15,23,42,0.12)] bg-white px-4 text-sm font-semibold text-foreground transition-all duration-[200ms] hover:border-foreground/30 hover:bg-foreground/[0.03]"
+                }
               >
                 Koppla <ArrowRight className="h-3.5 w-3.5" />
               </a>
@@ -373,13 +377,13 @@ function Landing() {
         </div>
 
         {/* Secondary integrations — smaller cards */}
-        <div className="mx-auto mt-6 grid max-w-6xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="mx-auto mt-[60px] grid max-w-6xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {[
-            { name: "LinkedIn", label: "Annonser", Logo: LinkedInLogo },
-            { name: "YouTube", label: "Video", Logo: YouTubeLogo },
-            { name: "Shopify", label: "E-handel", Logo: ShopifyLogo },
-            { name: "Matomo", label: "Webbtrafik", Logo: MatomoLogo },
-            { name: "Excel / CSV", label: "Import", Logo: ExcelLogo },
+            { name: "LinkedIn", label: "ANNONSER", Logo: LinkedInLogo },
+            { name: "YouTube", label: "VIDEO", Logo: YouTubeLogo },
+            { name: "Shopify", label: "E-HANDEL", Logo: ShopifyLogo },
+            { name: "Matomo", label: "WEBBTRAFIK", Logo: MatomoLogo },
+            { name: "Excel / CSV", label: "IMPORT", Logo: ExcelLogo },
           ].map((c, i) => (
             <motion.div
               key={c.name}
@@ -387,20 +391,20 @@ function Landing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.35, delay: i * 0.03, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative flex items-center gap-4 rounded-3xl border border-[rgba(15,23,42,0.06)] bg-white p-5 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_-14px_rgba(15,23,42,0.10)] transition-all duration-[240ms] ease-out hover:-translate-y-0.5 hover:border-[rgba(15,23,42,0.10)] hover:shadow-[0_6px_18px_-6px_rgba(15,23,42,0.10),0_20px_40px_-18px_rgba(15,23,42,0.16)]"
+              className="group relative flex items-center gap-4 rounded-3xl border border-[rgba(15,23,42,0.06)] bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_-14px_rgba(15,23,42,0.10)] transition-all duration-[240ms] ease-out hover:-translate-y-0.5 hover:border-[rgba(15,23,42,0.10)] hover:shadow-[0_6px_18px_-6px_rgba(15,23,42,0.10),0_20px_40px_-18px_rgba(15,23,42,0.16)]"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[rgba(15,23,42,0.06)] bg-white">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[rgba(15,23,42,0.06)] bg-white">
                 <c.Logo className="h-6 w-6" />
               </div>
               <div className="min-w-0 flex-1">
                 <h4 className="truncate text-sm font-semibold tracking-tight text-foreground">{c.name}</h4>
-                <p className="mt-0.5 text-[0.7rem] font-medium uppercase tracking-[0.1em] text-foreground/55">
+                <p className="mt-1 truncate text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-foreground/50">
                   {c.label}
                 </p>
               </div>
               <a
                 href="#pricing"
-                className="inline-flex h-8 shrink-0 items-center justify-center gap-1 rounded-lg border border-[rgba(15,23,42,0.10)] bg-white px-3 text-[0.75rem] font-semibold text-foreground transition-all duration-[200ms] hover:border-foreground/30 hover:bg-foreground hover:text-background"
+                className="inline-flex h-8 shrink-0 items-center justify-center gap-1 rounded-lg border border-[rgba(15,23,42,0.10)] bg-white px-3 text-[0.75rem] font-semibold text-foreground/80 transition-all duration-[200ms] hover:border-foreground/25 hover:text-foreground"
               >
                 Koppla
               </a>
@@ -408,11 +412,11 @@ function Landing() {
           ))}
         </div>
 
-        <div className="mx-auto mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-foreground/65">
+        <div className="mx-auto mt-[88px] flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[0.8rem] text-foreground/60">
           {["Säker OAuth", "Ingen kod", "Klar på 2 minuter"].map((t) => (
             <span key={t} className="inline-flex items-center gap-1.5">
-              <Check className="h-4 w-4 text-emerald-600" />
-              <span className="font-medium">{t}</span>
+              <Check className="h-3.5 w-3.5 text-emerald-600" />
+              <span className="font-medium tracking-tight">{t}</span>
             </span>
           ))}
         </div>
