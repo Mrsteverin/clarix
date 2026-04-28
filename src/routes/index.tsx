@@ -395,7 +395,7 @@ function Landing() {
                 className="mt-2 block bg-clip-text text-transparent"
                 style={{
                   backgroundImage:
-                    "linear-gradient(105deg, #E255A1 0%, #F2A46F 52%, #E9E56B 100%)",
+                    "linear-gradient(100deg, #E83A8E 0%, #EC6B7A 28%, #F58A4F 55%, #F9B73C 78%, #FCD931 100%)",
                 }}
               >
                 White-labla om du vill
@@ -418,7 +418,7 @@ function Landing() {
                     className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full"
                     style={{
                       backgroundImage:
-                        "linear-gradient(105deg, #E255A1 0%, #F2A46F 52%, #E9E56B 100%)",
+                        "linear-gradient(100deg, #E83A8E 0%, #F58A4F 55%, #FCD931 100%)",
                     }}
                   />
                   <span>{f}</span>
