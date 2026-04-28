@@ -46,7 +46,7 @@ export function generateDashboardPdf(opts: { dateRange: string; company: string 
   doc.setTextColor(15, 23, 42);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(16);
-  doc.text("ClarityCloud", margin + 28, y + 12);
+  doc.text("Clarix", margin + 28, y + 12);
   doc.setFont("helvetica", "normal");
   doc.setFontSize(9);
   doc.setTextColor(100, 116, 139);
@@ -233,9 +233,9 @@ export function generateDashboardPdf(opts: { dateRange: string; company: string 
     doc.setFont("helvetica", "normal");
     doc.setFontSize(8);
     doc.setTextColor(148, 163, 184);
-    doc.text(`ClarityCloud · ${opts.company} · ${opts.dateRange}`, margin, pageH - 20);
+    doc.text(`Clarix · ${opts.company} · ${opts.dateRange}`, margin, pageH - 20);
     doc.text(`Sida ${i} av ${pageCount}`, pageW - margin, pageH - 20, { align: "right" });
   }
 
-  doc.save(`claritycloud-rapport-${new Date().toISOString().slice(0, 10)}.pdf`);
+  doc.save(`clarix-rapport-${new Date().toISOString().slice(0, 10)}.pdf`);
 }

@@ -13,7 +13,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     setIsDark(next);
     document.documentElement.classList.toggle("dark", next);
     try {
-      localStorage.setItem("claritycloud-theme", next ? "dark" : "light");
+      localStorage.setItem("clarix-theme", next ? "dark" : "light");
     } catch {}
   };
 

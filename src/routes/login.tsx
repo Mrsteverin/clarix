@@ -6,8 +6,8 @@ import { ArrowRight, Github, Sparkles } from "lucide-react";
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "Logga in — ClarityCloud" },
-      { name: "description", content: "Logga in på ditt ClarityCloud-konto." },
+      { title: "Logga in — Clarix" },
+      { name: "description", content: "Logga in på ditt Clarix-konto." },
     ],
   }),
   component: LoginPage,
@@ -25,7 +25,7 @@ function LoginPage() {
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-brand shadow-glow">
           <Sparkles className="h-4 w-4 text-white" />
         </div>
-        <span className="font-display text-xl">ClarityCloud</span>
+        <span className="font-display text-xl">Clarix</span>
       </Link>
 
       <div className="mx-auto flex min-h-screen max-w-md flex-col justify-center px-6 py-20">
@@ -107,7 +107,7 @@ function LoginPage() {
           </form>
 
           <p className="mt-6 text-center text-sm text-muted-foreground">
-            {mode === "signin" ? "Ny på ClarityCloud?" : "Har du redan ett konto?"}{" "}
+            {mode === "signin" ? "Ny på Clarix?" : "Har du redan ett konto?"}{" "}
             <button
               onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
               className="font-medium text-foreground hover:underline"

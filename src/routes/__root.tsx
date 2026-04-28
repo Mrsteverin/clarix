@@ -30,26 +30,26 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ClarityCloud - När du vill ha rapporter med klarhet" },
+      { title: "Clarix - När du vill ha rapporter med klarhet" },
       {
         name: "description",
         content:
           "FlowReport förvandlar dina marknadskanaler till snygga, presentationsfärdiga rapporter. Mindre brus. Mer klarhet.",
       },
       { name: "author", content: "FlowReport" },
-      { property: "og:title", content: "ClarityCloud - När du vill ha rapporter med klarhet" },
+      { property: "og:title", content: "Clarix - När du vill ha rapporter med klarhet" },
       {
         property: "og:description",
         content: "Anslut dina kanaler och få eleganta dashboards och kundrapporter på sekunder.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "ClarityCloud - När du vill ha rapporter med klarhet" },
+      { name: "twitter:title", content: "Clarix - När du vill ha rapporter med klarhet" },
       { name: "description", content: "the place to be när du vill få tydliga, snygga och enklar rapporter." },
       { property: "og:description", content: "the place to be när du vill få tydliga, snygga och enklar rapporter." },
       { name: "twitter:description", content: "the place to be när du vill få tydliga, snygga och enklar rapporter." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/bwRQ2zgeBoOA8vmWpGmsKAhGXBn2/social-images/social-1777022603490-claritycloud.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/bwRQ2zgeBoOA8vmWpGmsKAhGXBn2/social-images/social-1777022603490-claritycloud.webp" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/bwRQ2zgeBoOA8vmWpGmsKAhGXBn2/social-images/social-1777022603490-clarix.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/bwRQ2zgeBoOA8vmWpGmsKAhGXBn2/social-images/social-1777022603490-clarix.webp" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },

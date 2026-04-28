@@ -26,7 +26,7 @@ export type ShareLink = {
   visits: ShareLinkVisit[];
 };
 
-const STORAGE_KEY = "claritycloud.share-links.v1";
+const STORAGE_KEY = "clarix.share-links.v1";
 
 // Reserved slugs to avoid collisions with app routes.
 const RESERVED_SLUGS = new Set([
@@ -295,7 +295,7 @@ export function resolveLink(workspace: string, slug: string, token?: string | nu
 }
 
 export function buildShareUrl(link: ShareLink | Pick<ShareLink, "workspace" | "slug">): string {
-  const origin = isBrowser() ? window.location.origin : "https://claritycloud.lovable.app";
+  const origin = isBrowser() ? window.location.origin : "https://clarix.lovable.app";
   const base = `${origin}/${link.workspace}/${link.slug}`;
   // Append self-describing token if we have a full link, so URL works cross-device.
   if ("createdAt" in link) {
@@ -305,5 +305,5 @@ export function buildShareUrl(link: ShareLink | Pick<ShareLink, "workspace" | "s
 }
 
 export function buildShareDisplay(link: Pick<ShareLink, "workspace" | "slug">): string {
-  return `claritycloud.app/${link.workspace}/${link.slug}`;
+  return `clarix.app/${link.workspace}/${link.slug}`;
 }

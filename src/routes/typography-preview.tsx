@@ -4,8 +4,8 @@ import { ArrowLeft, Sparkles } from "lucide-react";
 export const Route = createFileRoute("/typography-preview")({
   head: () => ({
     meta: [
-      { title: "Typografi A/B — ClarityCloud" },
-      { name: "description", content: "Jämförelse av nuvarande och ny typografi för ClarityCloud." },
+      { title: "Typografi A/B — Clarix" },
+      { name: "description", content: "Jämförelse av nuvarande och ny typografi för Clarix." },
       { name: "robots", content: "noindex" },
     ],
   }),
@@ -234,7 +234,7 @@ function Hero({
       </h2>
 
       <p className="mx-auto mt-5 max-w-md" style={bodyStyle}>
-        ClarityCloud förvandlar rådata från alla dina kanaler till klara, vackra rapporter.
+        Clarix förvandlar rådata från alla dina kanaler till klara, vackra rapporter.
       </p>
 
       <div className="mt-8 flex items-center justify-center gap-2">

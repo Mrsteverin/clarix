@@ -1,4 +1,4 @@
-// Realistic demo dataset for ClarityCloud (Svenska)
+// Realistic demo dataset for Clarix (Svenska)
 
 export const kpis = {
   sessions: { value: 184_293, delta: 14.2, spark: [120, 132, 128, 145, 152, 168, 184] },
@@ -197,7 +197,7 @@ export const integrations = [
   {
     id: "csv",
     name: "Egen CSV",
-    provider: "ClarityCloud",
+    provider: "Clarix",
     category: "Övrigt",
     connected: true,
     color: "#6B7280",

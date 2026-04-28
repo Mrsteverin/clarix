@@ -243,7 +243,7 @@ function CreateForm({
         <label className="text-sm font-medium">Länkadress</label>
         <div className="mt-1.5 flex items-stretch overflow-hidden rounded-xl border border-border bg-background focus-within:border-foreground">
           <span className="flex items-center bg-muted/40 px-3 text-xs text-muted-foreground">
-            claritycloud.app/{workspaceSlug}/
+            clarix.app/{workspaceSlug}/
           </span>
           <input
             value={slug}

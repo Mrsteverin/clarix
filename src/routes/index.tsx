@@ -34,13 +34,13 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ClarityCloud — Vackra marknadsrapporter, på autopilot" },
+      { title: "Clarix — Vackra marknadsrapporter, på autopilot" },
       {
         name: "description",
         content:
           "Anslut dina kanaler och leverera presentationsfärdiga kundrapporter på minuter. Mindre brus. Mer klarhet.",
       },
-      { property: "og:title", content: "ClarityCloud — Vackra marknadsrapporter, på autopilot" },
+      { property: "og:title", content: "Clarix — Vackra marknadsrapporter, på autopilot" },
       {
         property: "og:description",
         content: "Anslut dina kanaler och leverera presentationsfärdiga kundrapporter på minuter.",
@@ -75,7 +75,7 @@ function Landing() {
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-brand shadow-glow">
               <Sparkles className="h-4 w-4 text-white" />
             </div>
-            <span className="font-display text-xl">ClarityCloud</span>
+            <span className="font-display text-xl">Clarix</span>
           </Link>
           <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
             <a href="#features" className="hover:text-foreground">Funktioner</a>
@@ -440,7 +440,7 @@ function Landing() {
                 "Delbara rapporter",
                 "Prioriterad support",
               ],
-              cta: "Väx med ClarityCloud",
+              cta: "Väx med Clarix",
               featured: true,
             },
             {
@@ -541,7 +541,7 @@ function Landing() {
               to="/dashboard"
               className="mt-10 inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-[0.95rem] font-semibold text-background shadow-elevated transition-all hover:-translate-y-0.5 hover:shadow-glow"
             >
-              Prova ClarityCloud gratis
+              Prova Clarix gratis
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -552,7 +552,7 @@ function Landing() {
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 text-sm text-muted-foreground sm:flex-row">
           <div className="flex items-center gap-2">
             <Sparkles className="h-4 w-4" />
-            <span>© 2025 ClarityCloud</span>
+            <span>© 2025 Clarix</span>
           </div>
           <div className="flex gap-6">
             <a href="#" className="hover:text-foreground">Integritet</a>
