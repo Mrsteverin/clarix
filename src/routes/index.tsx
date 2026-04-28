@@ -125,7 +125,7 @@ function Landing() {
               className="mt-3 block bg-clip-text font-accent text-transparent"
               style={{
                 backgroundImage:
-                  "linear-gradient(95deg, #E8268F 0%, #E8268F 18%, #EE5C7A 38%, #F58040 62%, #F9A82E 82%, #F4C534 100%)",
+                  "linear-gradient(95deg, #E8268F 0%, #E8268F 14%, #EE5C7A 32%, #F58040 52%, #FBB827 74%, #FFD60A 92%, #FFE34D 100%)",
               }}
             >
               på 30 sekunder.
@@ -615,13 +615,13 @@ function Landing() {
         <div className="relative overflow-hidden rounded-3xl border border-border/60 bg-gradient-card p-12 text-center shadow-elevated">
           <div className="pointer-events-none absolute inset-0 bg-gradient-aurora opacity-60" />
           <div className="relative">
-            <h2 className="mx-auto max-w-2xl font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
-              Äntligen rapporter som är både
+            <h2 className="mx-auto max-w-3xl font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
+              Äntligen rapporter som är både{" "}
               <span
-                className="mt-1 block bg-clip-text font-accent text-transparent"
+                className="font-accent bg-clip-text text-transparent"
                 style={{
                   backgroundImage:
-                    "linear-gradient(95deg, #E8268F 0%, #E8268F 18%, #EE5C7A 38%, #F58040 62%, #F9A82E 82%, #F4C534 100%)",
+                    "linear-gradient(95deg, #E8268F 0%, #E8268F 14%, #EE5C7A 32%, #F58040 52%, #FBB827 74%, #FFD60A 92%, #FFE34D 100%)",
                 }}
               >
                 snygga och tydliga.
