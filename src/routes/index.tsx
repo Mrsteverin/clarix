@@ -50,17 +50,17 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-const channels: { name: string; Logo: (p: { className?: string }) => React.ReactElement }[] = [
-  { name: "Google Analytics 4", Logo: GoogleAnalyticsLogo },
-  { name: "Search Console", Logo: GoogleSearchConsoleLogo },
-  { name: "Google Ads", Logo: GoogleAdsLogo },
-  { name: "Google Business", Logo: GoogleBusinessLogo },
-  { name: "Meta", Logo: MetaLogo },
-  { name: "LinkedIn", Logo: LinkedInLogo },
-  { name: "YouTube", Logo: YouTubeLogo },
-  { name: "Shopify", Logo: ShopifyLogo },
-  { name: "Matomo", Logo: MatomoLogo },
-  { name: "Excel / CSV", Logo: ExcelLogo },
+const channels: { name: string; category: string; Logo: (p: { className?: string }) => React.ReactElement }[] = [
+  { name: "Google Analytics 4", category: "Analytics", Logo: GoogleAnalyticsLogo },
+  { name: "Search Console", category: "SEO", Logo: GoogleSearchConsoleLogo },
+  { name: "Google Ads", category: "Ads", Logo: GoogleAdsLogo },
+  { name: "Google Business", category: "Local", Logo: GoogleBusinessLogo },
+  { name: "Meta", category: "Social Ads", Logo: MetaLogo },
+  { name: "LinkedIn", category: "Social Ads", Logo: LinkedInLogo },
+  { name: "YouTube", category: "Video", Logo: YouTubeLogo },
+  { name: "Shopify", category: "E-handel", Logo: ShopifyLogo },
+  { name: "Matomo", category: "Analytics", Logo: MatomoLogo },
+  { name: "Excel / CSV", category: "Data", Logo: ExcelLogo },
 ];
 
 function Landing() {
@@ -310,7 +310,16 @@ function Landing() {
       </section>
 
       {/* Premium integrations grid */}
-      <section id="channels" className="mx-auto max-w-7xl px-6 py-32">
+      <section id="channels" className="relative mx-auto max-w-7xl px-6 py-32">
+        {/* Ultra subtle pastel ambient gradient */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-10 -z-10 mx-auto h-[680px] max-w-6xl rounded-[3rem] opacity-70"
+          style={{
+            background:
+              "radial-gradient(60% 50% at 30% 30%, oklch(0.97 0.025 295) 0%, transparent 70%), radial-gradient(55% 50% at 75% 60%, oklch(0.975 0.022 230) 0%, transparent 72%), radial-gradient(45% 45% at 50% 90%, oklch(0.975 0.02 350) 0%, transparent 75%)",
+          }}
+        />
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">Integrationer</p>
           <h2 className="mt-4 font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
@@ -322,23 +331,33 @@ function Landing() {
         </div>
         <div className="mx-auto mt-20 grid max-w-6xl grid-cols-2 gap-5 sm:grid-cols-3 md:gap-6 lg:grid-cols-5">
           {channels.map((c, i) => (
-            <motion.div
+            <motion.a
               key={c.name}
+              href="#pricing"
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.4, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-              className="group flex flex-col items-center justify-center gap-5 rounded-2xl border border-[rgba(0,0,0,0.05)] bg-white px-6 py-10 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.06),0_12px_32px_-12px_rgba(15,23,42,0.08)] transition-all duration-[220ms] ease-out hover:-translate-y-1.5 hover:border-[rgba(0,0,0,0.09)] hover:shadow-[0_8px_20px_-4px_rgba(15,23,42,0.08),0_24px_56px_-12px_rgba(15,23,42,0.16)]"
+              className="group relative flex flex-col items-center justify-center gap-4 overflow-hidden rounded-[22px] border border-[rgba(15,23,42,0.06)] bg-white px-6 pb-12 pt-10 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.05),0_12px_32px_-12px_rgba(15,23,42,0.08)] transition-all duration-[260ms] ease-out hover:-translate-y-1.5 hover:border-[rgba(15,23,42,0.09)] hover:shadow-[0_10px_24px_-4px_rgba(15,23,42,0.10),0_30px_60px_-12px_rgba(15,23,42,0.18)]"
             >
-              <c.Logo className="h-12 w-12 transition-transform duration-[220ms] ease-out group-hover:scale-[1.03]" />
-              <span className="text-sm font-medium tracking-tight text-foreground/80">{c.name}</span>
-            </motion.div>
+              <c.Logo className="h-12 w-12 transition-transform duration-[260ms] ease-out group-hover:scale-[1.04]" />
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-sm font-semibold tracking-tight text-foreground/90">{c.name}</span>
+                <span className="text-[0.7rem] font-medium uppercase tracking-[0.14em] text-foreground/45">
+                  {c.category}
+                </span>
+              </div>
+              <span className="absolute bottom-3 right-4 inline-flex items-center gap-1 text-[0.72rem] font-semibold tracking-tight text-accent opacity-100 transition-all duration-[220ms] ease-out md:translate-y-1 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
+                Koppla <ArrowRight className="h-3 w-3" />
+              </span>
+            </motion.a>
           ))}
         </div>
         <p className="mx-auto mt-12 text-center text-sm text-foreground/55">
           Säker OAuth-anslutning · Ingen teknisk kunskap krävs
         </p>
       </section>
+
 
       <section id="agencies" className="border-y border-border/40 bg-muted/20 py-24">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2">
