@@ -323,7 +323,7 @@ function Landing() {
       {/* Premium integrations grid */}
       <section id="channels" className="relative mx-auto max-w-7xl px-6 py-32">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">Integrationer</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">Rekommenderade integrationer</p>
           <h2 className="mt-4 font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
             Koppla allt du redan använder
           </h2>
@@ -333,7 +333,7 @@ function Landing() {
         </div>
 
         {/* Featured integrations — large premium cards */}
-        <div className="mx-auto mt-20 grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { name: "Google Analytics 4", label: "WEBBTRAFIK", Logo: GoogleAnalyticsLogo, badge: "Mest vald", primary: true },
             { name: "Search Console", label: "SEO", Logo: GoogleSearchConsoleLogo },
@@ -346,19 +346,19 @@ function Landing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.4, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative flex flex-col rounded-3xl border border-[rgba(15,23,42,0.06)] bg-white p-8 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(15,23,42,0.12)] transition-all duration-[240ms] ease-out hover:-translate-y-1 hover:border-[rgba(15,23,42,0.10)] hover:shadow-[0_8px_24px_-6px_rgba(15,23,42,0.10),0_28px_56px_-20px_rgba(15,23,42,0.18)]"
+              className="group relative flex min-h-[260px] flex-col rounded-2xl border border-[rgba(15,23,42,0.06)] bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(15,23,42,0.10)] transition-all duration-[240ms] ease-out hover:-translate-y-1 hover:border-[rgba(15,23,42,0.10)] hover:shadow-[0_8px_24px_-6px_rgba(15,23,42,0.08),0_28px_56px_-20px_rgba(15,23,42,0.16)]"
             >
               {c.badge && (
-                <span className="absolute right-4 top-4 inline-flex items-center rounded-full bg-accent/10 px-2 py-0.5 text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-accent">
+                <span className="absolute right-4 top-4 inline-flex items-center rounded-full bg-[oklch(0.95_0.04_245)] px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.1em] text-[oklch(0.45_0.15_245)]">
                   {c.badge}
                 </span>
               )}
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[rgba(15,23,42,0.06)] bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
-                <c.Logo className="h-7 w-7" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-[rgba(15,23,42,0.06)] bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
+                <c.Logo className="h-6 w-6" />
               </div>
-              <div className="mt-7">
-                <h3 className="text-[1.05rem] font-semibold tracking-tight text-foreground">{c.name}</h3>
-                <p className="mt-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-foreground/50">
+              <div className="mt-5">
+                <h3 className="text-[1.15rem] font-bold tracking-tight text-foreground">{c.name}</h3>
+                <p className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-foreground/45">
                   {c.label}
                 </p>
               </div>
@@ -366,8 +366,8 @@ function Landing() {
                 href="#pricing"
                 className={
                   c.primary
-                    ? "mt-8 inline-flex h-10 items-center justify-center gap-1.5 rounded-xl bg-foreground px-4 text-sm font-semibold text-background transition-all duration-[200ms] hover:bg-foreground/90"
-                    : "mt-8 inline-flex h-10 items-center justify-center gap-1.5 rounded-xl border border-[rgba(15,23,42,0.12)] bg-white px-4 text-sm font-semibold text-foreground transition-all duration-[200ms] hover:border-foreground/30 hover:bg-foreground/[0.03]"
+                    ? "mt-auto inline-flex h-10 items-center justify-center gap-1.5 rounded-xl bg-foreground px-4 text-sm font-semibold text-background transition-all duration-[200ms] hover:bg-foreground/90"
+                    : "mt-auto inline-flex h-10 items-center justify-center gap-1.5 rounded-xl border border-[rgba(15,23,42,0.12)] bg-white px-4 text-sm font-semibold text-foreground transition-all duration-[200ms] hover:border-foreground/30 hover:bg-foreground/[0.03]"
                 }
               >
                 Koppla <ArrowRight className="h-3.5 w-3.5" />
@@ -377,20 +377,20 @@ function Landing() {
         </div>
 
         {/* Additional integrations — calm inline list */}
-        <div className="mx-auto mt-16 max-w-3xl text-center">
+        <div className="mx-auto mt-10 max-w-3xl text-center">
           <p className="text-[0.95rem] leading-relaxed text-foreground/65">
             <span className="font-semibold text-foreground/80">Fler integrationer:</span>{" "}
             Shopify · LinkedIn · YouTube · Matomo · Excel / CSV
           </p>
           <a
             href="#pricing"
-            className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-foreground/80 transition-colors hover:text-foreground"
+            className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-foreground/80 transition-colors hover:text-foreground"
           >
             Visa alla integrationer <ArrowRight className="h-3.5 w-3.5" />
           </a>
         </div>
 
-        <div className="mx-auto mt-20 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[0.8rem] text-foreground/60">
+        <div className="mx-auto mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-2.5 text-[0.8rem] text-foreground/55">
           {["Säker OAuth", "Ingen kod", "Klar på 2 minuter"].map((t) => (
             <span key={t} className="inline-flex items-center gap-1.5">
               <Check className="h-3.5 w-3.5 text-emerald-600" />
