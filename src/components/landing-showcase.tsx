@@ -244,7 +244,7 @@ export function SeoChannelsVisual() {
                     {c.Logo ? (
                       <c.Logo className="h-5 w-5" />
                     ) : (
-                      <Globe className="h-4 w-4 text-foreground/80" />
+                      <Compass className="h-[18px] w-[18px] text-foreground/80" strokeWidth={1.75} />
                     )}
                   </span>
                   <div className="flex flex-col">
