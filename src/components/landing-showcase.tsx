@@ -2,13 +2,16 @@ import { motion } from "framer-motion";
 import {
   ArrowUpRight,
   Globe,
-  Layers,
   MousePointerClick,
-  Search,
   Sparkles,
   Target,
   TrendingUp,
 } from "lucide-react";
+import {
+  GoogleAnalyticsLogo,
+  GoogleAdsLogo,
+  MetaLogo,
+} from "@/components/brand-logos";
 
 export function Showcase({
   eyebrow,
@@ -179,11 +182,46 @@ export function AiInsightsVisual() {
 }
 
 export function SeoChannelsVisual() {
-  const rows = [
-    { name: "SEO", icon: Search, value: "62 412", delta: "+12 %", bar: 82 },
-    { name: "Google Ads", icon: Target, value: "48 901", delta: "+6 %", bar: 64 },
-    { name: "Meta Ads", icon: Layers, value: "38 220", delta: "+21 %", bar: 56 },
-    { name: "Direkt", icon: Globe, value: "24 105", delta: "+3 %", bar: 38 },
+  const rows: Array<{
+    name: string;
+    sub: string;
+    Logo: React.ComponentType<{ className?: string }> | null;
+    value: string;
+    delta: string;
+    bar: number;
+  }> = [
+    {
+      name: "Organisk",
+      sub: "Obetald trafik från Google",
+      Logo: GoogleAnalyticsLogo,
+      value: "62 412",
+      delta: "+12 %",
+      bar: 82,
+    },
+    {
+      name: "Köpt trafik Google",
+      sub: "Google Ads",
+      Logo: GoogleAdsLogo,
+      value: "48 901",
+      delta: "+6 %",
+      bar: 64,
+    },
+    {
+      name: "Köpt trafik från Meta",
+      sub: "Meta Ads",
+      Logo: MetaLogo,
+      value: "38 220",
+      delta: "+21 %",
+      bar: 56,
+    },
+    {
+      name: "Direkt-trafik",
+      sub: "Direkt till webbplatsen",
+      Logo: null,
+      value: "24 105",
+      delta: "+3 %",
+      bar: 38,
+    },
   ];
   return (
     <VisualFrame label="clarix.se/kanaler">
@@ -202,10 +240,19 @@ export function SeoChannelsVisual() {
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-muted/60">
-                    <c.icon className="h-4 w-4 text-foreground/80" />
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border/60 bg-background">
+                    {c.Logo ? (
+                      <c.Logo className="h-5 w-5" />
+                    ) : (
+                      <Globe className="h-4 w-4 text-foreground/80" />
+                    )}
                   </span>
-                  <span className="text-sm font-semibold">{c.name}</span>
+                  <div className="flex flex-col">
+                    <span className="text-sm font-semibold leading-tight">{c.name}</span>
+                    <span className="text-[11px] leading-tight text-muted-foreground">
+                      {c.sub}
+                    </span>
+                  </div>
                 </div>
                 <div className="flex items-baseline gap-2">
                   <span className="font-numeric text-lg text-foreground">
