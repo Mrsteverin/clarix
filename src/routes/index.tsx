@@ -121,7 +121,13 @@ function Landing() {
 
           <h1 className="mx-auto mt-10 max-w-5xl font-display text-6xl leading-[1.04] tracking-[-0.04em] text-foreground sm:text-7xl md:text-[6rem]">
             Förstå din marknadsföring
-            <span className="mt-3 block font-accent text-gradient-brand">
+            <span
+              className="mt-3 block bg-clip-text font-accent text-transparent"
+              style={{
+                backgroundImage:
+                  "linear-gradient(100deg, #E83A8E 0%, #EC6B7A 28%, #F58A4F 55%, #F9B73C 78%, #FCD931 100%)",
+              }}
+            >
               på 30 sekunder.
             </span>
           </h1>
@@ -611,7 +617,15 @@ function Landing() {
           <div className="relative">
             <h2 className="mx-auto max-w-2xl font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
               Äntligen rapporter som är både
-              <span className="mt-1 block font-accent text-gradient-brand">snygga och tydliga.</span>
+              <span
+                className="mt-1 block bg-clip-text font-accent text-transparent"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(100deg, #E83A8E 0%, #EC6B7A 28%, #F58A4F 55%, #F9B73C 78%, #FCD931 100%)",
+                }}
+              >
+                snygga och tydliga.
+              </span>
             </h2>
             <Link
               to="/dashboard"
