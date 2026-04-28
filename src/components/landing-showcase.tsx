@@ -2,13 +2,15 @@ import { motion } from "framer-motion";
 import {
   ArrowUpRight,
   Globe,
-  Layers,
   MousePointerClick,
-  Search,
   Sparkles,
-  Target,
   TrendingUp,
 } from "lucide-react";
+import {
+  GoogleAnalyticsLogo,
+  GoogleAdsLogo,
+  MetaLogo,
+} from "@/components/brand-logos";
 
 export function Showcase({
   eyebrow,
