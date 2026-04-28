@@ -317,15 +317,6 @@ function Landing() {
 
       {/* Premium integrations grid */}
       <section id="channels" className="relative mx-auto max-w-7xl px-6 py-32">
-        {/* Ultra subtle pastel ambient gradient */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-10 -z-10 mx-auto h-[680px] max-w-6xl rounded-[3rem] opacity-70"
-          style={{
-            background:
-              "radial-gradient(60% 50% at 30% 30%, oklch(0.97 0.025 295) 0%, transparent 70%), radial-gradient(55% 50% at 75% 60%, oklch(0.975 0.022 230) 0%, transparent 72%), radial-gradient(45% 45% at 50% 90%, oklch(0.975 0.02 350) 0%, transparent 75%)",
-          }}
-        />
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">Integrationer</p>
           <h2 className="mt-4 font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
@@ -335,49 +326,55 @@ function Landing() {
             Klart på minuter. Vi sköter resten.
           </p>
         </div>
-        <div className="mx-auto mt-16 grid max-w-5xl grid-cols-2 gap-3.5 sm:grid-cols-3 md:gap-4 lg:grid-cols-5">
-          {channels.map((c, i) => (
-            <motion.a
-              key={c.name}
-              href="#pricing"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.35, delay: i * 0.035, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative flex flex-col gap-3 overflow-hidden rounded-[18px] border border-[rgba(15,23,42,0.06)] bg-white px-4 py-4 shadow-[0_1px_3px_-1px_rgba(15,23,42,0.05),0_8px_22px_-10px_rgba(15,23,42,0.10)] transition-all duration-[240ms] ease-out hover:-translate-y-1 hover:border-[rgba(15,23,42,0.10)] hover:shadow-[0_8px_18px_-4px_rgba(15,23,42,0.10),0_24px_48px_-14px_rgba(15,23,42,0.18)]"
-            >
-              {c.glow && (
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute -top-10 -right-10 h-28 w-28 rounded-full opacity-0 blur-2xl transition-opacity duration-[260ms] group-hover:opacity-100"
-                  style={{ background: c.glow }}
-                />
-              )}
-              <div className="flex items-start justify-between gap-2">
-                <c.Logo className="h-9 w-9 transition-transform duration-[240ms] ease-out group-hover:scale-[1.05]" />
-                <span
-                  className={`inline-flex items-center rounded-full px-2 py-0.5 text-[0.62rem] font-semibold uppercase tracking-[0.08em] ${badgeStyles[c.badgeTone]}`}
-                >
-                  {c.category}
-                </span>
-              </div>
-              <div className="mt-auto flex items-end justify-between gap-2 pt-2">
+
+        {/* Elegant container with subtle lavender-blue gradient */}
+        <div
+          className="relative mx-auto mt-14 max-w-5xl overflow-hidden rounded-[28px] border border-[rgba(15,23,42,0.05)] p-6 sm:p-10"
+          style={{
+            background:
+              "linear-gradient(180deg, oklch(0.985 0.012 270) 0%, oklch(0.98 0.014 245) 100%)",
+            boxShadow:
+              "0 1px 2px rgba(15,23,42,0.04), 0 24px 60px -28px rgba(15,23,42,0.18)",
+          }}
+        >
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-70"
+            style={{
+              background:
+                "radial-gradient(60% 50% at 20% 0%, oklch(0.97 0.025 280) 0%, transparent 70%), radial-gradient(55% 50% at 85% 100%, oklch(0.975 0.022 235) 0%, transparent 72%)",
+            }}
+          />
+          <div className="relative grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-5">
+            {channels.map((c, i) => (
+              <motion.a
+                key={c.name}
+                href="#pricing"
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.35, delay: i * 0.03, ease: [0.22, 1, 0.36, 1] }}
+                className="group relative flex flex-col items-center justify-between gap-3 rounded-2xl border border-[rgba(15,23,42,0.06)] bg-white/85 px-4 py-5 text-center backdrop-blur-sm shadow-[0_1px_2px_-1px_rgba(15,23,42,0.04),0_6px_18px_-10px_rgba(15,23,42,0.10)] transition-all duration-[240ms] ease-out hover:-translate-y-1 hover:border-[rgba(15,23,42,0.10)] hover:bg-white hover:shadow-[0_8px_18px_-4px_rgba(15,23,42,0.08),0_24px_48px_-16px_rgba(15,23,42,0.16)]"
+              >
+                {c.badge && (
+                  <span className="absolute right-2 top-2 inline-flex items-center rounded-full bg-foreground/[0.06] px-1.5 py-0.5 text-[0.58rem] font-semibold uppercase tracking-[0.08em] text-foreground/70">
+                    {c.badge}
+                  </span>
+                )}
+                <c.Logo className="mt-2 h-10 w-10 transition-transform duration-[240ms] ease-out group-hover:scale-[1.04]" />
                 <span className="text-[0.875rem] font-semibold tracking-tight text-foreground/90">
                   {c.name}
                 </span>
-                <span className="inline-flex shrink-0 items-center gap-0.5 text-[0.7rem] font-semibold tracking-tight text-accent transition-transform duration-[220ms] group-hover:translate-x-0.5">
+                <span className="inline-flex h-4 items-center gap-0.5 text-[0.7rem] font-semibold tracking-tight text-accent opacity-0 transition-opacity duration-[220ms] group-hover:opacity-100">
                   Koppla <ArrowRight className="h-3 w-3" />
                 </span>
-              </div>
-            </motion.a>
-          ))}
+              </motion.a>
+            ))}
+          </div>
         </div>
+
         <div className="mx-auto mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-foreground/65">
-          {[
-            "Säker OAuth",
-            "Ingen kod",
-            "Klar på 2 minuter",
-          ].map((t) => (
+          {["Säker OAuth", "Ingen kod", "Klar på 2 minuter"].map((t) => (
             <span key={t} className="inline-flex items-center gap-1.5">
               <Check className="h-4 w-4 text-emerald-600" />
               <span className="font-medium">{t}</span>
