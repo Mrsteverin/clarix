@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import {
   ArrowUpRight,
-  Globe,
+  Compass,
   MousePointerClick,
   Sparkles,
   Target,
