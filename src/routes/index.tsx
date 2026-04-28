@@ -389,16 +389,24 @@ function Landing() {
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">För byråer</p>
-            <h2 className="mt-4 font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
+            <h2 className="mt-4 font-display text-5xl leading-[1.02] tracking-[-0.035em] sm:text-[3.5rem]">
               Driver du en byrå?
-              <span className="mt-1 block text-gradient-brand">White-label allt.</span>
+              <span
+                className="mt-2 block bg-clip-text text-transparent"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(105deg, #E255A1 0%, #F2A46F 52%, #E9E56B 100%)",
+                }}
+              >
+                White-labela allt.
+              </span>
             </h2>
-            <p className="mt-6 text-lg leading-relaxed text-foreground/70">
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-foreground/70">
               Vår filosofi: kunder ska inte behöva en byrå för att förstå sin marknadsföring.
               Men om du driver en — gör vi dig till hjälten i rummet. Egen logotyp, färger,
               domän och kundinloggningar.
             </p>
-            <ul className="mt-8 space-y-3.5 text-[0.975rem]">
+            <ul className="mt-9 space-y-3.5 text-[0.975rem]">
               {[
                 "Eget varumärke på dashboards och rapporter",
                 "Eget domännamn (rapport.dinbyra.se)",
@@ -406,18 +414,34 @@ function Landing() {
                 "Volymrabatt från 10 kunder",
               ].map((f) => (
                 <li key={f} className="flex items-start gap-2.5 text-foreground/85">
-                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-success" />
+                  <span
+                    className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(105deg, #E255A1 0%, #F2A46F 52%, #E9E56B 100%)",
+                    }}
+                  />
                   <span>{f}</span>
                 </li>
               ))}
             </ul>
-            <a
-              href="#pricing"
-              className="mt-10 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-[0.95rem] font-semibold text-background shadow-elevated transition-all hover:-translate-y-0.5 hover:shadow-glow"
-            >
-              Se byråpriser
-              <ArrowRight className="h-4 w-4" />
-            </a>
+            <div className="relative mt-11 inline-block">
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -inset-3 -z-10 rounded-full opacity-60 blur-2xl"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(105deg, #E255A1 0%, #F2A46F 52%, #E9E56B 100%)",
+                }}
+              />
+              <a
+                href="#pricing"
+                className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-[0.95rem] font-semibold text-background shadow-elevated transition-all hover:-translate-y-0.5 hover:shadow-glow"
+              >
+                Se byråpriser
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
           </div>
           <div className="relative">
             <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-brand opacity-15 blur-3xl" />
