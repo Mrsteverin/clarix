@@ -50,18 +50,38 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-const channels: { name: string; category: string; Logo: (p: { className?: string }) => React.ReactElement }[] = [
-  { name: "Google Analytics 4", category: "Analytics", Logo: GoogleAnalyticsLogo },
-  { name: "Search Console", category: "SEO", Logo: GoogleSearchConsoleLogo },
-  { name: "Google Ads", category: "Ads", Logo: GoogleAdsLogo },
-  { name: "Google Business", category: "Local", Logo: GoogleBusinessLogo },
-  { name: "Meta", category: "Social Ads", Logo: MetaLogo },
-  { name: "LinkedIn", category: "Social Ads", Logo: LinkedInLogo },
-  { name: "YouTube", category: "Video", Logo: YouTubeLogo },
-  { name: "Shopify", category: "E-handel", Logo: ShopifyLogo },
-  { name: "Matomo", category: "Analytics", Logo: MatomoLogo },
-  { name: "Excel / CSV", category: "Data", Logo: ExcelLogo },
+type Channel = {
+  name: string;
+  category: string;
+  badgeTone: "popular" | "analytics" | "ads" | "social" | "seo" | "ecom" | "video" | "data" | "local";
+  glow?: string;
+  Logo: (p: { className?: string }) => React.ReactElement;
+};
+
+const channels: Channel[] = [
+  { name: "Google Analytics 4", category: "Popular", badgeTone: "popular", glow: "rgba(245, 158, 11, 0.32)", Logo: GoogleAnalyticsLogo },
+  { name: "Search Console", category: "SEO", badgeTone: "seo", Logo: GoogleSearchConsoleLogo },
+  { name: "Google Ads", category: "Ads", badgeTone: "ads", Logo: GoogleAdsLogo },
+  { name: "Google Business", category: "Local", badgeTone: "local", Logo: GoogleBusinessLogo },
+  { name: "Meta", category: "Social Ads", badgeTone: "social", glow: "rgba(37, 99, 235, 0.32)", Logo: MetaLogo },
+  { name: "LinkedIn", category: "Social Ads", badgeTone: "social", Logo: LinkedInLogo },
+  { name: "YouTube", category: "Video", badgeTone: "video", Logo: YouTubeLogo },
+  { name: "Shopify", category: "E-handel", badgeTone: "ecom", glow: "rgba(16, 185, 129, 0.32)", Logo: ShopifyLogo },
+  { name: "Matomo", category: "Analytics", badgeTone: "analytics", Logo: MatomoLogo },
+  { name: "Excel / CSV", category: "Data", badgeTone: "data", Logo: ExcelLogo },
 ];
+
+const badgeStyles: Record<Channel["badgeTone"], string> = {
+  popular: "bg-amber-50 text-amber-700 ring-1 ring-amber-200/70",
+  analytics: "bg-violet-50 text-violet-700 ring-1 ring-violet-200/70",
+  ads: "bg-sky-50 text-sky-700 ring-1 ring-sky-200/70",
+  social: "bg-blue-50 text-blue-700 ring-1 ring-blue-200/70",
+  seo: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200/70",
+  ecom: "bg-green-50 text-green-700 ring-1 ring-green-200/70",
+  video: "bg-rose-50 text-rose-700 ring-1 ring-rose-200/70",
+  data: "bg-slate-100 text-slate-700 ring-1 ring-slate-200/80",
+  local: "bg-teal-50 text-teal-700 ring-1 ring-teal-200/70",
+};
 
 function Landing() {
   return (
@@ -326,37 +346,60 @@ function Landing() {
             Koppla allt du redan använder.
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-foreground/70">
-            Anslut på några minuter. Vi sköter resten.
+            Klart på minuter. Vi sköter resten.
           </p>
         </div>
-        <div className="mx-auto mt-20 grid max-w-6xl grid-cols-2 gap-5 sm:grid-cols-3 md:gap-6 lg:grid-cols-5">
+        <div className="mx-auto mt-16 grid max-w-5xl grid-cols-2 gap-3.5 sm:grid-cols-3 md:gap-4 lg:grid-cols-5">
           {channels.map((c, i) => (
             <motion.a
               key={c.name}
               href="#pricing"
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.4, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative flex flex-col items-center justify-center gap-4 overflow-hidden rounded-[22px] border border-[rgba(15,23,42,0.06)] bg-white px-6 pb-12 pt-10 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.05),0_12px_32px_-12px_rgba(15,23,42,0.08)] transition-all duration-[260ms] ease-out hover:-translate-y-1.5 hover:border-[rgba(15,23,42,0.09)] hover:shadow-[0_10px_24px_-4px_rgba(15,23,42,0.10),0_30px_60px_-12px_rgba(15,23,42,0.18)]"
+              transition={{ duration: 0.35, delay: i * 0.035, ease: [0.22, 1, 0.36, 1] }}
+              className="group relative flex flex-col gap-3 overflow-hidden rounded-[18px] border border-[rgba(15,23,42,0.06)] bg-white px-4 py-4 shadow-[0_1px_3px_-1px_rgba(15,23,42,0.05),0_8px_22px_-10px_rgba(15,23,42,0.10)] transition-all duration-[240ms] ease-out hover:-translate-y-1 hover:border-[rgba(15,23,42,0.10)] hover:shadow-[0_8px_18px_-4px_rgba(15,23,42,0.10),0_24px_48px_-14px_rgba(15,23,42,0.18)]"
             >
-              <c.Logo className="h-12 w-12 transition-transform duration-[260ms] ease-out group-hover:scale-[1.04]" />
-              <div className="flex flex-col items-center gap-1">
-                <span className="text-sm font-semibold tracking-tight text-foreground/90">{c.name}</span>
-                <span className="text-[0.7rem] font-medium uppercase tracking-[0.14em] text-foreground/45">
+              {c.glow && (
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute -top-10 -right-10 h-28 w-28 rounded-full opacity-0 blur-2xl transition-opacity duration-[260ms] group-hover:opacity-100"
+                  style={{ background: c.glow }}
+                />
+              )}
+              <div className="flex items-start justify-between gap-2">
+                <c.Logo className="h-9 w-9 transition-transform duration-[240ms] ease-out group-hover:scale-[1.05]" />
+                <span
+                  className={`inline-flex items-center rounded-full px-2 py-0.5 text-[0.62rem] font-semibold uppercase tracking-[0.08em] ${badgeStyles[c.badgeTone]}`}
+                >
                   {c.category}
                 </span>
               </div>
-              <span className="absolute bottom-3 right-4 inline-flex items-center gap-1 text-[0.72rem] font-semibold tracking-tight text-accent opacity-100 transition-all duration-[220ms] ease-out md:translate-y-1 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
-                Koppla <ArrowRight className="h-3 w-3" />
-              </span>
+              <div className="mt-auto flex items-end justify-between gap-2 pt-2">
+                <span className="text-[0.875rem] font-semibold tracking-tight text-foreground/90">
+                  {c.name}
+                </span>
+                <span className="inline-flex shrink-0 items-center gap-0.5 text-[0.7rem] font-semibold tracking-tight text-accent transition-transform duration-[220ms] group-hover:translate-x-0.5">
+                  Koppla <ArrowRight className="h-3 w-3" />
+                </span>
+              </div>
             </motion.a>
           ))}
         </div>
-        <p className="mx-auto mt-12 text-center text-sm text-foreground/55">
-          Säker OAuth-anslutning · Ingen teknisk kunskap krävs
-        </p>
+        <div className="mx-auto mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-foreground/65">
+          {[
+            "Säker OAuth",
+            "Ingen kod",
+            "Klar på 2 minuter",
+          ].map((t) => (
+            <span key={t} className="inline-flex items-center gap-1.5">
+              <Check className="h-4 w-4 text-emerald-600" />
+              <span className="font-medium">{t}</span>
+            </span>
+          ))}
+        </div>
       </section>
+
 
 
       <section id="agencies" className="border-y border-border/40 bg-muted/20 py-24">
