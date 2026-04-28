@@ -50,17 +50,17 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-const channels: { name: string; Logo: (p: { className?: string }) => React.ReactElement }[] = [
-  { name: "Google Analytics 4", Logo: GoogleAnalyticsLogo },
-  { name: "Search Console", Logo: GoogleSearchConsoleLogo },
-  { name: "Google Ads", Logo: GoogleAdsLogo },
-  { name: "Google Business", Logo: GoogleBusinessLogo },
-  { name: "Meta", Logo: MetaLogo },
-  { name: "LinkedIn", Logo: LinkedInLogo },
-  { name: "YouTube", Logo: YouTubeLogo },
-  { name: "Shopify", Logo: ShopifyLogo },
-  { name: "Matomo", Logo: MatomoLogo },
-  { name: "Excel / CSV", Logo: ExcelLogo },
+const channels: { name: string; category: string; Logo: (p: { className?: string }) => React.ReactElement }[] = [
+  { name: "Google Analytics 4", category: "Analytics", Logo: GoogleAnalyticsLogo },
+  { name: "Search Console", category: "SEO", Logo: GoogleSearchConsoleLogo },
+  { name: "Google Ads", category: "Ads", Logo: GoogleAdsLogo },
+  { name: "Google Business", category: "Local", Logo: GoogleBusinessLogo },
+  { name: "Meta", category: "Social Ads", Logo: MetaLogo },
+  { name: "LinkedIn", category: "Social Ads", Logo: LinkedInLogo },
+  { name: "YouTube", category: "Video", Logo: YouTubeLogo },
+  { name: "Shopify", category: "E-handel", Logo: ShopifyLogo },
+  { name: "Matomo", category: "Analytics", Logo: MatomoLogo },
+  { name: "Excel / CSV", category: "Data", Logo: ExcelLogo },
 ];
 
 function Landing() {
