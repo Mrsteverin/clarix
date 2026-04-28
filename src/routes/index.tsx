@@ -325,10 +325,10 @@ function Landing() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">Integrationer</p>
           <h2 className="mt-4 font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
-            Koppla allt du redan använder.
+            Koppla allt du redan använder
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-foreground/70">
-            Koppla på några minuter. Vi hämtar resten automatiskt.
+            Börja med de viktigaste. Lägg till resten när du vill.
           </p>
         </div>
 
@@ -376,43 +376,21 @@ function Landing() {
           ))}
         </div>
 
-        {/* Secondary integrations — smaller cards */}
-        <div className="mx-auto mt-[60px] grid max-w-6xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-          {[
-            { name: "LinkedIn", label: "ANNONSER", Logo: LinkedInLogo },
-            { name: "YouTube", label: "VIDEO", Logo: YouTubeLogo },
-            { name: "Shopify", label: "E-HANDEL", Logo: ShopifyLogo },
-            { name: "Matomo", label: "WEBBTRAFIK", Logo: MatomoLogo },
-            { name: "Excel / CSV", label: "IMPORT", Logo: ExcelLogo },
-          ].map((c, i) => (
-            <motion.div
-              key={c.name}
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.35, delay: i * 0.03, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative flex items-center gap-4 rounded-3xl border border-[rgba(15,23,42,0.06)] bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_-14px_rgba(15,23,42,0.10)] transition-all duration-[240ms] ease-out hover:-translate-y-0.5 hover:border-[rgba(15,23,42,0.10)] hover:shadow-[0_6px_18px_-6px_rgba(15,23,42,0.10),0_20px_40px_-18px_rgba(15,23,42,0.16)]"
-            >
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[rgba(15,23,42,0.06)] bg-white">
-                <c.Logo className="h-6 w-6" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <h4 className="truncate text-sm font-semibold tracking-tight text-foreground">{c.name}</h4>
-                <p className="mt-1 truncate text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-foreground/50">
-                  {c.label}
-                </p>
-              </div>
-              <a
-                href="#pricing"
-                className="inline-flex h-8 shrink-0 items-center justify-center gap-1 rounded-lg border border-[rgba(15,23,42,0.10)] bg-white px-3 text-[0.75rem] font-semibold text-foreground/80 transition-all duration-[200ms] hover:border-foreground/25 hover:text-foreground"
-              >
-                Koppla
-              </a>
-            </motion.div>
-          ))}
+        {/* Additional integrations — calm inline list */}
+        <div className="mx-auto mt-16 max-w-3xl text-center">
+          <p className="text-[0.95rem] leading-relaxed text-foreground/65">
+            <span className="font-semibold text-foreground/80">Fler integrationer:</span>{" "}
+            Shopify · LinkedIn · YouTube · Matomo · Excel / CSV
+          </p>
+          <a
+            href="#pricing"
+            className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-foreground/80 transition-colors hover:text-foreground"
+          >
+            Visa alla integrationer <ArrowRight className="h-3.5 w-3.5" />
+          </a>
         </div>
 
-        <div className="mx-auto mt-[88px] flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[0.8rem] text-foreground/60">
+        <div className="mx-auto mt-20 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[0.8rem] text-foreground/60">
           {["Säker OAuth", "Ingen kod", "Klar på 2 minuter"].map((t) => (
             <span key={t} className="inline-flex items-center gap-1.5">
               <Check className="h-3.5 w-3.5 text-emerald-600" />
