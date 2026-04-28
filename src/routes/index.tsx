@@ -317,20 +317,27 @@ function Landing() {
             Koppla allt du redan använder.
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-foreground/70">
-            Anslut dina kanaler på två klick. Vi sköter resten.
+            Anslut på några minuter. Vi sköter resten.
           </p>
         </div>
-        <div className="mx-auto mt-20 grid max-w-5xl grid-cols-2 gap-px overflow-hidden rounded-3xl border border-border/40 bg-border/40 shadow-[0_30px_80px_-30px_rgba(15,23,42,0.3)] sm:grid-cols-3 md:grid-cols-5">
-          {channels.map((c) => (
-            <div
+        <div className="mx-auto mt-20 grid max-w-6xl grid-cols-2 gap-5 sm:grid-cols-3 md:gap-6 lg:grid-cols-5">
+          {channels.map((c, i) => (
+            <motion.div
               key={c.name}
-              className="group flex flex-col items-center justify-center gap-3 bg-background/80 px-6 py-10 transition-colors hover:bg-background"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.4, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
+              className="group flex flex-col items-center justify-center gap-5 rounded-2xl border border-[rgba(0,0,0,0.05)] bg-white px-6 py-10 shadow-[0_2px_8px_-2px_rgba(15,23,42,0.06),0_12px_32px_-12px_rgba(15,23,42,0.08)] transition-all duration-[220ms] ease-out hover:-translate-y-1.5 hover:border-[rgba(0,0,0,0.09)] hover:shadow-[0_8px_20px_-4px_rgba(15,23,42,0.08),0_24px_56px_-12px_rgba(15,23,42,0.16)]"
             >
-              <c.Logo className="h-10 w-10 transition-transform group-hover:scale-105" />
-              <span className="text-xs font-medium text-foreground/70">{c.name}</span>
-            </div>
+              <c.Logo className="h-12 w-12 transition-transform duration-[220ms] ease-out group-hover:scale-[1.03]" />
+              <span className="text-sm font-medium tracking-tight text-foreground/80">{c.name}</span>
+            </motion.div>
           ))}
         </div>
+        <p className="mx-auto mt-12 text-center text-sm text-foreground/55">
+          Säker OAuth-anslutning · Ingen teknisk kunskap krävs
+        </p>
       </section>
 
       <section id="agencies" className="border-y border-border/40 bg-muted/20 py-24">
