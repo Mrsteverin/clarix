@@ -405,27 +405,28 @@ function Landing() {
           ))}
         </div>
 
-        {/* Additional integrations — calm inline list */}
-        <div className="mx-auto mt-10 max-w-3xl text-center">
-          <p className="text-[0.95rem] leading-relaxed text-foreground/65">
-            <span className="font-semibold text-foreground/80">Fler integrationer:</span>{" "}
-            Shopify · LinkedIn · YouTube · Matomo · Excel / CSV
-          </p>
-          <a
-            href="#pricing"
-            className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-foreground/80 transition-colors hover:text-foreground"
-          >
-            Visa alla integrationer <ArrowRight className="h-3.5 w-3.5" />
-          </a>
-        </div>
+          {/* Additional integrations — calm inline list */}
+          <div className="mx-auto mt-12 max-w-3xl text-center">
+            <p className="text-[0.95rem] leading-relaxed text-white/60">
+              <span className="font-semibold text-white/85">Fler integrationer:</span>{" "}
+              Shopify · LinkedIn · YouTube · Matomo · Excel / CSV
+            </p>
+            <a
+              href="#pricing"
+              className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-white/85 transition-colors hover:text-white"
+            >
+              Visa alla integrationer <ArrowRight className="h-3.5 w-3.5" />
+            </a>
+          </div>
 
-        <div className="mx-auto mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-2.5 text-[0.8rem] text-foreground/55">
-          {["Säker OAuth", "Ingen kod", "Klar på 2 minuter"].map((t) => (
-            <span key={t} className="inline-flex items-center gap-1.5">
-              <Check className="h-3.5 w-3.5 text-emerald-600" />
-              <span className="font-medium tracking-tight">{t}</span>
-            </span>
-          ))}
+          <div className="mx-auto mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-2.5 text-[0.8rem] text-white/55">
+            {["Säker OAuth", "Ingen kod", "Klar på 2 minuter"].map((t) => (
+              <span key={t} className="inline-flex items-center gap-1.5">
+                <Check className="h-3.5 w-3.5 text-emerald-400/80" />
+                <span className="font-medium tracking-tight">{t}</span>
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
