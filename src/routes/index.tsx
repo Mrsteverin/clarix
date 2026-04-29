@@ -319,23 +319,41 @@ function Landing() {
       </section>
 
       {/* Premium integrations — cinematic dark break */}
-      <section id="channels" className="relative isolate overflow-hidden bg-[#111111] py-32 text-white">
-        {/* Warm undertone gradient */}
+      <section id="channels" className="relative isolate overflow-hidden bg-[#121212] py-32 text-white">
+        {/* Layered graphite base with warm undertone */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-10"
           style={{
             background:
-              "radial-gradient(ellipse 80% 60% at 50% 0%, #1a1613 0%, #141210 45%, #111111 100%)",
+              "radial-gradient(ellipse 70% 55% at 50% 0%, #1f1c19 0%, #171615 38%, #121212 78%, #0e0d0c 100%)",
           }}
         />
-        {/* Grain / noise overlay */}
+        {/* Faint radial spotlight behind heading */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.07] mix-blend-overlay"
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px]"
+          style={{
+            background:
+              "radial-gradient(ellipse 45% 60% at 50% 18%, rgba(255,220,180,0.08) 0%, rgba(255,200,150,0.035) 40%, transparent 75%)",
+          }}
+        />
+        {/* Ambient glow behind card row */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-[55%] -z-10 h-[380px]"
+          style={{
+            background:
+              "radial-gradient(ellipse 55% 70% at 50% 50%, rgba(120,140,200,0.07) 0%, rgba(80,90,140,0.03) 45%, transparent 80%)",
+          }}
+        />
+        {/* Fine premium grain */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.11] mix-blend-overlay"
           style={{
             backgroundImage:
-              "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
+              "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.35' numOctaves='2' stitchTiles='stitch' seed='4'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.96  0 0 0 0 0.9  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
           }}
         />
         {/* Soft vignette */}
@@ -344,7 +362,7 @@ function Landing() {
           className="pointer-events-none absolute inset-0 -z-10"
           style={{
             background:
-              "radial-gradient(ellipse 100% 80% at 50% 50%, transparent 55%, rgba(0,0,0,0.55) 100%)",
+              "radial-gradient(ellipse 110% 85% at 50% 50%, transparent 50%, rgba(0,0,0,0.6) 100%)",
           }}
         />
 
@@ -356,7 +374,7 @@ function Landing() {
             <h2 className="mt-4 font-display text-5xl font-bold tracking-[-0.035em] text-white sm:text-[3.5rem]">
               Koppla allt du redan använder
             </h2>
-            <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/65">
+            <p className="mx-auto mt-6 max-w-xl text-xl leading-relaxed text-white/75 sm:text-[1.35rem]">
               Börja med de viktigaste. Lägg till resten när du vill.
             </p>
           </div>
@@ -375,7 +393,7 @@ function Landing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.4, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative flex min-h-[260px] flex-col rounded-2xl border border-[rgba(15,23,42,0.06)] bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(15,23,42,0.10)] transition-all duration-[240ms] ease-out hover:-translate-y-1 hover:border-[rgba(15,23,42,0.10)] hover:shadow-[0_8px_24px_-6px_rgba(15,23,42,0.08),0_28px_56px_-20px_rgba(15,23,42,0.16)]"
+              className="group relative flex min-h-[260px] flex-col rounded-[18px] border border-white/10 bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.18),0_18px_40px_-12px_rgba(0,0,0,0.45),0_40px_80px_-30px_rgba(0,0,0,0.55)] ring-1 ring-black/[0.03] transition-all duration-[240ms] ease-out hover:-translate-y-1.5 hover:shadow-[0_4px_8px_rgba(0,0,0,0.22),0_30px_60px_-12px_rgba(0,0,0,0.55),0_60px_100px_-30px_rgba(0,0,0,0.65)]"
             >
               {c.badge && (
                 <span className="absolute right-4 top-4 inline-flex items-center rounded-full bg-[oklch(0.95_0.04_245)] px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.1em] text-[oklch(0.45_0.15_245)]">
@@ -406,23 +424,23 @@ function Landing() {
         </div>
 
           {/* Additional integrations — calm inline list */}
-          <div className="mx-auto mt-12 max-w-3xl text-center">
-            <p className="text-[0.95rem] leading-relaxed text-white/60">
-              <span className="font-semibold text-white/85">Fler integrationer:</span>{" "}
+          <div className="mx-auto mt-14 max-w-3xl text-center">
+            <p className="text-[1.075rem] leading-relaxed text-white/70 sm:text-lg">
+              <span className="font-semibold text-white/90">Fler integrationer:</span>{" "}
               Shopify · LinkedIn · YouTube · Matomo · Excel / CSV
             </p>
             <a
               href="#pricing"
-              className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-white/85 transition-colors hover:text-white"
+              className="mt-4 inline-flex items-center gap-1.5 text-base font-semibold text-white/90 transition-colors hover:text-white sm:text-[1.05rem]"
             >
-              Visa alla integrationer <ArrowRight className="h-3.5 w-3.5" />
+              Visa alla integrationer <ArrowRight className="h-4 w-4" />
             </a>
           </div>
 
-          <div className="mx-auto mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-2.5 text-[0.8rem] text-white/55">
+          <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[0.95rem] text-white/65">
             {["Säker OAuth", "Ingen kod", "Klar på 2 minuter"].map((t) => (
-              <span key={t} className="inline-flex items-center gap-1.5">
-                <Check className="h-3.5 w-3.5 text-emerald-400/80" />
+              <span key={t} className="inline-flex items-center gap-2">
+                <Check className="h-4 w-4 text-emerald-400/85" />
                 <span className="font-medium tracking-tight">{t}</span>
               </span>
             ))}
