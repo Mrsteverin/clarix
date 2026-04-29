@@ -393,7 +393,7 @@ function Landing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.4, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative flex min-h-[260px] flex-col rounded-2xl border border-[rgba(15,23,42,0.06)] bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(15,23,42,0.10)] transition-all duration-[240ms] ease-out hover:-translate-y-1 hover:border-[rgba(15,23,42,0.10)] hover:shadow-[0_8px_24px_-6px_rgba(15,23,42,0.08),0_28px_56px_-20px_rgba(15,23,42,0.16)]"
+              className="group relative flex min-h-[260px] flex-col rounded-[18px] border border-white/10 bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.18),0_18px_40px_-12px_rgba(0,0,0,0.45),0_40px_80px_-30px_rgba(0,0,0,0.55)] ring-1 ring-black/[0.03] transition-all duration-[240ms] ease-out hover:-translate-y-1.5 hover:shadow-[0_4px_8px_rgba(0,0,0,0.22),0_30px_60px_-12px_rgba(0,0,0,0.55),0_60px_100px_-30px_rgba(0,0,0,0.65)]"
             >
               {c.badge && (
                 <span className="absolute right-4 top-4 inline-flex items-center rounded-full bg-[oklch(0.95_0.04_245)] px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.1em] text-[oklch(0.45_0.15_245)]">
