@@ -437,13 +437,12 @@ function Landing() {
             </p>
           </div>
 
-          {/* Featured integrations — large premium white cards */}
-          <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Featured integrations — 3 large premium white cards */}
+          <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-7 sm:gap-6 md:grid-cols-3">
           {[
             { name: "Google Analytics 4", label: "WEBBTRAFIK", Logo: GoogleAnalyticsLogo, badge: "Mest vald", primary: true },
-            { name: "Search Console", label: "SEO", Logo: GoogleSearchConsoleLogo },
-            { name: "Google Ads", label: "ANNONSER", Logo: GoogleAdsLogo },
-            { name: "Meta Ads", label: "ANNONSER", Logo: MetaLogo },
+            { name: "Google Ads", label: "BETALD TILLVÄXT", Logo: GoogleAdsLogo },
+            { name: "LinkedIn", label: "B2B-MARKNADSFÖRING", Logo: LinkedInLogo },
           ].map((c, i) => (
             <motion.div
               key={c.name}
