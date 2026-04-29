@@ -319,23 +319,41 @@ function Landing() {
       </section>
 
       {/* Premium integrations — cinematic dark break */}
-      <section id="channels" className="relative isolate overflow-hidden bg-[#111111] py-32 text-white">
-        {/* Warm undertone gradient */}
+      <section id="channels" className="relative isolate overflow-hidden bg-[#121212] py-32 text-white">
+        {/* Layered graphite base with warm undertone */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-10"
           style={{
             background:
-              "radial-gradient(ellipse 80% 60% at 50% 0%, #1a1613 0%, #141210 45%, #111111 100%)",
+              "radial-gradient(ellipse 70% 55% at 50% 0%, #1f1c19 0%, #171615 38%, #121212 78%, #0e0d0c 100%)",
           }}
         />
-        {/* Grain / noise overlay */}
+        {/* Faint radial spotlight behind heading */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.07] mix-blend-overlay"
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px]"
+          style={{
+            background:
+              "radial-gradient(ellipse 45% 60% at 50% 18%, rgba(255,220,180,0.08) 0%, rgba(255,200,150,0.035) 40%, transparent 75%)",
+          }}
+        />
+        {/* Ambient glow behind card row */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-[55%] -z-10 h-[380px]"
+          style={{
+            background:
+              "radial-gradient(ellipse 55% 70% at 50% 50%, rgba(120,140,200,0.07) 0%, rgba(80,90,140,0.03) 45%, transparent 80%)",
+          }}
+        />
+        {/* Fine premium grain */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.11] mix-blend-overlay"
           style={{
             backgroundImage:
-              "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
+              "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.35' numOctaves='2' stitchTiles='stitch' seed='4'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.96  0 0 0 0 0.9  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
           }}
         />
         {/* Soft vignette */}
@@ -344,7 +362,7 @@ function Landing() {
           className="pointer-events-none absolute inset-0 -z-10"
           style={{
             background:
-              "radial-gradient(ellipse 100% 80% at 50% 50%, transparent 55%, rgba(0,0,0,0.55) 100%)",
+              "radial-gradient(ellipse 110% 85% at 50% 50%, transparent 50%, rgba(0,0,0,0.6) 100%)",
           }}
         />
 
@@ -356,7 +374,7 @@ function Landing() {
             <h2 className="mt-4 font-display text-5xl font-bold tracking-[-0.035em] text-white sm:text-[3.5rem]">
               Koppla allt du redan använder
             </h2>
-            <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/65">
+            <p className="mx-auto mt-6 max-w-xl text-xl leading-relaxed text-white/75 sm:text-[1.35rem]">
               Börja med de viktigaste. Lägg till resten när du vill.
             </p>
           </div>
