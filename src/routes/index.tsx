@@ -112,10 +112,11 @@ function Landing() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h1 className="mx-auto mt-10 max-w-5xl font-display text-6xl leading-[1.04] tracking-[-0.04em] text-foreground sm:text-7xl md:text-[6rem]">
-            Förstå din marknadsföring
+          <h1 className="mx-auto mt-10 max-w-5xl font-display text-[2.625rem] leading-[1.02] tracking-[-0.04em] text-foreground sm:text-7xl sm:leading-[1.04] md:text-[6rem]">
+            Förstå din<br className="sm:hidden" />{" "}
+            marknadsföring
             <span
-              className="mt-3 block bg-clip-text font-accent italic text-transparent"
+              className="mt-3 block whitespace-nowrap bg-clip-text font-accent italic text-transparent"
               style={{
                 backgroundImage:
                   "linear-gradient(95deg, #E8268F 0%, #E8268F 14%, #EE5C7A 32%, #F58040 52%, #FBB827 74%, #FFD60A 92%, #FFE34D 100%)",
