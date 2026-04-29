@@ -130,8 +130,8 @@ function Landing() {
             </span>
           </h1>
 
-          <p className="mx-auto mt-10 max-w-xl text-lg leading-[1.45] text-foreground/75 sm:text-xl">
-            Anslut dina kanaler. Få tydliga rapporter och smarta AI-insikter — på enkel svenska.
+          <p className="mx-auto mt-10 max-w-md text-lg font-medium leading-[1.5] text-foreground/75 sm:text-xl">
+            Veckans viktigaste siffror. Förklarade på svenska.
           </p>
 
           <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
