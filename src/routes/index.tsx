@@ -482,9 +482,18 @@ function Landing() {
 
           {/* Additional integrations — calm inline list */}
           <div className="mx-auto mt-16 max-w-3xl text-center">
-            <p className="text-[1.15rem] leading-relaxed text-white/85 sm:text-[1.2rem]">
-              <span className="font-semibold text-white">Fler integrationer:</span>{" "}
-              Shopify · LinkedIn · YouTube · Matomo · Excel / CSV
+            <p className="text-[1rem] leading-relaxed text-white/70 sm:text-[1.075rem]">
+              <span className="text-white/85">+ Meta</span>
+              <span className="mx-2 text-white/30">•</span>
+              <span className="text-white/85">Shopify</span>
+              <span className="mx-2 text-white/30">•</span>
+              <span className="text-white/85">Search Console</span>
+              <span className="mx-2 text-white/30">•</span>
+              <span className="text-white/85">Matomo</span>
+              <span className="mx-2 text-white/30">•</span>
+              <span className="text-white/85">YouTube</span>
+              <span className="mx-2 text-white/30">•</span>
+              <span className="text-white/85">Excel / CSV</span>
             </p>
             <a
               href="#pricing"
