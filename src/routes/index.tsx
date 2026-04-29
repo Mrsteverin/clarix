@@ -106,7 +106,7 @@ function Landing() {
         </div>
       </header>
 
-      <section className="relative mx-auto max-w-7xl px-6 pb-32 pt-28 text-center sm:pt-40">
+      <section className="relative mx-auto max-w-7xl px-6 pb-32 pt-10 text-center sm:pt-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
