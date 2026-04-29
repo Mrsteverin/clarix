@@ -457,8 +457,8 @@ function Landing() {
                 <span className="font-medium tracking-tight">{t}</span>
               </span>
             ))}
-            </div>
           </div>
+        </div>
         </div>
         </div>
       </section>
