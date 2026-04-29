@@ -447,7 +447,7 @@ function Landing() {
 
           {/* Additional integrations — calm inline list */}
           <div className="mx-auto mt-16 max-w-3xl text-center">
-            <p className="text-[1.15rem] leading-relaxed text-white/80 sm:text-[1.2rem]">
+            <p className="text-[1.15rem] leading-relaxed text-white/85 sm:text-[1.2rem]">
               <span className="font-semibold text-white">Fler integrationer:</span>{" "}
               Shopify · LinkedIn · YouTube · Matomo · Excel / CSV
             </p>
@@ -459,7 +459,7 @@ function Landing() {
             </a>
           </div>
 
-          <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-[1.025rem] text-white/80">
+          <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-[1.025rem] text-white/85">
             {["Säker OAuth", "Ingen kod", "Klar på 2 minuter"].map((t) => (
               <span key={t} className="inline-flex items-center gap-2">
                 <Check className="h-[18px] w-[18px] text-emerald-400/90" />
