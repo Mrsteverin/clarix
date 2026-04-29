@@ -380,10 +380,10 @@ function Landing() {
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[oklch(0.78_0.13_240)]">
               Rekommenderade integrationer
             </p>
-            <h2 className="mt-4 font-display text-5xl font-bold tracking-[-0.035em] text-white sm:text-[3.5rem]">
+            <h2 className="mt-4 font-display text-[3.3rem] font-bold leading-[1.05] tracking-[-0.035em] text-white sm:text-[3.85rem]">
               Koppla allt du redan använder
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-xl leading-relaxed text-white/75 sm:text-[1.35rem]">
+            <p className="mx-auto mt-6 max-w-xl text-[1.2rem] leading-relaxed text-white/85 sm:text-[1.4rem]">
               Börja med de viktigaste. Lägg till resten när du vill.
             </p>
           </div>
