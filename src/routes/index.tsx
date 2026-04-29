@@ -315,77 +315,71 @@ function Landing() {
         </div>
       </section>
 
-      {/* Premium integrations — cinematic dark break */}
-      <section id="channels" className="relative isolate overflow-hidden bg-[#1B1D21] py-32 text-white">
-        {/* Layered graphite base — softer, atmospheric */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 50% 0%, #23262C 0%, #1F2126 35%, #1B1D21 70%, #17181B 100%)",
-          }}
-        />
-        {/* Soft cloudy gradient — top left */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10"
-          style={{
-            background:
-              "radial-gradient(ellipse 55% 45% at 18% 22%, rgba(255,245,230,0.045) 0%, transparent 70%)",
-          }}
-        />
-        {/* Soft cloudy gradient — bottom right */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10"
-          style={{
-            background:
-              "radial-gradient(ellipse 50% 45% at 82% 78%, rgba(220,225,240,0.04) 0%, transparent 72%)",
-          }}
-        />
-        {/* Gentle drifting light — animated */}
-        <motion.div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-[10%] -z-10 h-[520px]"
-          animate={{ x: [0, 40, -20, 0], opacity: [0.7, 1, 0.85, 0.7] }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          style={{
-            background:
-              "radial-gradient(ellipse 45% 55% at 50% 30%, rgba(255,225,195,0.05) 0%, rgba(255,210,170,0.025) 40%, transparent 75%)",
-          }}
-        />
-        {/* Gentle drifting light — second layer */}
-        <motion.div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-[45%] -z-10 h-[480px]"
-          animate={{ x: [0, -30, 25, 0], opacity: [0.6, 0.9, 0.7, 0.6] }}
-          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-          style={{
-            background:
-              "radial-gradient(ellipse 55% 60% at 50% 50%, rgba(200,210,230,0.04) 0%, rgba(180,190,220,0.02) 50%, transparent 80%)",
-          }}
-        />
-        {/* Very fine film grain */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.06] mix-blend-overlay"
-          style={{
-            backgroundImage:
-              "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2' stitchTiles='stitch' seed='6'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.98  0 0 0 0 0.94  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
-          }}
-        />
-        {/* Soft edge vignette — matte finish */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10"
-          style={{
-            background:
-              "radial-gradient(ellipse 115% 90% at 50% 50%, transparent 55%, rgba(10,11,13,0.45) 100%)",
-          }}
-        />
+      {/* Premium integrations — centered dark feature panel on light page */}
+      <section id="channels" className="relative py-24 sm:py-28">
+        <div className="mx-auto w-[92%] max-w-7xl sm:w-[88%] lg:w-[85%]">
+          <div className="relative isolate overflow-hidden rounded-[28px] px-6 py-20 text-white shadow-[0_30px_80px_-30px_rgba(15,17,21,0.45),0_10px_30px_-12px_rgba(15,17,21,0.35)] sm:px-12 sm:py-24 lg:px-16">
+            {/* Graphite gradient base */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 -z-10"
+              style={{
+                background:
+                  "radial-gradient(ellipse 90% 70% at 50% 0%, #22252A 0%, #1C1E22 50%, #17181B 100%)",
+              }}
+            />
+            {/* Inner glow — top */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 -z-10"
+              style={{
+                background:
+                  "radial-gradient(ellipse 60% 40% at 50% 8%, rgba(255,240,220,0.06) 0%, transparent 70%)",
+              }}
+            />
+            {/* Soft cloudy gradient — left */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 -z-10"
+              style={{
+                background:
+                  "radial-gradient(ellipse 50% 45% at 15% 25%, rgba(255,245,230,0.045) 0%, transparent 72%)",
+              }}
+            />
+            {/* Soft cloudy gradient — right */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 -z-10"
+              style={{
+                background:
+                  "radial-gradient(ellipse 45% 45% at 85% 80%, rgba(220,225,240,0.04) 0%, transparent 72%)",
+              }}
+            />
+            {/* Subtle grain */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 -z-10 opacity-[0.07] mix-blend-overlay"
+              style={{
+                backgroundImage:
+                  "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n2'><feTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2' stitchTiles='stitch' seed='6'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.98  0 0 0 0 0.94  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n2)'/></svg>\")",
+              }}
+            />
+            {/* Inner highlight ring for depth */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 -z-10 rounded-[28px] ring-1 ring-inset ring-white/[0.06]"
+            />
+            {/* Soft inner vignette */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 -z-10 rounded-[28px]"
+              style={{
+                background:
+                  "radial-gradient(ellipse 110% 85% at 50% 50%, transparent 60%, rgba(10,11,13,0.55) 100%)",
+              }}
+            />
 
-        <div className="relative mx-auto max-w-7xl px-6">
+            <div className="relative">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[oklch(0.78_0.13_240)]">
               Rekommenderade integrationer
