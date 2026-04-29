@@ -165,13 +165,13 @@ function Landing() {
       </section>
 
       {/* Premium quote bridge */}
-      <section className="mx-auto max-w-5xl px-6 pt-20 pb-4 sm:pt-28 sm:pb-8">
+      <section className="mx-auto max-w-6xl px-6 pt-12 pb-2 sm:pt-16">
         <motion.figure
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative overflow-hidden rounded-[24px] px-8 py-14 text-center shadow-[0_24px_60px_-28px_rgba(244,114,82,0.35)] sm:px-16 sm:py-20"
+          className="relative overflow-hidden rounded-[24px] px-6 py-10 text-center shadow-[0_24px_60px_-28px_rgba(244,114,82,0.35)] sm:px-12 sm:py-12"
           style={{
             background:
               "linear-gradient(135deg, #FFF4EE 0%, #FFEDE3 55%, #FDE7DA 100%)",
@@ -193,18 +193,18 @@ function Landing() {
             style={{ background: "radial-gradient(circle, rgba(253,164,132,0.55), transparent 70%)" }}
           />
 
-          <blockquote className="relative font-display text-3xl font-semibold leading-[1.2] tracking-[-0.01em] text-[#2A1810] sm:text-4xl md:text-5xl">
+          <blockquote className="relative font-display text-[1.75rem] font-semibold leading-[1.15] tracking-[-0.02em] text-[#2A1810] sm:whitespace-nowrap sm:text-[2.5rem] md:text-[3rem]">
             <span aria-hidden className="mr-1 text-[#E8744A]">“</span>
             Data är värdelös om du inte förstår den.
             <span aria-hidden className="ml-1 text-[#E8744A]">”</span>
           </blockquote>
-          <figcaption className="relative mt-5 text-sm text-[#7A6258] sm:text-base">
+          <figcaption className="relative mt-3 text-xs text-[#8A6F62] sm:mt-4 sm:text-sm">
             Därför byggde vi Clarix.
           </figcaption>
         </motion.figure>
       </section>
 
-      <section id="showcase" className="relative mx-auto max-w-7xl px-6 py-32 space-y-40 sm:py-40 sm:space-y-48">
+      <section id="showcase" className="relative mx-auto max-w-7xl px-6 pt-20 pb-32 space-y-40 sm:pt-24 sm:pb-40 sm:space-y-48">
         <Showcase
           eyebrow="AI-insikter"
           title="Sluta tolka otydliga grafer och tårtdiagram."
