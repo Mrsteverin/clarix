@@ -164,6 +164,46 @@ function Landing() {
         </motion.div>
       </section>
 
+      {/* Premium quote bridge */}
+      <section className="mx-auto max-w-5xl px-6 pt-20 pb-4 sm:pt-28 sm:pb-8">
+        <motion.figure
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="relative overflow-hidden rounded-[24px] px-8 py-14 text-center shadow-[0_24px_60px_-28px_rgba(244,114,82,0.35)] sm:px-16 sm:py-20"
+          style={{
+            background:
+              "linear-gradient(135deg, #FFF4EE 0%, #FFEDE3 55%, #FDE7DA 100%)",
+          }}
+        >
+          {/* subtle grain */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-[0.07] mix-blend-multiply"
+            style={{
+              backgroundImage:
+                "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
+            }}
+          />
+          {/* soft glow */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-20 left-1/2 h-56 w-56 -translate-x-1/2 rounded-full opacity-50 blur-3xl"
+            style={{ background: "radial-gradient(circle, rgba(253,164,132,0.55), transparent 70%)" }}
+          />
+
+          <blockquote className="relative font-display text-3xl font-semibold leading-[1.2] tracking-[-0.01em] text-[#2A1810] sm:text-4xl md:text-5xl">
+            <span aria-hidden className="mr-1 text-[#E8744A]">“</span>
+            Data är värdelös om du inte förstår den.
+            <span aria-hidden className="ml-1 text-[#E8744A]">”</span>
+          </blockquote>
+          <figcaption className="relative mt-5 text-sm text-[#7A6258] sm:text-base">
+            Därför byggde vi Clarix.
+          </figcaption>
+        </motion.figure>
+      </section>
+
       <section id="showcase" className="relative mx-auto max-w-7xl px-6 py-32 space-y-40 sm:py-40 sm:space-y-48">
         <Showcase
           eyebrow="AI-insikter"
