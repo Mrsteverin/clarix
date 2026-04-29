@@ -433,23 +433,23 @@ function Landing() {
         </div>
 
           {/* Additional integrations — calm inline list */}
-          <div className="mx-auto mt-14 max-w-3xl text-center">
-            <p className="text-[1.075rem] leading-relaxed text-white/70 sm:text-lg">
-              <span className="font-semibold text-white/90">Fler integrationer:</span>{" "}
+          <div className="mx-auto mt-16 max-w-3xl text-center">
+            <p className="text-[1.15rem] leading-relaxed text-white/80 sm:text-[1.2rem]">
+              <span className="font-semibold text-white">Fler integrationer:</span>{" "}
               Shopify · LinkedIn · YouTube · Matomo · Excel / CSV
             </p>
             <a
               href="#pricing"
-              className="mt-4 inline-flex items-center gap-1.5 text-base font-semibold text-white/90 transition-colors hover:text-white sm:text-[1.05rem]"
+              className="mt-5 inline-flex items-center gap-2 text-[1.075rem] font-semibold text-white transition-colors hover:text-white/90 sm:text-[1.15rem]"
             >
-              Visa alla integrationer <ArrowRight className="h-4 w-4" />
+              Visa alla integrationer <ArrowRight className="h-[18px] w-[18px]" />
             </a>
           </div>
 
-          <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[0.95rem] text-white/65">
+          <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-[1.025rem] text-white/80">
             {["Säker OAuth", "Ingen kod", "Klar på 2 minuter"].map((t) => (
               <span key={t} className="inline-flex items-center gap-2">
-                <Check className="h-4 w-4 text-emerald-400/85" />
+                <Check className="h-[18px] w-[18px] text-emerald-400/90" />
                 <span className="font-medium tracking-tight">{t}</span>
               </span>
             ))}
