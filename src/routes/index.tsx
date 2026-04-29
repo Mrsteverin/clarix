@@ -437,13 +437,12 @@ function Landing() {
             </p>
           </div>
 
-          {/* Featured integrations — large premium white cards */}
-          <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Featured integrations — 3 large premium white cards */}
+          <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-7 sm:gap-6 md:grid-cols-3">
           {[
             { name: "Google Analytics 4", label: "WEBBTRAFIK", Logo: GoogleAnalyticsLogo, badge: "Mest vald", primary: true },
-            { name: "Search Console", label: "SEO", Logo: GoogleSearchConsoleLogo },
-            { name: "Google Ads", label: "ANNONSER", Logo: GoogleAdsLogo },
-            { name: "Meta Ads", label: "ANNONSER", Logo: MetaLogo },
+            { name: "Google Ads", label: "BETALD TILLVÄXT", Logo: GoogleAdsLogo },
+            { name: "LinkedIn", label: "B2B-MARKNADSFÖRING", Logo: LinkedInLogo },
           ].map((c, i) => (
             <motion.div
               key={c.name}
@@ -451,7 +450,7 @@ function Landing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.4, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative flex min-h-[290px] flex-col rounded-[18px] border border-white/10 bg-white p-7 shadow-[0_2px_4px_rgba(0,0,0,0.18),0_18px_40px_-12px_rgba(0,0,0,0.45),0_40px_80px_-30px_rgba(0,0,0,0.55)] ring-1 ring-black/[0.03] transition-all duration-[240ms] ease-out hover:-translate-y-1.5 hover:shadow-[0_4px_8px_rgba(0,0,0,0.22),0_30px_60px_-12px_rgba(0,0,0,0.55),0_60px_100px_-30px_rgba(0,0,0,0.65)]"
+              className="group relative flex min-h-[330px] flex-col rounded-[20px] border border-white/10 bg-white p-9 shadow-[0_2px_4px_rgba(0,0,0,0.18),0_18px_40px_-12px_rgba(0,0,0,0.45),0_40px_80px_-30px_rgba(0,0,0,0.55)] ring-1 ring-black/[0.03] transition-all duration-[240ms] ease-out hover:-translate-y-1.5 hover:shadow-[0_4px_8px_rgba(0,0,0,0.22),0_30px_60px_-12px_rgba(0,0,0,0.55),0_60px_100px_-30px_rgba(0,0,0,0.65)]"
             >
               {c.badge && (
                 <span className="absolute right-4 top-4 inline-flex items-center rounded-full bg-[oklch(0.95_0.04_245)] px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.1em] text-[oklch(0.45_0.15_245)]">
@@ -483,9 +482,18 @@ function Landing() {
 
           {/* Additional integrations — calm inline list */}
           <div className="mx-auto mt-16 max-w-3xl text-center">
-            <p className="text-[1.15rem] leading-relaxed text-white/85 sm:text-[1.2rem]">
-              <span className="font-semibold text-white">Fler integrationer:</span>{" "}
-              Shopify · LinkedIn · YouTube · Matomo · Excel / CSV
+            <p className="text-[1rem] leading-relaxed text-white/70 sm:text-[1.075rem]">
+              <span className="text-white/85">+ Meta</span>
+              <span className="mx-2 text-white/30">•</span>
+              <span className="text-white/85">Shopify</span>
+              <span className="mx-2 text-white/30">•</span>
+              <span className="text-white/85">Search Console</span>
+              <span className="mx-2 text-white/30">•</span>
+              <span className="text-white/85">Matomo</span>
+              <span className="mx-2 text-white/30">•</span>
+              <span className="text-white/85">YouTube</span>
+              <span className="mx-2 text-white/30">•</span>
+              <span className="text-white/85">Excel / CSV</span>
             </p>
             <a
               href="#pricing"
