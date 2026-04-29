@@ -381,7 +381,7 @@ function Landing() {
               Rekommenderade integrationer
             </p>
             <h2 className="mt-4 font-display text-[3.3rem] font-bold leading-[1.05] tracking-[-0.035em] text-white sm:text-[3.85rem]">
-              Koppla allt du redan använder
+              Koppla allt<br />du redan använder
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-[1.2rem] leading-relaxed text-white/85 sm:text-[1.4rem]">
               Börja med de viktigaste. Lägg till resten när du vill.
