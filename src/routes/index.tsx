@@ -347,6 +347,15 @@ function Landing() {
               "radial-gradient(ellipse 55% 70% at 50% 50%, rgba(120,140,200,0.07) 0%, rgba(80,90,140,0.03) 45%, transparent 80%)",
           }}
         />
+        {/* Soft warm spotlight behind card row */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-[58%] -z-10 h-[440px]"
+          style={{
+            background:
+              "radial-gradient(ellipse 50% 60% at 50% 50%, rgba(255,205,160,0.06) 0%, rgba(255,180,130,0.025) 45%, transparent 78%)",
+          }}
+        />
         {/* Fine premium grain */}
         <div
           aria-hidden
@@ -371,10 +380,10 @@ function Landing() {
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[oklch(0.78_0.13_240)]">
               Rekommenderade integrationer
             </p>
-            <h2 className="mt-4 font-display text-5xl font-bold tracking-[-0.035em] text-white sm:text-[3.5rem]">
+            <h2 className="mt-4 font-display text-[3.3rem] font-bold leading-[1.05] tracking-[-0.035em] text-white sm:text-[3.85rem]">
               Koppla allt du redan använder
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-xl leading-relaxed text-white/75 sm:text-[1.35rem]">
+            <p className="mx-auto mt-6 max-w-xl text-[1.2rem] leading-relaxed text-white/85 sm:text-[1.4rem]">
               Börja med de viktigaste. Lägg till resten när du vill.
             </p>
           </div>
@@ -393,7 +402,7 @@ function Landing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.4, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative flex min-h-[260px] flex-col rounded-[18px] border border-white/10 bg-white p-6 shadow-[0_2px_4px_rgba(0,0,0,0.18),0_18px_40px_-12px_rgba(0,0,0,0.45),0_40px_80px_-30px_rgba(0,0,0,0.55)] ring-1 ring-black/[0.03] transition-all duration-[240ms] ease-out hover:-translate-y-1.5 hover:shadow-[0_4px_8px_rgba(0,0,0,0.22),0_30px_60px_-12px_rgba(0,0,0,0.55),0_60px_100px_-30px_rgba(0,0,0,0.65)]"
+              className="group relative flex min-h-[290px] flex-col rounded-[18px] border border-white/10 bg-white p-7 shadow-[0_2px_4px_rgba(0,0,0,0.18),0_18px_40px_-12px_rgba(0,0,0,0.45),0_40px_80px_-30px_rgba(0,0,0,0.55)] ring-1 ring-black/[0.03] transition-all duration-[240ms] ease-out hover:-translate-y-1.5 hover:shadow-[0_4px_8px_rgba(0,0,0,0.22),0_30px_60px_-12px_rgba(0,0,0,0.55),0_60px_100px_-30px_rgba(0,0,0,0.65)]"
             >
               {c.badge && (
                 <span className="absolute right-4 top-4 inline-flex items-center rounded-full bg-[oklch(0.95_0.04_245)] px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.1em] text-[oklch(0.45_0.15_245)]">
@@ -403,9 +412,9 @@ function Landing() {
               <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-[rgba(15,23,42,0.06)] bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
                 <c.Logo className="h-6 w-6" />
               </div>
-              <div className="mt-5">
+              <div className="mt-7">
                 <h3 className="text-[1.15rem] font-bold tracking-tight text-foreground">{c.name}</h3>
-                <p className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-foreground/45">
+                <p className="mt-2 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-foreground/45">
                   {c.label}
                 </p>
               </div>
@@ -413,8 +422,8 @@ function Landing() {
                 href="#pricing"
                 className={
                   c.primary
-                    ? "mt-auto inline-flex h-10 items-center justify-center gap-1.5 rounded-xl bg-foreground px-4 text-sm font-semibold text-background transition-all duration-[200ms] hover:bg-foreground/90"
-                    : "mt-auto inline-flex h-10 items-center justify-center gap-1.5 rounded-xl border border-[rgba(15,23,42,0.12)] bg-white px-4 text-sm font-semibold text-foreground transition-all duration-[200ms] hover:border-foreground/30 hover:bg-foreground/[0.03]"
+                    ? "mt-8 inline-flex h-11 items-center justify-center gap-1.5 rounded-xl bg-foreground px-4 text-sm font-semibold text-background transition-all duration-[200ms] hover:bg-foreground/90"
+                    : "mt-8 inline-flex h-11 items-center justify-center gap-1.5 rounded-xl border border-[rgba(15,23,42,0.12)] bg-white px-4 text-sm font-semibold text-foreground transition-all duration-[200ms] hover:border-foreground/30 hover:bg-foreground/[0.03]"
                 }
               >
                 Koppla <ArrowRight className="h-3.5 w-3.5" />
@@ -424,23 +433,23 @@ function Landing() {
         </div>
 
           {/* Additional integrations — calm inline list */}
-          <div className="mx-auto mt-14 max-w-3xl text-center">
-            <p className="text-[1.075rem] leading-relaxed text-white/70 sm:text-lg">
-              <span className="font-semibold text-white/90">Fler integrationer:</span>{" "}
+          <div className="mx-auto mt-16 max-w-3xl text-center">
+            <p className="text-[1.15rem] leading-relaxed text-white/80 sm:text-[1.2rem]">
+              <span className="font-semibold text-white">Fler integrationer:</span>{" "}
               Shopify · LinkedIn · YouTube · Matomo · Excel / CSV
             </p>
             <a
               href="#pricing"
-              className="mt-4 inline-flex items-center gap-1.5 text-base font-semibold text-white/90 transition-colors hover:text-white sm:text-[1.05rem]"
+              className="mt-5 inline-flex items-center gap-2 text-[1.075rem] font-semibold text-white transition-colors hover:text-white/90 sm:text-[1.15rem]"
             >
-              Visa alla integrationer <ArrowRight className="h-4 w-4" />
+              Visa alla integrationer <ArrowRight className="h-[18px] w-[18px]" />
             </a>
           </div>
 
-          <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[0.95rem] text-white/65">
+          <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-[1.025rem] text-white/80">
             {["Säker OAuth", "Ingen kod", "Klar på 2 minuter"].map((t) => (
               <span key={t} className="inline-flex items-center gap-2">
-                <Check className="h-4 w-4 text-emerald-400/85" />
+                <Check className="h-[18px] w-[18px] text-emerald-400/90" />
                 <span className="font-medium tracking-tight">{t}</span>
               </span>
             ))}
