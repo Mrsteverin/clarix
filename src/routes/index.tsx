@@ -318,20 +318,51 @@ function Landing() {
         </div>
       </section>
 
-      {/* Premium integrations grid */}
-      <section id="channels" className="relative mx-auto max-w-7xl px-6 py-32">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">Rekommenderade integrationer</p>
-          <h2 className="mt-4 font-display text-5xl tracking-[-0.035em] sm:text-[3.5rem]">
-            Koppla allt du redan använder
-          </h2>
-          <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-foreground/70">
-            Börja med de viktigaste. Lägg till resten när du vill.
-          </p>
-        </div>
+      {/* Premium integrations — cinematic dark break */}
+      <section id="channels" className="relative isolate overflow-hidden bg-[#111111] py-32 text-white">
+        {/* Warm undertone gradient */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10"
+          style={{
+            background:
+              "radial-gradient(ellipse 80% 60% at 50% 0%, #1a1613 0%, #141210 45%, #111111 100%)",
+          }}
+        />
+        {/* Grain / noise overlay */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.07] mix-blend-overlay"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
+          }}
+        />
+        {/* Soft vignette */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10"
+          style={{
+            background:
+              "radial-gradient(ellipse 100% 80% at 50% 50%, transparent 55%, rgba(0,0,0,0.55) 100%)",
+          }}
+        />
 
-        {/* Featured integrations — large premium cards */}
-        <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="relative mx-auto max-w-7xl px-6">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[oklch(0.78_0.13_240)]">
+              Rekommenderade integrationer
+            </p>
+            <h2 className="mt-4 font-display text-5xl font-bold tracking-[-0.035em] text-white sm:text-[3.5rem]">
+              Koppla allt du redan använder
+            </h2>
+            <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/65">
+              Börja med de viktigaste. Lägg till resten när du vill.
+            </p>
+          </div>
+
+          {/* Featured integrations — large premium white cards */}
+          <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { name: "Google Analytics 4", label: "WEBBTRAFIK", Logo: GoogleAnalyticsLogo, badge: "Mest vald", primary: true },
             { name: "Search Console", label: "SEO", Logo: GoogleSearchConsoleLogo },
@@ -374,27 +405,28 @@ function Landing() {
           ))}
         </div>
 
-        {/* Additional integrations — calm inline list */}
-        <div className="mx-auto mt-10 max-w-3xl text-center">
-          <p className="text-[0.95rem] leading-relaxed text-foreground/65">
-            <span className="font-semibold text-foreground/80">Fler integrationer:</span>{" "}
-            Shopify · LinkedIn · YouTube · Matomo · Excel / CSV
-          </p>
-          <a
-            href="#pricing"
-            className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-foreground/80 transition-colors hover:text-foreground"
-          >
-            Visa alla integrationer <ArrowRight className="h-3.5 w-3.5" />
-          </a>
-        </div>
+          {/* Additional integrations — calm inline list */}
+          <div className="mx-auto mt-12 max-w-3xl text-center">
+            <p className="text-[0.95rem] leading-relaxed text-white/60">
+              <span className="font-semibold text-white/85">Fler integrationer:</span>{" "}
+              Shopify · LinkedIn · YouTube · Matomo · Excel / CSV
+            </p>
+            <a
+              href="#pricing"
+              className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-white/85 transition-colors hover:text-white"
+            >
+              Visa alla integrationer <ArrowRight className="h-3.5 w-3.5" />
+            </a>
+          </div>
 
-        <div className="mx-auto mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-2.5 text-[0.8rem] text-foreground/55">
-          {["Säker OAuth", "Ingen kod", "Klar på 2 minuter"].map((t) => (
-            <span key={t} className="inline-flex items-center gap-1.5">
-              <Check className="h-3.5 w-3.5 text-emerald-600" />
-              <span className="font-medium tracking-tight">{t}</span>
-            </span>
-          ))}
+          <div className="mx-auto mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-2.5 text-[0.8rem] text-white/55">
+            {["Säker OAuth", "Ingen kod", "Klar på 2 minuter"].map((t) => (
+              <span key={t} className="inline-flex items-center gap-1.5">
+                <Check className="h-3.5 w-3.5 text-emerald-400/80" />
+                <span className="font-medium tracking-tight">{t}</span>
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
