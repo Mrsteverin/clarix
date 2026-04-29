@@ -319,59 +319,72 @@ function Landing() {
       </section>
 
       {/* Premium integrations — cinematic dark break */}
-      <section id="channels" className="relative isolate overflow-hidden bg-[#121212] py-32 text-white">
-        {/* Layered graphite base with warm undertone */}
+      <section id="channels" className="relative isolate overflow-hidden bg-[#1B1D21] py-32 text-white">
+        {/* Layered graphite base — softer, atmospheric */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-10"
           style={{
             background:
-              "radial-gradient(ellipse 70% 55% at 50% 0%, #1f1c19 0%, #171615 38%, #121212 78%, #0e0d0c 100%)",
+              "radial-gradient(ellipse 80% 60% at 50% 0%, #23262C 0%, #1F2126 35%, #1B1D21 70%, #17181B 100%)",
           }}
         />
-        {/* Faint radial spotlight behind heading */}
+        {/* Soft cloudy gradient — top left */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px]"
+          className="pointer-events-none absolute inset-0 -z-10"
           style={{
             background:
-              "radial-gradient(ellipse 45% 60% at 50% 18%, rgba(255,220,180,0.08) 0%, rgba(255,200,150,0.035) 40%, transparent 75%)",
+              "radial-gradient(ellipse 55% 45% at 18% 22%, rgba(255,245,230,0.045) 0%, transparent 70%)",
           }}
         />
-        {/* Ambient glow behind card row */}
+        {/* Soft cloudy gradient — bottom right */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-[55%] -z-10 h-[380px]"
+          className="pointer-events-none absolute inset-0 -z-10"
           style={{
             background:
-              "radial-gradient(ellipse 55% 70% at 50% 50%, rgba(120,140,200,0.07) 0%, rgba(80,90,140,0.03) 45%, transparent 80%)",
+              "radial-gradient(ellipse 50% 45% at 82% 78%, rgba(220,225,240,0.04) 0%, transparent 72%)",
           }}
         />
-        {/* Soft warm spotlight behind card row */}
-        <div
+        {/* Gentle drifting light — animated */}
+        <motion.div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-[58%] -z-10 h-[440px]"
+          className="pointer-events-none absolute inset-x-0 top-[10%] -z-10 h-[520px]"
+          animate={{ x: [0, 40, -20, 0], opacity: [0.7, 1, 0.85, 0.7] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
           style={{
             background:
-              "radial-gradient(ellipse 50% 60% at 50% 50%, rgba(255,205,160,0.06) 0%, rgba(255,180,130,0.025) 45%, transparent 78%)",
+              "radial-gradient(ellipse 45% 55% at 50% 30%, rgba(255,225,195,0.05) 0%, rgba(255,210,170,0.025) 40%, transparent 75%)",
           }}
         />
-        {/* Fine premium grain */}
+        {/* Gentle drifting light — second layer */}
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-[45%] -z-10 h-[480px]"
+          animate={{ x: [0, -30, 25, 0], opacity: [0.6, 0.9, 0.7, 0.6] }}
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+          style={{
+            background:
+              "radial-gradient(ellipse 55% 60% at 50% 50%, rgba(200,210,230,0.04) 0%, rgba(180,190,220,0.02) 50%, transparent 80%)",
+          }}
+        />
+        {/* Very fine film grain */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.11] mix-blend-overlay"
+          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.06] mix-blend-overlay"
           style={{
             backgroundImage:
-              "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.35' numOctaves='2' stitchTiles='stitch' seed='4'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.96  0 0 0 0 0.9  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
+              "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2' stitchTiles='stitch' seed='6'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.98  0 0 0 0 0.94  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
           }}
         />
-        {/* Soft vignette */}
+        {/* Soft edge vignette — matte finish */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-10"
           style={{
             background:
-              "radial-gradient(ellipse 110% 85% at 50% 50%, transparent 50%, rgba(0,0,0,0.6) 100%)",
+              "radial-gradient(ellipse 115% 90% at 50% 50%, transparent 55%, rgba(10,11,13,0.45) 100%)",
           }}
         />
 
