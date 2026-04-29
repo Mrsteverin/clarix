@@ -198,8 +198,12 @@ function Landing() {
             Data är värdelös om du inte förstår den.
             <span aria-hidden className="ml-1 text-[#E8744A]">”</span>
           </blockquote>
-          <figcaption className="relative mt-3 text-xs text-[#8A6F62] sm:mt-4 sm:text-sm">
-            Därför byggde vi Clarix.
+          <figcaption className="relative mt-5 text-base font-medium text-[#1A0F0A] sm:mt-6 sm:text-xl">
+            Därför byggde vi{" "}
+            <span className="underline decoration-[oklch(0.62_0.22_295)] decoration-[3px] underline-offset-[6px]">
+              Clarix
+            </span>
+            .
           </figcaption>
         </motion.figure>
       </section>
