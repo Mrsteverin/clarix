@@ -131,7 +131,7 @@ function Landing() {
           </h1>
 
           <p className="mx-auto mt-10 max-w-md text-lg font-medium leading-[1.5] text-foreground/75 sm:text-xl">
-            Veckans viktigaste siffror. Förklarade på svenska.
+            Anslut dina kanaler. Få tydliga rapporter och smarta AI-insikter på enkel svenska som alla förstår.
           </p>
 
           <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
@@ -220,7 +220,7 @@ function Landing() {
                 Som att ha en analytiker i fickan.
               </h2>
               <p className="mt-5 max-w-md text-lg leading-[1.6] text-[oklch(0.3_0.03_280)]">
-                Få veckans viktigaste händelser sammanfattade på svenska — utan jargong, utan grafer att tolka.
+                Få veckans eller månadens viktigaste siffror förklarade så du kan ta action och datadrivna beslut.
               </p>
             </div>
 
