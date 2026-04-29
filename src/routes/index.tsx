@@ -412,9 +412,9 @@ function Landing() {
               <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-[rgba(15,23,42,0.06)] bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
                 <c.Logo className="h-6 w-6" />
               </div>
-              <div className="mt-5">
+              <div className="mt-7">
                 <h3 className="text-[1.15rem] font-bold tracking-tight text-foreground">{c.name}</h3>
-                <p className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-foreground/45">
+                <p className="mt-2 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-foreground/45">
                   {c.label}
                 </p>
               </div>
@@ -422,8 +422,8 @@ function Landing() {
                 href="#pricing"
                 className={
                   c.primary
-                    ? "mt-auto inline-flex h-10 items-center justify-center gap-1.5 rounded-xl bg-foreground px-4 text-sm font-semibold text-background transition-all duration-[200ms] hover:bg-foreground/90"
-                    : "mt-auto inline-flex h-10 items-center justify-center gap-1.5 rounded-xl border border-[rgba(15,23,42,0.12)] bg-white px-4 text-sm font-semibold text-foreground transition-all duration-[200ms] hover:border-foreground/30 hover:bg-foreground/[0.03]"
+                    ? "mt-8 inline-flex h-11 items-center justify-center gap-1.5 rounded-xl bg-foreground px-4 text-sm font-semibold text-background transition-all duration-[200ms] hover:bg-foreground/90"
+                    : "mt-8 inline-flex h-11 items-center justify-center gap-1.5 rounded-xl border border-[rgba(15,23,42,0.12)] bg-white px-4 text-sm font-semibold text-foreground transition-all duration-[200ms] hover:border-foreground/30 hover:bg-foreground/[0.03]"
                 }
               >
                 Koppla <ArrowRight className="h-3.5 w-3.5" />
