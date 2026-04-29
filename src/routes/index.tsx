@@ -120,10 +120,10 @@ function Landing() {
           <h1 className="mx-auto mt-10 max-w-5xl font-display text-6xl leading-[1.04] tracking-[-0.04em] text-foreground sm:text-7xl md:text-[6rem]">
             Förstå din marknadsföring
             <span
-              className="mt-3 block bg-clip-text font-accent text-transparent"
+              className="mt-3 block bg-clip-text font-accent italic text-transparent"
               style={{
                 backgroundImage:
-                  "linear-gradient(95deg, #E92D8B 0%, #F46A54 35%, #F39A1E 60%, #FFF249 95%)",
+                  "linear-gradient(95deg, #E8268F 0%, #E8268F 14%, #EE5C7A 32%, #F58040 52%, #FBB827 74%, #FFD60A 92%, #FFE34D 100%)",
               }}
             >
               på 30 sekunder.
