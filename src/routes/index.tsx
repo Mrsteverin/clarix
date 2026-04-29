@@ -347,6 +347,15 @@ function Landing() {
               "radial-gradient(ellipse 55% 70% at 50% 50%, rgba(120,140,200,0.07) 0%, rgba(80,90,140,0.03) 45%, transparent 80%)",
           }}
         />
+        {/* Soft warm spotlight behind card row */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-[58%] -z-10 h-[440px]"
+          style={{
+            background:
+              "radial-gradient(ellipse 50% 60% at 50% 50%, rgba(255,205,160,0.06) 0%, rgba(255,180,130,0.025) 45%, transparent 78%)",
+          }}
+        />
         {/* Fine premium grain */}
         <div
           aria-hidden
