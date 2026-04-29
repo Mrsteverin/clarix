@@ -112,11 +112,6 @@ function Landing() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3.5 py-1.5 text-xs font-medium text-foreground/70 backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-success" />
-            För kommunikatörer, ägare, VD:ar och CFO:er
-          </div>
-
           <h1 className="mx-auto mt-10 max-w-5xl font-display text-6xl leading-[1.04] tracking-[-0.04em] text-foreground sm:text-7xl md:text-[6rem]">
             Förstå din marknadsföring
             <span
